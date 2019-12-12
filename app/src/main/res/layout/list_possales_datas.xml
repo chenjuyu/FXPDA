@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:paddingBottom="0dp"
+    android:paddingLeft="5dp"
+    android:paddingRight="5dp"
+    android:paddingTop="0dp" >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:orientation="horizontal" >
+
+        <!-- 销售单号 -->
+
+        <TextView
+            android:id="@+id/tv_no"
+            android:layout_width="0dip"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center_vertical"
+            android:textColor="#86878c"
+            android:textSize="17sp" />
+
+        <!-- 日期 -->
+
+        <TextView
+            android:id="@+id/tv_date"
+            android:layout_width="0dip"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:textColor="#86878c"
+            android:textSize="17sp" />
+
+        <!-- VIP卡号 -->
+
+        <TextView
+            android:id="@+id/tv_vip"
+            android:layout_width="0dip"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:textColor="#86878c"
+            android:textSize="17sp" />
+
+        <!-- 售货员 -->
+
+        <TextView
+            android:id="@+id/tv_employee"
+            android:layout_width="0dip"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:textColor="#86878c"
+            android:textSize="17sp" />
+
+        <!-- 数量合计 -->
+
+        <TextView
+            android:id="@+id/tv_quantity_sum"
+            android:layout_width="0dip"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:textColor="#86878c"
+            android:textSize="17sp" />
+
+        <!-- 金额合计 -->
+
+        <TextView
+            android:id="@+id/tv_amount_sum"
+            android:layout_width="0dip"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:textColor="#86878c"
+            android:textSize="17sp" />
+
+        <!-- 实收金额 -->
+
+        <TextView
+            android:id="@+id/tv_fact_amt"
+            android:layout_width="0dip"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:textColor="#86878c"
+            android:textSize="17sp" />
+
+        <!-- 备注 -->
+
+        <TextView
+            android:id="@+id/tv_memo"
+            android:layout_width="0dip"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:textColor="#86878c"
+            android:textSize="17sp" />
+    </LinearLayout>
+
+</LinearLayout>

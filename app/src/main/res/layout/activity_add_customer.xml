@@ -1,0 +1,243 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#fff" >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical" >
+
+        <!-- 客户 编码 -->
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="12dp"
+                android:text="客户编码"
+                android:textSize="17sp" />
+
+            <EditText
+                android:id="@+id/customer_code"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="16dp"
+                android:background="@null"
+                android:hint="请输入客户编码"
+                android:imeOptions="actionNext"
+                android:nextFocusForward="@+id/customer_name"
+                android:padding="12dp"
+                android:singleLine="true"
+                android:textColor="@color/blue"
+                android:textSize="17sp" />
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#C9C9C9" />
+
+        <!-- 客户名称 -->
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="12dp"
+                android:text="客户名称"
+                android:textSize="17sp" />
+
+            <EditText
+                android:id="@+id/customer_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="16dp"
+                android:background="@null"
+                android:hint="请输入客户名称"
+                android:imeOptions="actionNext"
+                android:nextFocusForward="@+id/mobile"
+                android:padding="12dp"
+                android:singleLine="true"
+                android:textSize="17sp" />
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#C9C9C9" />
+        <!-- 客户类别 -->
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="12dp"
+                android:text="客户类别"
+                android:textSize="17sp" />
+
+            <EditText
+                android:id="@+id/customer_type"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="16dp"
+                android:background="@null"
+                android:drawableRight="@drawable/input_bg"
+                android:editable="false"
+                android:hint="请选择客户类别"
+                android:padding="12dp"
+                android:singleLine="true"
+                android:textSize="17sp" />
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#C9C9C9" />
+        <!-- 所属部门 -->
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="12dp"
+                android:text="所属部门"
+                android:textSize="17sp" />
+
+            <EditText
+                android:id="@+id/department"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="16dp"
+                android:background="@null"
+                android:drawableRight="@drawable/input_bg"
+                android:editable="false"
+                android:hint="请选择客户所属部门"
+                android:padding="12dp"
+                android:singleLine="true"
+                android:textSize="17sp" />
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#C9C9C9" />
+        <!-- 批发价格类型 -->
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="12dp"
+                android:text="批发价格"
+                android:textSize="17sp" />
+
+            <EditText
+                android:id="@+id/sales_price_type"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="16dp"
+                android:background="@null"
+                android:drawableRight="@drawable/input_bg"
+                android:editable="false"
+                android:hint="请选择批发价格类型"
+                android:padding="12dp"
+                android:singleLine="true"
+                android:textSize="17sp" />
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#C9C9C9" />
+        <!-- 手机号 -->
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="12dp"
+                android:text="手机号码"
+                android:textSize="17sp" />
+
+            <EditText
+                android:id="@+id/mobile"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="16dp"
+                android:background="@null"
+                android:hint="请输入手机号码"
+                android:numeric="integer"
+                android:padding="12dp"
+                android:singleLine="true"
+                android:textSize="17sp" />
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#C9C9C9" />
+        <!-- 备注 -->
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="12dp"
+                android:text="备注信息"
+                android:textSize="17sp" />
+
+            <EditText
+                android:id="@+id/memo"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="16dp"
+                android:background="@null"
+                android:drawableRight="@drawable/input_bg"
+                android:editable="false"
+                android:hint="请输入备注信息"
+                android:padding="12dp"
+                android:singleLine="true"
+                android:textSize="17sp" />
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#C9C9C9" />
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/save"
+        android:layout_width="fill_parent"
+        android:layout_height="40dp"
+        android:layout_alignParentBottom="true"
+        android:background="@drawable/custom_button"
+        android:gravity="center"
+        android:text="保存"
+        android:textColor="#fff"
+        android:textSize="17dp" />
+
+</RelativeLayout>

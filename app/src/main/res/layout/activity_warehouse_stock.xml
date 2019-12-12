@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#fff"
+    android:orientation="vertical" >
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="6dp"
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="5dp"
+        android:layout_marginTop="6dp"
+        android:orientation="horizontal" >
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="fill_parent"
+            android:layout_weight="1"
+            android:gravity="center_vertical"
+            android:text="仓库:"
+            android:textSize="17sp" />
+
+        <EditText
+            android:id="@+id/warehouseId"
+            android:layout_width="0dp"
+            android:layout_height="fill_parent"
+            android:layout_marginLeft="5dp"
+            android:layout_weight="6"
+            android:background="@null"
+            android:drawableRight="@drawable/input_bg"
+            android:editable="false"
+            android:hint="请选择仓库"
+            android:paddingBottom="0sp"
+            android:paddingTop="0sp"
+            android:singleLine="true"
+            android:textColor="@color/blue"
+            android:textSize="17sp" />
+    </LinearLayout>
+
+    <View
+        android:id="@+id/view1"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#C9C9C9" />
+
+    <LinearLayout
+        android:id="@+id/ll_type"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="6dp"
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="5dp"
+        android:layout_marginTop="6dp"
+        android:orientation="horizontal" >
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="fill_parent"
+            android:layout_weight="1"
+            android:gravity="center_vertical"
+            android:text="类别:"
+            android:textSize="17sp" />
+
+        <EditText
+            android:id="@+id/docType"
+            android:layout_width="0dp"
+            android:layout_height="fill_parent"
+            android:layout_marginLeft="5dp"
+            android:layout_weight="6"
+            android:background="@null"
+            android:drawableRight="@drawable/input_bg"
+            android:editable="false"
+            android:hint="请选择单据类别"
+            android:paddingBottom="0sp"
+            android:paddingTop="0sp"
+            android:singleLine="true"
+            android:textColor="@color/blue"
+            android:textSize="17sp" />
+    </LinearLayout>
+
+    <!-- 选项 -->
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="40dip"
+        android:background="#f0f0f0"
+        android:gravity="center_horizontal"
+        android:orientation="horizontal"
+        android:padding="3dp" >
+
+        <!-- 筛选块 -->
+
+        <com.fuxi.widget.CheckBoxTextView
+            android:id="@+id/show_all"
+            style="@style/top_condition_div"
+            android:background="@drawable/left_radius_select"
+            android:clickable="true"
+            android:text="全部"
+            android:textStyle="bold" />
+
+        <com.fuxi.widget.CheckBoxTextView
+            android:id="@+id/show_audit"
+            style="@style/top_condition_div"
+            android:background="@drawable/mid_radius_select"
+            android:clickable="true"
+            android:text="已审核"
+            android:textStyle="bold" />
+
+        <com.fuxi.widget.CheckBoxTextView
+            android:id="@+id/show_unaudit"
+            style="@style/top_condition_div"
+            android:background="@drawable/right_radius_select"
+            android:clickable="true"
+            android:text="未审核"
+            android:textStyle="bold" />
+    </LinearLayout>
+
+    <!-- 显示列表 -->
+
+    <com.fuxi.widget.RefreshListView
+        android:id="@+id/lv_datas"
+        android:layout_width="fill_parent"
+        android:layout_height="0dip"
+        android:layout_weight="1"
+        android:divider="#F0F0F0"
+        android:dividerHeight="1dp" />
+
+</LinearLayout>

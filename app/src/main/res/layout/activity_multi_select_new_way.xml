@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" >
+    
+        <WebView
+        android:id="@+id/myWeb"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
+        
+       	<TextView
+        android:id="@+id/save"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_alignParentBottom="true"
+        android:background="@drawable/upload_button"
+        android:gravity="center"
+        android:text="保存"
+        android:textColor="#fff"
+        android:textSize="17sp" />
+
+</RelativeLayout>

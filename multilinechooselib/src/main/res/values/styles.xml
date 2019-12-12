@@ -1,0 +1,49 @@
+<resources>
+
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+    </style>
+
+    <style name="customListView" parent="@android:style/Widget.ListView">
+
+        <item name="android:fadingEdge">none</item>
+        <item name="android:cacheColorHint">@android:color/transparent</item>
+
+    </style>
+    <style name="CustomWindowTitleBackground">
+        <item name="android:background">@android:color/transparent</item>
+    </style>
+    <style name="Default" parent="@android:style/Theme.Light.NoTitleBar">
+        <item name="android:windowContentOverlay">@null</item>
+        <item name="android:windowTitleSize">40.0dip</item>
+        <item name="android:windowNoTitle">false</item>
+        <item name="android:listViewStyle">@style/customListView</item>
+        <item name="android:windowIsTranslucent">true</item>
+        <item name="android:windowTitleBackgroundStyle">@style/CustomWindowTitleBackground</item>
+    </style>
+    <!-- &lt;!&ndash;https://github.com/jackuhan/FlowlayoutTags&ndash;&gt;  -->
+     <style name="MultiLineChooseItemTags">
+         <item name="android:layout_width">match_parent</item>
+         <item name="android:layout_height">wrap_content</item>
+         <item name="item_backgroundColor">#FFFFFF</item>
+         <item name="item_selectedTextColor">#FFFFFF</item>
+         <item name="item_selectedBackgroundColor">#49C120</item>
+         <item name="item_textSize">13sp</item>
+         <item name="item_horizontalSpacing">5dp</item>
+         <item name="item_verticalSpacing">5dp</item>
+         <item name="item_horizontalPadding">12dp</item>
+         <item name="item_verticalPadding">3dp</item>
+         <item name="item_radius">5dp</item>
+         <item name="item_selectedStrokeColor">#49C120</item>
+         <item name="item_strokeWidth">1px</item>
+         <item name="item_multiChooseable">true</item>
+         <item name="item_singleLine">true</item>
+         <item name="item_width">85</item>
+         <item name="item_height">30</item>
+     </style>
+
+</resources>

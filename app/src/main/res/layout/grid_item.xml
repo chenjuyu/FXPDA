@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="#ffffff" >
+
+    <RelativeLayout
+        android:id="@+id/rl_main"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_centerInParent="true"
+        android:background="@drawable/bg_gv"
+        android:padding="10dp" >
+
+        <com.fuxi.widget.FontTextView
+            android:id="@+id/iv_item"
+            android:layout_width="60dp"
+            android:layout_height="58dp"
+            android:layout_centerHorizontal="true"
+            android:gravity="center"
+            android:textColor="#F19415"
+            android:textSize="40sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/tv_item"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/iv_item"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="5dp"
+            android:maxLines="1"
+            android:textSize="17sp"
+            android:textStyle="bold" />
+    </RelativeLayout>
+
+</RelativeLayout>

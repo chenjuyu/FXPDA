@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical" >
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#C9C9C9" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:orientation="horizontal" >
+
+        <CheckBox
+            android:id="@+id/notUseOriginalReturn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:scaleX="0.6"
+            android:scaleY="0.6" />
+
+        <TextView
+            android:id="@+id/tvNotUseOriginalReturn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="不使用原单退货"
+            android:textSize="17sp" />
+    </LinearLayout>
+
+    <View
+        android:id="@+id/view1"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#C9C9C9" />
+
+    <LinearLayout
+        android:id="@+id/ll_sales_no"
+        android:layout_width="fill_parent"
+        android:layout_height="40dp"
+        android:orientation="horizontal" >
+
+        <TextView
+            android:id="@+id/tv_sales_no"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1.5"
+            android:padding="5dp"
+            android:text="销售单号"
+            android:textSize="17sp" />
+
+        <EditText
+            android:id="@+id/et_sales_no"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="3"
+            android:background="@null"
+            android:padding="5dp"
+            android:singleLine="true"
+            android:textSize="17sp" />
+    </LinearLayout>
+
+    <View
+        android:id="@+id/view2"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#C9C9C9" />
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="40dp"
+        android:orientation="horizontal" >
+
+        <TextView
+            android:id="@+id/tv_barcode"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1.5"
+            android:padding="5dp"
+            android:text="货品条码"
+            android:textSize="17sp" />
+
+        <EditText
+            android:id="@+id/et_barcode"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="3"
+            android:background="@null"
+            android:padding="5dp"
+            android:singleLine="true"
+            android:textSize="17sp" />
+    </LinearLayout>
+
+</LinearLayout>

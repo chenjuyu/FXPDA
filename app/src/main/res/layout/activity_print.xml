@@ -1,0 +1,33 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" >
+
+    <WebView
+        android:id="@+id/myWeb"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+    <!--
+    <RelativeLayout 
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true">
+        
+	    <Button 
+	        android:id="@+id/preview"
+	        android:layout_width="match_parent"
+	        android:layout_height="wrap_content"
+	        android:text="预览"/>
+	    
+	    <Button 
+	        android:id="@+id/print"
+	        android:layout_width="match_parent"
+	        android:layout_height="wrap_content"
+	        android:layout_below="@+id/preview"
+	        android:text="打印"/>
+        
+    </RelativeLayout>
+    -->
+
+</RelativeLayout>

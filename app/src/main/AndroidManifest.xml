@@ -1,0 +1,302 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:dist="http://schemas.android.com/apk/distribution"
+    package="com.fuxi.main">
+
+
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.FLASHLIGHT" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
+    <uses-permission android:name="com.android.launcher.permission.READ_SETTINGS" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+    <uses-permission android:name="android.permission.VIBRATE" />
+    <uses-permission android:name="android.permission.BLUETOOTH" />
+    <uses-permission android:name="android.permission.BLUETOOTH_ADMIN" />
+    <uses-permission android:name="android.permission.NFC" />
+
+    <application
+        android:name="com.fuxi.application.ECApplication"
+        android:allowBackup="false"
+        android:icon="@drawable/logo_round"
+        android:label="@string/app_name"
+        android:theme="@style/Default">
+
+        <!-- 过滤器   监听安装包的安装过程 -->
+        <receiver
+            android:name="com.fuxi.receiver.InitApkBroadcastReceiver"
+            android:enabled="true">
+            <intent-filter>
+                <action android:name="android.intent.action.PACKAGE_ADDED" />
+                <action android:name="android.intent.action.PACKAGE_REPLACED" />
+                <action android:name="android.intent.action.PACKAGE_REMOVED" />
+
+                <data android:scheme="package" />
+            </intent-filter>
+        </receiver>
+
+        <!-- 欢迎界面 com.fuxi.activity.WelcomeActivity-->
+        <activity
+            android:name="com.fuxi.activity.ShowActivity"
+            android:label="@string/app_name"
+            android:theme="@android:style/Theme.Light.NoTitleBar.Fullscreen">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <!-- 登陆界面 -->
+        <activity android:name="com.fuxi.activity.LoginActivity" />
+        <!-- 系统设置界面 -->
+        <activity android:name="com.fuxi.activity.SystemSettingsActivity" />
+        <!-- 盘点单界面 -->
+        <activity android:name="com.fuxi.activity.InventorySheetActivity" />
+        <!-- 销售发货单界面 -->
+        <activity android:name="com.fuxi.activity.SalesActivity" />
+        <!-- 销售退货单界面 -->
+        <activity android:name="com.fuxi.activity.SalesReturnsActivity" />
+        <!-- 采购收货单 -->
+        <activity android:name="com.fuxi.activity.PurchaseActivity" />
+        <!-- 采购退货单 -->
+        <activity android:name="com.fuxi.activity.PurchaseReturnActivity" />
+        <!-- 库存查询条件界面 -->
+        <activity
+            android:name="com.fuxi.activity.InventoryQueryActivity"
+            android:windowSoftInputMode="adjustPan|stateAlwaysHidden" />
+        <!-- 库存分布 -->
+        <activity android:name="com.fuxi.activity.InventoryDistributionActivity" />
+        <!-- 主界面 -->
+        <activity
+            android:name="com.fuxi.activity.MainActivity"
+            android:windowSoftInputMode="adjustPan|stateAlwaysHidden" />
+        <!-- 仓库管理界面 -->
+        <activity
+            android:name="com.fuxi.activity.WarehouseManagementActivity"
+            android:windowSoftInputMode="adjustPan|stateAlwaysHidden" />
+        <!-- 采购管理界面 -->
+        <activity
+            android:name="com.fuxi.activity.PurchaseManagementActivity"
+            android:windowSoftInputMode="adjustPan|stateAlwaysHidden" />
+        <!-- 零售管理界面 -->
+        <activity
+            android:name="com.fuxi.activity.PosSalesManagementActivity"
+            android:windowSoftInputMode="adjustPan|stateAlwaysHidden" />
+        <!-- 销售管理界面 -->
+        <activity
+            android:name="com.fuxi.activity.SalesManagementActivity"
+            android:windowSoftInputMode="adjustPan|stateAlwaysHidden" />
+        <!-- 销售订单 -->
+        <activity android:name="com.fuxi.activity.SalesOrderActivity" />
+        <!-- 销售订单明细 -->
+        <activity
+            android:name="com.fuxi.activity.SalesOrderDetailActivity"
+            android:windowSoftInputMode="adjustPan|stateAlwaysHidden" />
+        <!-- 销售发货单明细 -->
+        <activity
+            android:name="com.fuxi.activity.SalesDetailActivity"
+            android:windowSoftInputMode="adjustPan|stateAlwaysHidden" />
+        <!-- 销售退货单明细 -->
+        <activity
+            android:name="com.fuxi.activity.SalesReturnsDetailActivity"
+            android:windowSoftInputMode="adjustPan|stateAlwaysHidden" />
+        <!-- 采购收货单明细 -->
+        <activity
+            android:name="com.fuxi.activity.PurchaseDetailActivity"
+            android:windowSoftInputMode="adjustPan|stateAlwaysHidden" />
+        <!-- 采购退货单明细 -->
+        <activity
+            android:name="com.fuxi.activity.PurchaseReturnDetailActivity"
+            android:windowSoftInputMode="adjustPan|stateAlwaysHidden" />
+        <!-- 盘点单明细 -->
+        <activity
+            android:name="com.fuxi.activity.InventorySheetDetailActivity"
+            android:windowSoftInputMode="adjustPan|stateAlwaysHidden" />
+        <!-- 转仓进仓单明细 -->
+        <activity
+            android:name="com.fuxi.activity.WarehouseStockInDetailActivity"
+            android:windowSoftInputMode="adjustPan|stateAlwaysHidden" />
+        <!-- 转仓出仓单明细 -->
+        <activity
+            android:name="com.fuxi.activity.WarehouseStockOutDetailActivity"
+            android:windowSoftInputMode="adjustPan|stateAlwaysHidden" />
+        <!-- 选择页面 -->
+        <activity
+            android:name="com.fuxi.activity.SelectActivity"
+            android:windowSoftInputMode="stateAlwaysHidden" />
+        <!-- 备注界面 -->
+        <activity android:name="com.fuxi.activity.RemarkActivity" />
+        <!-- 打印界面 -->
+        <activity android:name="com.fuxi.activity.PrintActivity" />
+        <!-- 销售小票界面 -->
+        <activity
+            android:name="com.fuxi.activity.SalesTicketActivity"
+            android:windowSoftInputMode="adjustPan|stateAlwaysHidden" />
+        <!-- 新增客户 -->
+        <activity
+            android:name="com.fuxi.activity.AddCustomerActivity"
+            android:windowSoftInputMode="adjustPan|stateAlwaysHidden" />
+        <!-- 货品图片界面 -->
+        <activity
+            android:name="com.fuxi.activity.PictureActivity"
+            android:windowSoftInputMode="adjustPan|stateAlwaysHidden" />
+        <!-- 设置中心 -->
+        <activity
+            android:name="com.fuxi.activity.SettingActivity"
+            android:windowSoftInputMode="adjustPan|stateAlwaysHidden" />
+        <!-- 上传图片界面 -->
+        <activity android:name="com.fuxi.activity.UploadPictureActivity" />
+        <!-- 仓位管理主界面 -->
+        <activity
+            android:name="com.fuxi.activity.PositionManagementActivity"
+            android:windowSoftInputMode="adjustPan|stateAlwaysHidden" />
+        <!-- 基本资料主界面 -->
+        <activity android:name="com.fuxi.activity.BaseInformationActivity" />
+        <!-- 仓位上架 -->
+        <activity android:name="com.fuxi.activity.ShelvesInActivity" />
+        <!-- 仓位调拨上架 -->
+        <activity android:name="com.fuxi.activity.AllocationShelvesInActivity" />
+        <!-- 移仓 -->
+        <activity android:name="com.fuxi.activity.MoveShelvesActivity" />
+        <!-- 仓位下架(货品出库下架列表界面) -->
+        <activity android:name="com.fuxi.activity.ShelvesOutActivity" />
+        <!-- 仓位调拨下架界面 -->
+        <activity android:name="com.fuxi.activity.AllocationShelvesOutActivity" />
+        <!-- 转仓进仓单列表界面 -->
+        <activity android:name="com.fuxi.activity.WarehouseStockInActivity" />
+        <!-- 转仓出仓单列表界面 -->
+        <activity android:name="com.fuxi.activity.WarehouseStockOutActivity" />
+        <!-- 进仓单列表选择界面 -->
+        <activity android:name="com.fuxi.activity.StockInActivity" />
+        <!-- 出仓单列表选择界面 -->
+        <activity android:name="com.fuxi.activity.StockOutActivity" />
+        <!-- 转仓单列表界面 -->
+        <activity android:name="com.fuxi.activity.StockMoveActivity" />
+        <!-- 转仓单明细界面 -->
+        <activity
+            android:name="com.fuxi.activity.StockMoveDetailActivity"
+            android:windowSoftInputMode="adjustPan|stateAlwaysHidden" />
+        <!-- 移出下架单明细列表界面 -->
+        <activity android:name="com.fuxi.activity.StockOutRemoveDetailActivity" />
+        <!-- 关于我们 -->
+        <activity android:name="com.fuxi.activity.AboveUsActivity" />
+        <!-- 库位查询 -->
+        <activity
+            android:name="com.fuxi.activity.StorageQueryActivity"
+            android:windowSoftInputMode="adjustPan|stateAlwaysHidden" />
+        <!-- 货品资料 -->
+        <activity
+            android:name="com.fuxi.activity.GoodsInformationActivity"
+            android:windowSoftInputMode="adjustPan|stateAlwaysHidden" />
+        <!-- 货架初始化界面 -->
+        <activity
+            android:name="com.fuxi.activity.InitializeShelvesInActivity"
+            android:windowSoftInputMode="adjustPan|stateAlwaysHidden" />
+        <!-- 条码校验界面 -->
+        <activity
+            android:name="com.fuxi.activity.BarcodeVerificationActivity"
+            android:windowSoftInputMode="adjustPan|stateAlwaysHidden" />
+        <!-- 装箱详情显示界面 -->
+        <activity
+            android:name="com.fuxi.activity.GoodsBoxBarcodeActivity"
+            android:windowSoftInputMode="adjustPan|stateAlwaysHidden" />
+        <!-- 进销存查询界面 -->
+        <activity
+            android:name="com.fuxi.activity.InvoicingActivity"
+            android:windowSoftInputMode="adjustPan|stateAlwaysHidden" />
+        <!-- 进销存查询货品尺码明细界面 -->
+        <activity
+            android:name="com.fuxi.activity.InvoicingDistributionActivity"
+            android:windowSoftInputMode="adjustPan|stateAlwaysHidden" />
+        <!-- 负库存货品明细界面 -->
+        <activity
+            android:name="com.fuxi.activity.NegativeStockActivity"
+            android:windowSoftInputMode="adjustPan|stateAlwaysHidden" />
+        <!-- 装箱单界面 -->
+        <activity
+            android:name="com.fuxi.activity.PackingBoxActivity"
+            android:windowSoftInputMode="adjustPan|stateAlwaysHidden" />
+        <!-- 装箱单明细界面 -->
+        <activity
+            android:name="com.fuxi.activity.PackingBoxDetailActivity"
+            android:windowSoftInputMode="adjustPan|stateAlwaysHidden" />
+        <!-- 装箱单打印界面 -->
+        <activity
+            android:name="com.fuxi.activity.PackingBoxSelectPrintActivity"
+            android:windowSoftInputMode="adjustPan|stateAlwaysHidden" />
+        <!-- 仓储设置界面 -->
+        <activity
+            android:name="com.fuxi.activity.PositionSettingActivity"
+            android:windowSoftInputMode="adjustPan|stateAlwaysHidden" />
+        <!-- 离线盘点列表界面 -->
+        <activity
+            android:name="com.fuxi.activity.InventorySheetOutLineActivity"
+            android:windowSoftInputMode="adjustPan|stateAlwaysHidden" />
+        <!-- 离线盘点明细界面 -->
+        <activity
+            android:name="com.fuxi.activity.InventorySheetOutLineDetailActivity"
+            android:windowSoftInputMode="adjustPan|stateAlwaysHidden" />
+        <!-- 多颜色尺码录入界面 -->
+        <activity
+            android:name="com.fuxi.activity.MultiSelectActivity"
+            android:windowSoftInputMode="adjustPan|stateAlwaysHidden" />
+        <!-- 多颜色尺码录入界面 -->
+        <activity
+            android:name="com.fuxi.activity.OutLineSelectActivity"
+            android:windowSoftInputMode="adjustPan|stateAlwaysHidden" />
+        <!-- 条码打印界面 -->
+        <activity
+            android:name="com.fuxi.activity.BarcodePrintActivity"
+            android:windowSoftInputMode="adjustPan|stateAlwaysHidden" />
+        <!-- 零售库存查询界面 -->
+        <activity
+            android:name="com.fuxi.activity.PosSalesInventoryQueryActivity"
+            android:windowSoftInputMode="adjustPan|stateAlwaysHidden" />
+        <!-- 零售库存查询界面 -->
+        <activity
+            android:name="com.fuxi.activity.PossalesQueryActivity"
+            android:windowSoftInputMode="adjustPan|stateAlwaysHidden" />
+        <!-- 赠品单界面 -->
+        <activity
+            android:name="com.fuxi.activity.GiftActivity"
+            android:windowSoftInputMode="adjustPan|stateAlwaysHidden" />
+        <!-- 多颜色多尺码录入界面(新) -->
+        <activity
+            android:name="com.fuxi.activity.MultiSelectNewWayActivity"
+            android:windowSoftInputMode="adjustPan|stateAlwaysHidden" />
+        <!-- 日结界面 -->
+        <activity
+            android:name="com.fuxi.activity.DailyKnotsActivity"
+            android:windowSoftInputMode="adjustPan|stateAlwaysHidden" />
+
+        <!-- ==============订货会系统========== -->
+        <!-- 订货会登录界面 -->
+        <activity
+            android:name="com.fuxi.activity.OPMLoginActivity"
+            android:windowSoftInputMode="adjustPan|stateAlwaysHidden" />
+        <!-- 订货会主界面 -->
+        <activity
+            android:name="com.fuxi.activity.OPMMainActivity"
+            android:windowSoftInputMode="adjustPan|stateAlwaysHidden" />
+        <!-- 订货会货品颜色尺码选择界面 -->
+        <activity
+            android:name="com.fuxi.activity.OPMMultiSelectActivity"
+            android:windowSoftInputMode="adjustPan|stateAlwaysHidden" />
+        <!-- 订货会货品资料显示界面 -->
+        <activity
+            android:name="com.fuxi.activity.OPMGoodsInfoActivity"
+            android:windowSoftInputMode="adjustPan|stateAlwaysHidden" />
+        <!-- 订货会报表查询界面 -->
+        <activity
+            android:name="com.fuxi.activity.OPMReportingActivity"
+            android:windowSoftInputMode="adjustPan|stateAlwaysHidden" />
+    </application>
+
+</manifest>

@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:paddingBottom="0dp"
+    android:paddingLeft="5dp"
+    android:paddingRight="5dp"
+    android:paddingTop="0dp" >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:orientation="horizontal" >
+
+        <!-- 单号 -->
+
+        <TextView
+            android:id="@+id/tv_no"
+            android:layout_width="0dip"
+            android:layout_height="match_parent"
+            android:layout_weight="2"
+            android:gravity="center_vertical"
+            android:textColor="#86878c"
+            android:textSize="17sp" />
+        <!-- 仓库 -->
+
+        <TextView
+            android:id="@+id/tv_warehouse"
+            android:layout_width="0dip"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:textColor="#86878c"
+            android:textSize="17sp" />
+        <!-- 客户 -->
+
+        <TextView
+            android:id="@+id/tv_customer"
+            android:layout_width="0dip"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:textColor="#86878c"
+            android:textSize="17sp" />
+        <!-- 数量 -->
+
+        <TextView
+            android:id="@+id/tv_count"
+            android:layout_width="0dip"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:textColor="@color/blue"
+            android:textSize="17sp" />
+    </LinearLayout>
+
+</LinearLayout>

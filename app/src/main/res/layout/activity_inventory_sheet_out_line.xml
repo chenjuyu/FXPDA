@@ -1,0 +1,152 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#fff"
+    android:orientation="vertical" >
+
+    <!-- 标题 -->
+
+    <LinearLayout
+        android:id="@+id/title"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="5dp"
+        android:gravity="center"
+        android:orientation="horizontal" >
+
+        <!-- 全选 -->
+
+        <TextView
+            android:id="@+id/operation"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1.2"
+            android:gravity="center_vertical"
+            android:paddingLeft="10dp"
+            android:text="操作"
+            android:textColor="#000"
+            android:textSize="17sp"
+            android:visibility="gone" />
+
+        <!-- 单据编号 -->
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="2"
+            android:gravity="center_vertical"
+            android:text="单据编号"
+            android:textColor="#000"
+            android:textSize="17sp" />
+
+        <!-- 创建日期 -->
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="2"
+            android:gravity="center_vertical"
+            android:text="创建日期"
+            android:textColor="#000"
+            android:textSize="17sp" />
+
+        <!-- 数量 -->
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="数量"
+            android:textColor="#000"
+            android:textSize="17sp" />
+    </LinearLayout>
+
+    <View
+        android:id="@+id/view"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_below="@+id/title"
+        android:background="#F0F0F0" />
+
+    <!-- ListView -->
+
+    <ListView
+        android:id="@+id/list_detail"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_below="@id/view"
+        android:layout_marginBottom="45dp"
+        android:divider="#F0F0F0"
+        android:dividerHeight="1dp"
+        android:listSelector="@android:color/transparent" >
+    </ListView>
+
+    <!-- 底部 -->
+
+    <LinearLayout
+        android:id="@+id/ll_bottom"
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:layout_alignParentBottom="true"
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="5dp"
+        android:background="@drawable/top_line"
+        android:gravity="center"
+        android:orientation="horizontal"
+        android:visibility="gone" >
+
+        <!-- 全选 -->
+
+        <CheckBox
+            android:id="@+id/checkAll"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.5"
+            android:padding="0dp"
+            android:scaleX="0.7"
+            android:scaleY="0.7" />
+
+        <!-- 导出 -->
+
+        <TextView
+            android:id="@+id/export"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="2"
+            android:gravity="center_vertical"
+            android:text="导出（0）"
+            android:textColor="@color/black"
+            android:textSize="17sp"
+            android:textStyle="bold" />
+
+        <!-- 删除 -->
+
+        <TextView
+            android:id="@+id/delete"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="2"
+            android:gravity="center_vertical"
+            android:text="删除（0）"
+            android:textColor="@color/black"
+            android:textSize="17sp"
+            android:textStyle="bold" />
+
+        <!-- 数量 -->
+
+        <TextView
+            android:id="@+id/total"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="0"
+            android:textColor="@color/blue"
+            android:textSize="17sp"
+            android:textStyle="bold" />
+    </LinearLayout>
+
+</RelativeLayout>

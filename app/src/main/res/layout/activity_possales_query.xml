@@ -1,0 +1,647 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#fff"
+    android:focusable="true"
+    android:focusableInTouchMode="true"
+    android:orientation="vertical" >
+
+    <LinearLayout
+        android:id="@+id/ll_select"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:paddingLeft="5dp"
+        android:paddingRight="5dp" >
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="3"
+            android:orientation="vertical" >
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="40dp"
+                android:background="@drawable/text_bottom_line"
+                android:gravity="center"
+                android:orientation="horizontal" >
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="fill_parent"
+                    android:layout_weight="2"
+                    android:gravity="center_vertical"
+                    android:text="开始日期:"
+                    android:textSize="17sp" />
+
+                <EditText
+                    android:id="@+id/begindate"
+                    android:layout_width="0dp"
+                    android:layout_height="fill_parent"
+                    android:layout_weight="3"
+                    android:background="@null"
+                    android:drawableRight="@drawable/input_bg"
+                    android:editable="false"
+                    android:hint="请选择开始日期"
+                    android:imeOptions="actionDone"
+                    android:paddingBottom="0sp"
+                    android:paddingTop="0sp"
+                    android:singleLine="true"
+                    android:textSize="17sp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="40dp"
+                android:background="@drawable/text_bottom_line"
+                android:gravity="center"
+                android:orientation="horizontal" >
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="fill_parent"
+                    android:layout_weight="2"
+                    android:gravity="center_vertical"
+                    android:text="结束日期:"
+                    android:textSize="17sp" />
+
+                <EditText
+                    android:id="@+id/enddate"
+                    android:layout_width="0dp"
+                    android:layout_height="fill_parent"
+                    android:layout_weight="3"
+                    android:background="@null"
+                    android:drawableRight="@drawable/input_bg"
+                    android:editable="false"
+                    android:hint="请选择结束日期"
+                    android:imeOptions="actionDone"
+                    android:paddingBottom="0sp"
+                    android:paddingTop="0sp"
+                    android:singleLine="true"
+                    android:textSize="17sp" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="fill_parent"
+            android:layout_marginLeft="10dp"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="vertical" >
+
+            <TextView
+                android:id="@+id/search"
+                android:layout_width="56dp"
+                android:layout_height="56dp"
+                android:background="@drawable/custom_button"
+                android:clickable="true"
+                android:gravity="center"
+                android:text="查询"
+                android:textColor="#fff"
+                android:textSize="17sp"
+                android:textStyle="bold" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/ll_cbtv_title"
+        android:layout_width="match_parent"
+        android:layout_height="40dip"
+        android:layout_below="@+id/ll_select"
+        android:background="#f0f0f0"
+        android:gravity="center_horizontal"
+        android:orientation="horizontal"
+        android:padding="2dp" >
+
+        <!-- 筛选块 -->
+
+        <com.fuxi.widget.CheckBoxTextView
+            android:id="@+id/cbtv_possales_detail"
+            style="@style/top_condition_div"
+            android:background="@drawable/left_radius_select"
+            android:clickable="true"
+            android:padding="1dp"
+            android:text="销售明细表"
+            android:textStyle="bold" />
+
+        <com.fuxi.widget.CheckBoxTextView
+            android:id="@+id/cbtv_possales"
+            style="@style/top_condition_div"
+            android:background="@drawable/right_radius_select"
+            android:clickable="true"
+            android:padding="1dp"
+            android:text="销售单"
+            android:textStyle="bold" />
+    </LinearLayout>
+
+    <View
+        android:id="@+id/v_1"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_below="@id/ll_cbtv_title"
+        android:background="#F0F0F0" />
+
+    <!-- 销售明细表 -->
+
+    <LinearLayout
+        android:id="@+id/ll_possales_detail"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/v_1"
+        android:orientation="vertical"
+        android:paddingLeft="5dp"
+        android:paddingRight="5dp"
+        android:visibility="gone" >
+
+        <HorizontalScrollView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_below="@+id/v_1"
+            android:scrollbars="none" >
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent" >
+
+                <!-- ListView前面的标题 -->
+
+                <LinearLayout
+                    android:id="@+id/ll_list_possales_detail_title"
+                    android:layout_width="950dp"
+                    android:layout_height="40dp"
+                    android:orientation="horizontal"
+                    android:paddingBottom="5dp"
+                    android:paddingLeft="5dp"
+                    android:paddingRight="5dp"
+                    android:paddingTop="5dp" >
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:gravity="center_vertical"
+                        android:text="销售单号"
+                        android:textColor="@color/black"
+                        android:textSize="17sp" />
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:text="单据类别"
+                        android:textColor="@color/black"
+                        android:textSize="17sp" />
+
+                    <TextView
+                        android:layout_width="0dip"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:text="VIP卡号"
+                        android:textColor="@color/black"
+                        android:textSize="17sp" />
+
+                    <TextView
+                        android:layout_width="0dip"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:text="货品编码"
+                        android:textColor="@color/black"
+                        android:textSize="17sp" />
+
+                    <TextView
+                        android:layout_width="0dip"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:text="货品名称"
+                        android:textColor="@color/black"
+                        android:textSize="17sp" />
+
+                    <TextView
+                        android:layout_width="0dip"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:text="单位"
+                        android:textColor="@color/black"
+                        android:textSize="17sp" />
+
+                    <TextView
+                        android:layout_width="0dip"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:text="颜色"
+                        android:textColor="@color/black"
+                        android:textSize="17sp" />
+
+                    <TextView
+                        android:layout_width="0dip"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:text="尺码"
+                        android:textColor="@color/black"
+                        android:textSize="17sp" />
+
+                    <TextView
+                        android:layout_width="0dip"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:text="数量"
+                        android:textColor="@color/black"
+                        android:textSize="17sp" />
+
+                    <TextView
+                        android:layout_width="0dip"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:text="单价"
+                        android:textColor="@color/black"
+                        android:textSize="17sp" />
+
+                    <TextView
+                        android:layout_width="0dip"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:text="折扣"
+                        android:textColor="@color/black"
+                        android:textSize="17sp" />
+
+                    <TextView
+                        android:layout_width="0dip"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:text="折扣额"
+                        android:textColor="@color/black"
+                        android:textSize="17sp" />
+
+                    <TextView
+                        android:layout_width="0dip"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:text="金额"
+                        android:textColor="@color/black"
+                        android:textSize="17sp" />
+                </LinearLayout>
+
+                <View
+                    android:id="@+id/view1"
+                    android:layout_width="950dp"
+                    android:layout_height="1dp"
+                    android:layout_below="@+id/ll_list_possales_detail_title"
+                    android:background="#F0F0F0" />
+
+                <!-- ListView -->
+
+                <ListView
+                    android:id="@+id/lv_possales_detail_datas"
+                    android:layout_width="950dp"
+                    android:layout_height="fill_parent"
+                    android:layout_below="@+id/view1"
+                    android:layout_marginBottom="40dp"
+                    android:divider="#F0F0F0"
+                    android:dividerHeight="1dp" >
+                </ListView>
+
+                <!-- 合计 -->
+
+                <LinearLayout
+                    android:layout_width="950dp"
+                    android:layout_height="40dp"
+                    android:layout_alignParentBottom="true"
+                    android:orientation="horizontal" >
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:gravity="center_vertical"
+                        android:text="合计"
+                        android:textColor="#F19415"
+                        android:textSize="17sp" />
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:textColor="#F19415"
+                        android:textSize="17sp" />
+
+                    <TextView
+                        android:layout_width="0dip"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:textColor="#F19415"
+                        android:textSize="17sp" />
+
+                    <TextView
+                        android:layout_width="0dip"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:textColor="#F19415"
+                        android:textSize="17sp" />
+
+                    <TextView
+                        android:layout_width="0dip"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:textColor="#F19415"
+                        android:textSize="17sp" />
+
+                    <TextView
+                        android:layout_width="0dip"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:textColor="#F19415"
+                        android:textSize="17sp" />
+
+                    <TextView
+                        android:layout_width="0dip"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:textColor="#F19415"
+                        android:textSize="17sp" />
+
+                    <TextView
+                        android:layout_width="0dip"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:textColor="#F19415"
+                        android:textSize="17sp" />
+
+                    <TextView
+                        android:id="@+id/quantity_sum"
+                        android:layout_width="0dip"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:text="数量"
+                        android:textColor="#F19415"
+                        android:textSize="17sp" />
+
+                    <TextView
+                        android:layout_width="0dip"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:textColor="#F19415"
+                        android:textSize="17sp" />
+
+                    <TextView
+                        android:layout_width="0dip"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:textColor="#F19415"
+                        android:textSize="17sp" />
+
+                    <TextView
+                        android:id="@+id/discount"
+                        android:layout_width="0dip"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:text="折扣额"
+                        android:textColor="#F19415"
+                        android:textSize="17sp" />
+
+                    <TextView
+                        android:id="@+id/amount"
+                        android:layout_width="0dip"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:text="金额"
+                        android:textColor="#F19415"
+                        android:textSize="17sp" />
+                </LinearLayout>
+            </RelativeLayout>
+        </HorizontalScrollView>
+    </LinearLayout>
+
+    <!-- 销售单 -->
+
+    <LinearLayout
+        android:id="@+id/ll_possales"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/v_1"
+        android:orientation="vertical"
+        android:paddingLeft="5dp"
+        android:paddingRight="5dp"
+        android:visibility="gone" >
+
+        <HorizontalScrollView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_below="@+id/v_1"
+            android:scrollbars="none" >
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent" >
+
+                <!-- ListView前面的标题 -->
+
+                <LinearLayout
+                    android:id="@+id/ll_list_possales_title"
+                    android:layout_width="800dp"
+                    android:layout_height="40dp"
+                    android:orientation="horizontal"
+                    android:paddingBottom="5dp"
+                    android:paddingLeft="5dp"
+                    android:paddingRight="5dp"
+                    android:paddingTop="5dp" >
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:gravity="center_vertical"
+                        android:text="销售单号"
+                        android:textColor="@color/black"
+                        android:textSize="17sp" />
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:text="日期"
+                        android:textColor="@color/black"
+                        android:textSize="17sp" />
+
+                    <TextView
+                        android:layout_width="0dip"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:text="VIP卡号"
+                        android:textColor="@color/black"
+                        android:textSize="17sp" />
+
+                    <TextView
+                        android:layout_width="0dip"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:text="售货员"
+                        android:textColor="@color/black"
+                        android:textSize="17sp" />
+
+                    <TextView
+                        android:layout_width="0dip"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:text="数量合计"
+                        android:textColor="@color/black"
+                        android:textSize="17sp" />
+
+                    <TextView
+                        android:layout_width="0dip"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:text="金额合计"
+                        android:textColor="@color/black"
+                        android:textSize="17sp" />
+
+                    <TextView
+                        android:layout_width="0dip"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:text="实收金额"
+                        android:textColor="@color/black"
+                        android:textSize="17sp" />
+
+                    <TextView
+                        android:layout_width="0dip"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:text="备注"
+                        android:textColor="@color/black"
+                        android:textSize="17sp" />
+                </LinearLayout>
+
+                <View
+                    android:id="@+id/view2"
+                    android:layout_width="800dp"
+                    android:layout_height="1dp"
+                    android:layout_below="@+id/ll_list_possales_title"
+                    android:background="#F0F0F0" />
+
+                <!-- ListView -->
+
+                <ListView
+                    android:id="@+id/lv_possales_datas"
+                    android:layout_width="800dp"
+                    android:layout_height="fill_parent"
+                    android:layout_below="@+id/view2"
+                    android:layout_marginBottom="40dp"
+                    android:divider="#F0F0F0"
+                    android:dividerHeight="1dp" >
+                </ListView>
+
+                <!-- 合计 -->
+
+                <LinearLayout
+                    android:layout_width="800dp"
+                    android:layout_height="40dp"
+                    android:layout_alignParentBottom="true"
+                    android:orientation="horizontal" >
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:gravity="center_vertical"
+                        android:text="合计"
+                        android:textColor="#F19415"
+                        android:textSize="17sp" />
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:textColor="#F19415"
+                        android:textSize="17sp" />
+
+                    <TextView
+                        android:layout_width="0dip"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:textColor="#F19415"
+                        android:textSize="17sp" />
+
+                    <TextView
+                        android:layout_width="0dip"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:textColor="#F19415"
+                        android:textSize="17sp" />
+
+                    <TextView
+                        android:id="@+id/total_count"
+                        android:layout_width="0dip"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:textColor="#F19415"
+                        android:textSize="17sp" />
+
+                    <TextView
+                        android:id="@+id/total_amount"
+                        android:layout_width="0dip"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:textColor="#F19415"
+                        android:textSize="17sp" />
+
+                    <TextView
+                        android:id="@+id/total_fact"
+                        android:layout_width="0dip"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:textColor="#F19415"
+                        android:textSize="17sp" />
+
+                    <TextView
+                        android:layout_width="0dip"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:textColor="#F19415"
+                        android:textSize="17sp" />
+                </LinearLayout>
+            </RelativeLayout>
+        </HorizontalScrollView>
+    </LinearLayout>
+
+</RelativeLayout>

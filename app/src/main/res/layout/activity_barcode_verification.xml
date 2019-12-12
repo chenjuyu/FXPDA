@@ -1,0 +1,427 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#fff" >
+
+    <LinearLayout
+        android:id="@+id/ll_main"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical" >
+
+        <!-- 条码显示列表 -->
+
+        <HorizontalScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:scrollbars="none" >
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:orientation="vertical" >
+
+                <!-- ListView前面的标题 -->
+
+                <LinearLayout
+                    android:layout_width="420dp"
+                    android:layout_height="30dp"
+                    android:orientation="horizontal"
+                    android:paddingLeft="5dp"
+                    android:paddingRight="5dp" >
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="2"
+                        android:gravity="center_vertical"
+                        android:text="货号"
+                        android:textColor="@color/black"
+                        android:textSize="17sp" />
+
+                    <TextView
+                        android:layout_width="0dip"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1.5"
+                        android:gravity="center"
+                        android:text="颜色"
+                        android:textColor="@color/black"
+                        android:textSize="17sp" />
+
+                    <TextView
+                        android:layout_width="0dip"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:text="尺码"
+                        android:textColor="@color/black"
+                        android:textSize="17sp" />
+
+                    <TextView
+                        android:layout_width="0dip"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:text="单据"
+                        android:textColor="@color/black"
+                        android:textSize="17sp" />
+
+                    <TextView
+                        android:layout_width="0dip"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:text="扫描"
+                        android:textColor="@color/black"
+                        android:textSize="17sp" />
+                </LinearLayout>
+
+                <View
+                    android:id="@+id/v_0"
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="#F0F0F0" />
+
+                <!-- ListView -->
+
+                <ListView
+                    android:id="@+id/details"
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent"
+                    android:divider="#F0F0F0"
+                    android:dividerHeight="1dp" >
+                </ListView>
+            </LinearLayout>
+        </HorizontalScrollView>
+    </LinearLayout>
+
+    <!-- 底部信息显示 -->
+
+    <LinearLayout
+        android:id="@+id/ll_buttom"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:background="@drawable/top_line"
+        android:orientation="vertical" >
+
+        <!-- 颜色信息提示 -->
+        <!-- <LinearLayout -->
+        <!-- android:id="@+id/ll_prompt" -->
+        <!-- android:layout_height="wrap_content" -->
+        <!-- android:layout_width="match_parent" -->
+        <!-- android:padding="5dp" -->
+        <!-- android:background="@drawable/custom_button" -->
+        <!-- android:orientation="vertical"> -->
+
+
+        <!-- <LinearLayout -->
+        <!-- android:layout_height="wrap_content" -->
+        <!-- android:layout_width="match_parent" -->
+        <!-- android:orientation="horizontal"> -->
+
+
+        <!-- <TextView -->
+        <!-- android:layout_width="match_parent" -->
+        <!-- android:layout_height="wrap_content" -->
+        <!-- android:layout_weight="1" -->
+        <!-- android:textSize="15sp" -->
+        <!-- android:textColor="@color/white" -->
+        <!-- android:text="白色: 单据数 &#062; 扫描数" /> -->
+
+
+        <!-- <TextView -->
+        <!-- android:layout_weight="1" -->
+        <!-- android:layout_width="match_parent" -->
+        <!-- android:layout_height="wrap_content" -->
+        <!-- android:gravity="center_vertical|right" -->
+        <!-- android:textSize="15sp" -->
+        <!-- android:textColor="@color/green" -->
+        <!-- android:text="绿色: 单据数 &#061; 扫描数" /> -->
+
+
+        <!-- </LinearLayout> -->
+
+
+        <!-- <LinearLayout -->
+        <!-- android:layout_height="wrap_content" -->
+        <!-- android:layout_width="match_parent" -->
+        <!-- android:orientation="horizontal"> -->
+
+
+        <!-- <TextView -->
+        <!-- android:layout_weight="1" -->
+        <!-- android:layout_width="match_parent" -->
+        <!-- android:layout_height="wrap_content" -->
+        <!-- android:textSize="15sp" -->
+        <!-- android:textColor="@color/pink" -->
+        <!-- android:text="粉色: 单据数 &#060; 扫描数" /> -->
+
+
+        <!-- <TextView -->
+        <!-- android:layout_weight="1" -->
+        <!-- android:layout_width="match_parent" -->
+        <!-- android:layout_height="wrap_content" -->
+        <!-- android:gravity="center_vertical|right" -->
+        <!-- android:textSize="15sp" -->
+        <!-- android:textColor="@color/red" -->
+        <!-- android:text="红色: 货品不在单据内" /> -->
+
+
+        <!-- </LinearLayout> -->
+
+
+        <!-- </LinearLayout> -->
+
+
+        <!-- 大分割 -->
+        <!-- <LinearLayout -->
+        <!-- android:id="@+id/split2" -->
+        <!-- android:layout_width="match_parent" -->
+        <!-- android:layout_height="2dp" -->
+        <!-- android:background="@drawable/split" -->
+        <!-- android:orientation="horizontal" > -->
+        <!-- </LinearLayout> -->
+
+        <View
+            android:id="@+id/v_1"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#F0F0F0" />
+        <!-- 数量合计 -->
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="35dp"
+            android:orientation="horizontal" >
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:orientation="horizontal" >
+
+                <TextView
+                    android:id="@+id/doc_total_count_lable"
+                    android:layout_width="wrap_content"
+                    android:layout_height="fill_parent"
+                    android:gravity="center_vertical"
+                    android:text="单据"
+                    android:textSize="17sp" />
+
+                <EditText
+                    android:id="@+id/doc_total_count"
+                    android:layout_width="match_parent"
+                    android:layout_height="fill_parent"
+                    android:layout_marginLeft="10dp"
+                    android:background="@null"
+                    android:editable="false"
+                    android:focusable="false"
+                    android:paddingBottom="0sp"
+                    android:paddingTop="0sp"
+                    android:singleLine="true"
+                    android:textColor="@color/blue"
+                    android:textSize="17sp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:orientation="horizontal" >
+
+                <TextView
+                    android:id="@+id/scan_total_count_lable"
+                    android:layout_width="wrap_content"
+                    android:layout_height="fill_parent"
+                    android:gravity="center_vertical"
+                    android:text="扫描"
+                    android:textSize="17sp" />
+
+                <EditText
+                    android:id="@+id/scan_total_count"
+                    android:layout_width="match_parent"
+                    android:layout_height="fill_parent"
+                    android:layout_marginLeft="10dp"
+                    android:background="@null"
+                    android:editable="false"
+                    android:focusable="false"
+                    android:paddingBottom="0sp"
+                    android:paddingTop="0sp"
+                    android:singleLine="true"
+                    android:textColor="@color/blue"
+                    android:textSize="17sp" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <View
+            android:id="@+id/v_2"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#F0F0F0" />
+        <!-- 扫码区 -->
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="35dp"
+            android:background="@drawable/text_bottom_line"
+            android:orientation="horizontal" >
+
+            <!-- 条码扫描 -->
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:orientation="horizontal" >
+
+                <TextView
+                    android:id="@+id/barcode_lable"
+                    android:layout_width="wrap_content"
+                    android:layout_height="fill_parent"
+                    android:gravity="center_vertical"
+                    android:text="条码"
+                    android:textSize="17sp" />
+
+                <EditText
+                    android:id="@+id/barcode"
+                    android:layout_width="match_parent"
+                    android:layout_height="fill_parent"
+                    android:layout_marginLeft="5dp"
+                    android:background="@null"
+                    android:imeOptions="actionDone"
+                    android:paddingBottom="0sp"
+                    android:paddingTop="0sp"
+                    android:singleLine="true"
+                    android:textSize="17sp" />
+            </LinearLayout>
+
+            <!-- 数量 -->
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="2"
+                android:orientation="horizontal" >
+
+                <TextView
+                    android:id="@+id/qty_lable"
+                    android:layout_width="wrap_content"
+                    android:layout_height="fill_parent"
+                    android:gravity="center_vertical"
+                    android:text="数量"
+                    android:textSize="17sp" />
+
+                <EditText
+                    android:id="@+id/qty"
+                    android:layout_width="match_parent"
+                    android:layout_height="fill_parent"
+                    android:layout_marginLeft="5dp"
+                    android:background="@null"
+                    android:digits="0123456789-"
+                    android:numeric="integer"
+                    android:singleLine="true"
+                    android:textColor="@color/blue"
+                    android:textSize="17sp" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/ll_color_size"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal" >
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="32dp"
+                android:layout_weight="1" >
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:text="颜色:"
+                    android:textSize="17sp" />
+
+                <EditText
+                    android:id="@+id/colorCode"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="3"
+                    android:background="@null"
+                    android:drawableRight="@drawable/input_bg"
+                    android:editable="false"
+                    android:imeOptions="actionDone"
+                    android:paddingBottom="0sp"
+                    android:paddingLeft="5dp"
+                    android:paddingRight="2dp"
+                    android:paddingTop="0sp"
+                    android:singleLine="true"
+                    android:textSize="17sp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="32dp"
+                android:layout_weight="1" >
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:text="尺码:"
+                    android:textSize="17sp" />
+
+                <EditText
+                    android:id="@+id/sizeCode"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="3"
+                    android:background="@null"
+                    android:drawableRight="@drawable/input_bg"
+                    android:editable="false"
+                    android:imeOptions="actionDone"
+                    android:paddingBottom="0sp"
+                    android:paddingLeft="5dp"
+                    android:paddingTop="0sp"
+                    android:singleLine="true"
+                    android:textSize="17sp" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <!-- 底部按钮 -->
+
+        <LinearLayout
+            android:id="@+id/ll_save"
+            android:layout_width="match_parent"
+            android:layout_height="35dp"
+            android:background="@drawable/top_line"
+            android:orientation="horizontal" >
+
+            <TextView
+                android:id="@+id/complete"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@drawable/custom_button"
+                android:gravity="center"
+                android:text="完成校验"
+                android:textColor="#fff"
+                android:textSize="17sp" />
+
+            <TextView
+                android:id="@+id/save"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@drawable/upload_button"
+                android:gravity="center"
+                android:text="保存校验"
+                android:textColor="#fff"
+                android:textSize="17sp" />
+        </LinearLayout>
+    </LinearLayout>
+
+</RelativeLayout>

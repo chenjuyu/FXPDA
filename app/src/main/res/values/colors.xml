@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#3F51B5</color>
+    <color name="colorPrimaryDark">#303F9F</color>
+    <color name="colorAccent">#FF4081</color>
+
+    <!-- fuxi-->
+    <color name="white">#ffffffff</color>
+    <color name="blue">#0000FF</color>
+    <color name="black">#ff000000</color>
+    <color name="orange">#ffff740f</color>
+    <color name="yellow">#ffe87215</color>
+    <color name="red">#ffff0000</color>
+    <color name="pink">#FF69B4</color>
+    <color name="green">#008000</color>
+    <color name="gray">#ff7d7d7d</color>
+    <color name="darkgray">#ff808080</color>
+    <color name="fontblack">#ff4b4b4b</color>
+    <color name="home_item">#ffd90000</color>
+    <color name="home_item_selector">#ffc9c9c9</color>
+    <color name="home_item_normal">#fff2f2f2</color>
+    <color name="camera_pop_normal">#5DB8FE</color>
+    <color name="btn_color">#F19415</color>
+    <color name="icon_blue">#1882D0</color>
+    <color name="icon_red">#ED624B</color>
+    <color name="hint_color">#F0F0F0</color>
+    <color name="list_text_color">#86878c</color>
+</resources>

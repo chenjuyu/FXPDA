@@ -1,0 +1,255 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#fff"
+    android:focusable="true"
+    android:focusableInTouchMode="true"
+    android:orientation="vertical" >
+
+    <!-- 仓库 -->
+
+    <LinearLayout
+        android:id="@+id/ll_warehouse"
+        android:layout_width="match_parent"
+        android:layout_height="35dp"
+        android:background="@drawable/text_bottom_line_2"
+        android:orientation="horizontal"
+        android:paddingLeft="5dp"
+        android:paddingRight="5dp" >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="fill_parent"
+            android:gravity="center_vertical"
+            android:text="仓库:"
+            android:textSize="17sp" />
+
+        <EditText
+            android:id="@+id/department"
+            android:layout_width="match_parent"
+            android:layout_height="fill_parent"
+            android:background="@null"
+            android:drawableRight="@drawable/input_bg"
+            android:hint="请选择仓库"
+            android:imeOptions="actionDone"
+            android:paddingBottom="0sp"
+            android:paddingLeft="5sp"
+            android:paddingTop="0sp"
+            android:singleLine="true"
+            android:textColor="@color/blue"
+            android:textSize="17sp" />
+    </LinearLayout>
+
+    <!-- 货架 -->
+
+    <LinearLayout
+        android:id="@+id/ll_shelvesNo"
+        android:layout_width="fill_parent"
+        android:layout_height="35dp"
+        android:layout_below="@+id/ll_warehouse"
+        android:background="@drawable/text_bottom_line_2"
+        android:orientation="horizontal"
+        android:paddingLeft="5dp"
+        android:paddingRight="5dp" >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="fill_parent"
+            android:gravity="center_vertical"
+            android:text="货架:"
+            android:textSize="17sp" />
+
+        <EditText
+            android:id="@+id/shelvesNo"
+            android:layout_width="match_parent"
+            android:layout_height="fill_parent"
+            android:background="@null"
+            android:hint="请输入货架号"
+            android:imeOptions="actionDone"
+            android:paddingBottom="0sp"
+            android:paddingLeft="5sp"
+            android:paddingTop="0sp"
+            android:singleLine="true"
+            android:textColor="@color/blue"
+            android:textSize="17sp" />
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/begin"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_below="@+id/ll_shelvesNo"
+        android:layout_marginTop="30dp"
+        android:background="@drawable/upload_button"
+        android:gravity="center"
+        android:text="开始盘点"
+        android:textColor="#fff"
+        android:textSize="17sp"
+        android:textStyle="bold" />
+
+    <!-- 扫描框 -->
+
+    <LinearLayout
+        android:id="@+id/ll_scanning"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_below="@+id/begin"
+        android:background="#f0f0f0"
+        android:orientation="horizontal"
+        android:paddingLeft="5dp"
+        android:paddingRight="5dp" >
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="40dp"
+            android:layout_marginBottom="5dp"
+            android:layout_marginTop="5dp"
+            android:layout_weight="5.8"
+            android:background="@drawable/radius_border"
+            android:gravity="center" >
+
+            <com.fuxi.widget.FontTextView
+                android:layout_width="wrap_content"
+                android:layout_height="fill_parent"
+                android:gravity="center_vertical"
+                android:padding="6dp"
+                android:paddingRight="15dp"
+                android:text="@string/scan"
+                android:textColor="#1B9FD8"
+                android:textSize="30sp" />
+
+            <EditText
+                android:id="@+id/barcode"
+                android:layout_width="0dp"
+                android:layout_height="fill_parent"
+                android:layout_marginLeft="5dp"
+                android:layout_weight="6"
+                android:background="@null"
+                android:hint="请输入条码"
+                android:imeOptions="actionDone"
+                android:singleLine="true"
+                android:textSize="17sp" />
+        </LinearLayout>
+
+        <View
+            android:id="@+id/v_1"
+            android:layout_width="5dp"
+            android:layout_height="match_parent"
+            android:background="#F0F0F0" />
+
+        <EditText
+            android:id="@+id/qty"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_marginBottom="5dp"
+            android:layout_marginTop="5dp"
+            android:layout_weight="1.2"
+            android:background="@drawable/radius_border"
+            android:digits="0123456789-"
+            android:gravity="center"
+            android:imeOptions="actionDone"
+            android:singleLine="true"
+            android:text="1" />
+    </LinearLayout>
+
+    <!-- 条码明细记录 -->
+    <!-- ListView前面的标题 -->
+
+    <LinearLayout
+        android:id="@+id/ll_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/ll_scanning"
+        android:background="@drawable/text_bottom_line_2"
+        android:orientation="vertical"
+        android:paddingBottom="5dp"
+        android:paddingLeft="5dp"
+        android:paddingRight="5dp"
+        android:paddingTop="5dp" >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="25dp"
+            android:orientation="horizontal" >
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="5.8"
+                android:gravity="center_vertical"
+                android:text="条码"
+                android:textColor="@color/black"
+                android:textSize="17sp" />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1.2"
+                android:gravity="center"
+                android:text="数量"
+                android:textColor="@color/black"
+                android:textSize="17sp" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <!-- ListView -->
+
+    <ListView
+        android:id="@+id/datas"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_below="@+id/ll_title"
+        android:layout_marginBottom="40dp"
+        android:divider="#F0F0F0"
+        android:dividerHeight="1dp" >
+    </ListView>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_alignParentBottom="true"
+        android:background="@drawable/top_line"
+        android:orientation="horizontal"
+        android:paddingLeft="5dp" >
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="fill_parent"
+            android:layout_weight="2"
+            android:orientation="horizontal" >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="fill_parent"
+                android:gravity="center_vertical"
+                android:text="合计 : "
+                android:textSize="17sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/qtysum"
+                android:layout_width="wrap_content"
+                android:layout_height="fill_parent"
+                android:layout_marginLeft="2dp"
+                android:gravity="center_vertical"
+                android:text="0"
+                android:textColor="@color/blue"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+        </LinearLayout>
+
+        <!-- 按钮位置 -->
+
+        <TextView
+            android:id="@+id/save"
+            android:layout_width="0dp"
+            android:layout_height="fill_parent"
+            android:layout_weight="1"
+            android:background="@drawable/custom_button"
+            android:gravity="center"
+            android:text="保存"
+            android:textColor="#fff"
+            android:textStyle="bold" />
+    </LinearLayout>
+
+</RelativeLayout>

@@ -1,0 +1,444 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/ll_parent"
+    android:layout_width="200dp"
+    android:layout_height="wrap_content"
+    android:orientation="vertical" >
+
+    <View
+        android:id="@+id/view"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#C9C9C9" />
+
+    <LinearLayout
+        android:id="@+id/layout_switch"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#1882D0"
+        android:orientation="horizontal"
+        android:padding="9dp" >
+
+        <!-- 图标 -->
+
+        <com.fuxi.widget.FontTextView
+            android:id="@+id/ftv_toggle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="4dp"
+            android:text="@string/toggle"
+            android:textColor="#fff"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/toggle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="6dp"
+            android:text="切换装箱"
+            android:textColor="@color/white"
+            android:textSize="18sp" />
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#C9C9C9" />
+
+    <LinearLayout
+        android:id="@+id/layout_remark"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#1882D0"
+        android:orientation="horizontal"
+        android:padding="9dp" >
+
+        <!-- 图标 -->
+
+        <com.fuxi.widget.FontTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="4dp"
+            android:text="@string/memo"
+            android:textColor="#fff"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="6dp"
+            android:text="添加备注"
+            android:textColor="@color/white"
+            android:textSize="18sp" />
+    </LinearLayout>
+    <!-- 打印 -->
+
+    <View
+        android:id="@+id/view_2"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#C9C9C9" />
+
+    <LinearLayout
+        android:id="@+id/layout_print"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#1882D0"
+        android:orientation="horizontal"
+        android:padding="9dp" >
+
+        <!-- 图标 -->
+
+        <com.fuxi.widget.FontTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="4dp"
+            android:text="@string/print"
+            android:textColor="#fff"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="6dp"
+            android:text="打印"
+            android:textColor="@color/white"
+            android:textSize="18sp" />
+    </LinearLayout>
+
+    <!-- 最近价格 -->
+
+    <View
+        android:id="@+id/view_3"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#C9C9C9" />
+
+    <LinearLayout
+        android:id="@+id/layout_price"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#1882D0"
+        android:orientation="horizontal"
+        android:padding="0dp" >
+
+        <!-- 图标 -->
+
+        <CheckBox
+            android:id="@+id/last_price"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="2dp"
+            android:padding="-2dp"
+            android:scaleX="0.52"
+            android:scaleY="0.52" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="-1dp"
+            android:text="最近价格"
+            android:textColor="@color/white"
+            android:textSize="18sp" />
+    </LinearLayout>
+
+    <!-- 新增客户 -->
+
+    <View
+        android:id="@+id/view_4"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#C9C9C9" />
+
+    <LinearLayout
+        android:id="@+id/layout_add_customer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#1882D0"
+        android:orientation="horizontal"
+        android:padding="9dp" >
+
+        <!-- 图标 -->
+
+        <com.fuxi.widget.FontTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="4dp"
+            android:text="@string/add_customer"
+            android:textColor="#fff"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="6dp"
+            android:text="新增客户"
+            android:textColor="@color/white"
+            android:textSize="18sp" />
+    </LinearLayout>
+    <!-- 条码校验 -->
+
+    <View
+        android:id="@+id/view_5"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#C9C9C9" />
+
+    <LinearLayout
+        android:id="@+id/layout_barcode_verification"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#1882D0"
+        android:orientation="horizontal"
+        android:padding="9dp" >
+
+        <!-- 图标 -->
+
+        <com.fuxi.widget.FontTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="4dp"
+            android:text="@string/data_validate"
+            android:textColor="#fff"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="6dp"
+            android:text="条码校验"
+            android:textColor="@color/white"
+            android:textSize="18sp" />
+    </LinearLayout>
+    <!-- 箱条码明细记录 -->
+
+    <View
+        android:id="@+id/view_6"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#C9C9C9" />
+
+    <LinearLayout
+        android:id="@+id/layout_goods_box_barcode"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#1882D0"
+        android:orientation="horizontal"
+        android:padding="9dp" >
+
+        <!-- 图标 -->
+
+        <com.fuxi.widget.FontTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="4dp"
+            android:text="@string/history"
+            android:textColor="#fff"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="6dp"
+            android:text="装箱记录"
+            android:textColor="@color/white"
+            android:textSize="18sp" />
+    </LinearLayout>
+
+    <!-- 切换条码录入方式 -->
+
+    <View
+        android:id="@+id/view_7"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#C9C9C9" />
+
+    <LinearLayout
+        android:id="@+id/layout_switch_input_mode"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#1882D0"
+        android:orientation="horizontal"
+        android:padding="9dp" >
+
+        <!-- 图标 -->
+
+        <com.fuxi.widget.FontTextView
+            android:id="@+id/ftv_input"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="4dp"
+            android:text="@string/history"
+            android:textColor="#fff"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/input"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="6dp"
+            android:text="货号录入"
+            android:textColor="@color/white"
+            android:textSize="18sp" />
+    </LinearLayout>
+
+    <!-- 显示条码校验差异 -->
+
+    <View
+        android:id="@+id/view_8"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#C9C9C9" />
+
+    <LinearLayout
+        android:id="@+id/layout_barcode_verification_different"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#1882D0"
+        android:orientation="horizontal"
+        android:padding="9dp" >
+
+        <!-- 图标 -->
+
+        <com.fuxi.widget.FontTextView
+            android:id="@+id/ftv_different"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="4dp"
+            android:text="@string/different"
+            android:textColor="#fff"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/different"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="6dp"
+            android:text="校验差异"
+            android:textColor="@color/white"
+            android:textSize="18sp" />
+    </LinearLayout>
+
+    <!-- 导出条码校验差异Excel -->
+
+    <View
+        android:id="@+id/view_9"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#C9C9C9" />
+
+    <LinearLayout
+        android:id="@+id/layout_export_excel"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#1882D0"
+        android:orientation="horizontal"
+        android:padding="9dp" >
+
+        <!-- 图标 -->
+
+        <com.fuxi.widget.FontTextView
+            android:id="@+id/ftv_export_excel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="4dp"
+            android:text="@string/export_excel"
+            android:textColor="#fff"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/export_excel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="6dp"
+            android:text="导出Excel"
+            android:textColor="@color/white"
+            android:textSize="18sp" />
+    </LinearLayout>
+
+    <!-- 整单折扣 -->
+
+    <View
+        android:id="@+id/view_10"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#C9C9C9" />
+
+    <LinearLayout
+        android:id="@+id/layout_single_discount"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#1882D0"
+        android:orientation="horizontal"
+        android:padding="9dp" >
+
+        <!-- 图标 -->
+
+        <com.fuxi.widget.FontTextView
+            android:id="@+id/ftv_single_discount"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="4dp"
+            android:text="@string/discount"
+            android:textColor="#fff"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/single_discount"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="6dp"
+            android:text="整单折扣"
+            android:textColor="@color/white"
+            android:textSize="18sp" />
+    </LinearLayout>
+
+    <!-- 其它选项 -->
+
+    <View
+        android:id="@+id/view_11"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#C9C9C9" />
+
+    <LinearLayout
+        android:id="@+id/layout_other_options"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#1882D0"
+        android:orientation="horizontal"
+        android:padding="9dp" >
+
+        <!-- 图标 -->
+
+        <com.fuxi.widget.FontTextView
+            android:id="@+id/ftv_other_options"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="4dp"
+            android:text="@string/other_option"
+            android:textColor="#fff"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/other_options"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="6dp"
+            android:text="其它选项"
+            android:textColor="@color/white"
+            android:textSize="18sp" />
+    </LinearLayout>
+
+</LinearLayout>

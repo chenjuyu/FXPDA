@@ -1,0 +1,215 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#fff" >
+
+    <!-- 出仓单号 -->
+
+    <LinearLayout
+        android:id="@+id/ll_stock_out_no"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="5dp"
+        android:orientation="horizontal" >
+
+        <TextView
+            android:layout_width="80dp"
+            android:layout_height="wrap_content"
+            android:gravity="left"
+            android:paddingBottom="5dp"
+            android:paddingRight="5dp"
+            android:paddingTop="5dp"
+            android:text="出仓单号"
+            android:textSize="17sp" />
+
+        <EditText
+            android:id="@+id/stock_out_no"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@null"
+            android:enabled="true"
+            android:focusable="false"
+            android:hint="请输入出仓单号"
+            android:paddingBottom="5dp"
+            android:paddingRight="5dp"
+            android:paddingTop="5dp"
+            android:singleLine="true"
+            android:textColor="@color/blue"
+            android:textSize="17sp" />
+    </LinearLayout>
+
+    <!-- 大分割 -->
+
+    <LinearLayout
+        android:id="@+id/split2"
+        android:layout_width="match_parent"
+        android:layout_height="4dp"
+        android:layout_below="@id/ll_stock_out_no"
+        android:background="@drawable/split"
+        android:orientation="horizontal" >
+    </LinearLayout>
+
+    <!-- ListView前面的标题 -->
+
+    <LinearLayout
+        android:id="@+id/ll_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/split2"
+        android:orientation="vertical"
+        android:paddingBottom="5dp"
+        android:paddingLeft="5dp"
+        android:paddingRight="5dp"
+        android:paddingTop="5dp" >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal" >
+
+            <!-- 货号 -->
+
+            <TextView
+                android:id="@+id/code"
+                android:layout_width="0dip"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:text="货号"
+                android:textColor="@color/black"
+                android:textSize="17sp" />
+            <!-- 仓位 -->
+
+            <TextView
+                android:id="@+id/storage"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center_vertical|right"
+                android:text="仓位"
+                android:textColor="@color/black"
+                android:textSize="17sp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal" >
+
+            <!-- 厂商货品编码 -->
+
+            <TextView
+                android:id="@+id/supplierCode"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center_vertical"
+                android:text="厂商货品编码"
+                android:textColor="@color/black"
+                android:textSize="17sp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="25dp"
+            android:orientation="horizontal" >
+
+            <!-- 颜色 -->
+
+            <TextView
+                android:id="@+id/tv_number"
+                android:layout_width="0dip"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center_vertical"
+                android:text="颜色"
+                android:textColor="@color/black"
+                android:textSize="17sp" />
+            <!-- 尺码 -->
+
+            <TextView
+                android:id="@+id/tv_count"
+                android:layout_width="0dip"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="尺码"
+                android:textColor="@color/black"
+                android:textSize="17sp" />
+            <!-- 数量 -->
+
+            <TextView
+                android:id="@+id/tv_amount"
+                android:layout_width="0dip"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="数量"
+                android:textColor="@color/black"
+                android:textSize="17sp" />
+            <!-- 操作(下架) -->
+
+            <TextView
+                android:id="@+id/shelves_out"
+                android:layout_width="0dip"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center_vertical|right"
+                android:text="操作"
+                android:textColor="@color/black"
+                android:textSize="17sp" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <View
+        android:id="@+id/v_1"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_below="@id/ll_title"
+        android:background="#F0F0F0" />
+
+    <!-- 显示列表 -->
+
+    <ListView
+        android:id="@+id/lv_datas"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/v_1"
+        android:layout_marginBottom="40dp"
+        android:background="@drawable/text_bottom_line"
+        android:divider="#F0F0F0"
+        android:dividerHeight="1dp"
+        android:listSelector="@android:color/transparent" />
+
+    <LinearLayout
+        android:id="@+id/ll_bottom"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:orientation="horizontal" >
+
+        <TextView
+            android:id="@+id/quickComplete"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_weight="1"
+            android:background="@drawable/upload_button"
+            android:gravity="center"
+            android:text="快速下架"
+            android:textColor="#fff"
+            android:textSize="17sp" />
+
+        <TextView
+            android:id="@+id/complete"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_weight="1"
+            android:background="@drawable/custom_button"
+            android:gravity="center"
+            android:text="完成下架"
+            android:textColor="#fff"
+            android:textSize="17sp" />
+    </LinearLayout>
+
+</RelativeLayout>

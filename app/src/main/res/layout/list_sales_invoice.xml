@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:descendantFocusability="afterDescendants"
+    android:orientation="vertical"
+    android:paddingBottom="5dp"
+    android:paddingLeft="5dp"
+    android:paddingRight="5dp"
+    android:paddingTop="5dp" >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="25dp"
+        android:orientation="horizontal" >
+
+        <!-- 单号 -->
+
+        <TextView
+            android:id="@+id/tv_number"
+            android:layout_width="0dip"
+            android:layout_height="match_parent"
+            android:layout_weight="2"
+            android:textSize="15sp"
+            android:textStyle="bold" />
+        <!-- 数量 -->
+
+        <TextView
+            android:id="@+id/tv_count"
+            android:layout_width="0dip"
+            android:layout_height="match_parent"
+            android:layout_weight="1.5"
+            android:gravity="center"
+            android:textColor="@color/blue"
+            android:textSize="17sp" />
+        <!-- 日期 -->
+
+        <TextView
+            android:id="@+id/tv_invoicedate"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:textColor="#86878c"
+            android:textSize="17sp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/ll_second"
+        android:layout_width="match_parent"
+        android:layout_height="25dp"
+        android:orientation="horizontal" >
+
+        <!-- 仓库 -->
+
+        <TextView
+            android:id="@+id/tv_department"
+            android:layout_width="0dip"
+            android:layout_height="match_parent"
+            android:layout_weight="2"
+            android:textColor="#86878c"
+            android:textSize="17sp" />
+
+        <!-- 客户 -->
+
+        <TextView
+            android:id="@+id/tv_customer"
+            android:layout_width="0dip"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:textColor="#86878c"
+            android:textSize="17sp" />
+
+        <!-- 金额 -->
+
+        <TextView
+            android:id="@+id/tv_amount"
+            android:layout_width="0dip"
+            android:layout_height="match_parent"
+            android:layout_weight="2"
+            android:gravity="center_vertical|right"
+            android:textColor="#f98d0f"
+            android:textSize="17sp"
+            android:textStyle="bold" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/ll_third"
+        android:layout_width="match_parent"
+        android:layout_height="24dp"
+        android:orientation="horizontal" >
+
+        <!-- 经手人 -->
+
+        <TextView
+            android:id="@+id/tv_employee"
+            android:layout_width="0dip"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:textColor="#86878c"
+            android:textSize="17sp" />
+        <!-- 品牌 -->
+
+        <TextView
+            android:id="@+id/tv_brand"
+            android:layout_width="0dip"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:textColor="#86878c"
+            android:textSize="17sp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/ll_fourth"
+        android:layout_width="match_parent"
+        android:layout_height="24dp"
+        android:orientation="horizontal" >
+
+        <!-- 其它属性 -->
+
+        <TextView
+            android:id="@+id/tv_other"
+            android:layout_width="0dip"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:textColor="#86878c"
+            android:textSize="17sp" />
+        <!-- 备注 -->
+
+        <TextView
+            android:id="@+id/tv_memo"
+            android:layout_width="0dip"
+            android:layout_height="match_parent"
+            android:layout_weight="2"
+            android:gravity="center"
+            android:textColor="#86878c"
+            android:textSize="17sp" />
+    </LinearLayout>
+
+</LinearLayout>

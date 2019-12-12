@@ -1,0 +1,514 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#fff"
+    android:focusable="true"
+    android:focusableInTouchMode="true" >
+
+    <LinearLayout
+        android:id="@+id/first_div"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingLeft="5dp"
+        android:paddingRight="5dp" >
+
+        <!-- 单号 -->
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="32dp"
+            android:background="@drawable/text_bottom_line"
+            android:orientation="horizontal" >
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="fill_parent"
+                android:layout_weight="1"
+                android:gravity="center_vertical"
+                android:text="单号:"
+                android:textSize="17sp" />
+
+            <EditText
+                android:id="@+id/no"
+                android:layout_width="0dp"
+                android:layout_height="fill_parent"
+                android:layout_weight="5"
+                android:background="@null"
+                android:drawableRight="@drawable/input_bg"
+                android:editable="false"
+                android:enabled="false"
+                android:hint="请选择单号"
+                android:paddingBottom="0sp"
+                android:paddingTop="0sp"
+                android:textColor="@color/blue"
+                android:textSize="17sp" />
+        </LinearLayout>
+
+        <!-- 客户 -->
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="32dp"
+            android:background="@drawable/text_bottom_line"
+            android:orientation="horizontal" >
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="fill_parent"
+                android:layout_weight="1"
+                android:gravity="center_vertical"
+                android:text="客户:"
+                android:textSize="17sp" />
+
+            <EditText
+                android:id="@+id/customer"
+                android:layout_width="0dp"
+                android:layout_height="fill_parent"
+                android:layout_weight="5"
+                android:background="@null"
+                android:drawableRight="@drawable/input_bg"
+                android:editable="false"
+                android:enabled="false"
+                android:hint="请选择客户"
+                android:paddingBottom="0sp"
+                android:paddingTop="0sp"
+                android:textColor="@color/blue"
+                android:textSize="17sp" />
+        </LinearLayout>
+    </LinearLayout>
+    <!-- 大分割 -->
+
+    <LinearLayout
+        android:id="@+id/split1"
+        android:layout_width="match_parent"
+        android:layout_height="6dp"
+        android:layout_below="@id/first_div"
+        android:background="@drawable/split"
+        android:orientation="horizontal" >
+    </LinearLayout>
+
+    <!-- 扫描区 -->
+
+    <LinearLayout
+        android:id="@+id/saomiao_div"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/split1"
+        android:orientation="vertical"
+        android:paddingLeft="5dp"
+        android:paddingRight="5dp" >
+
+        <!-- 条码 -->
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="32dp"
+            android:background="@drawable/text_bottom_line"
+            android:orientation="horizontal" >
+
+            <com.fuxi.widget.FontTextView
+                android:layout_width="wrap_content"
+                android:layout_height="fill_parent"
+                android:gravity="center_vertical"
+                android:paddingRight="5dp"
+                android:text="@string/scan"
+                android:textColor="#1B9FD8"
+                android:textSize="30sp" />
+
+            <EditText
+                android:id="@+id/barcode"
+                android:layout_width="0dp"
+                android:layout_height="fill_parent"
+                android:layout_weight="4"
+                android:background="@null"
+                android:hint="请输入条码"
+                android:imeOptions="actionDone"
+                android:paddingBottom="0sp"
+                android:paddingLeft="5sp"
+                android:paddingTop="0sp"
+                android:singleLine="true"
+                android:textSize="17sp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="32dp"
+            android:background="@drawable/text_bottom_line"
+            android:orientation="horizontal" >
+
+            <!-- 数量 -->
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="fill_parent"
+                android:layout_weight="1"
+                android:orientation="horizontal" >
+
+                <TextView
+                    android:id="@+id/qty_lable"
+                    android:layout_width="wrap_content"
+                    android:layout_height="fill_parent"
+                    android:gravity="center_vertical"
+                    android:text="数量:"
+                    android:textSize="17sp" />
+
+                <EditText
+                    android:id="@+id/qty"
+                    android:layout_width="match_parent"
+                    android:layout_height="fill_parent"
+                    android:background="@null"
+                    android:hint="请输入数量"
+                    android:imeOptions="actionDone"
+                    android:numeric="integer"
+                    android:paddingBottom="0sp"
+                    android:paddingLeft="5sp"
+                    android:paddingTop="0sp"
+                    android:singleLine="true"
+                    android:text="1"
+                    android:textSize="17sp" />
+            </LinearLayout>
+
+            <!-- 箱号 -->
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="fill_parent"
+                android:layout_weight="1"
+                android:orientation="horizontal" >
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="fill_parent"
+                    android:gravity="center_vertical"
+                    android:text="箱号:"
+                    android:textSize="17sp" />
+
+                <EditText
+                    android:id="@+id/boxNo"
+                    android:layout_width="match_parent"
+                    android:layout_height="fill_parent"
+                    android:background="@null"
+                    android:enabled="false"
+                    android:imeOptions="actionDone"
+                    android:paddingBottom="0sp"
+                    android:paddingLeft="5sp"
+                    android:paddingTop="0sp"
+                    android:singleLine="true"
+                    android:textColor="@color/blue"
+                    android:textSize="17sp"
+                    android:textStyle="bold" />
+            </LinearLayout>
+
+            <com.fuxi.widget.FontTextView
+                android:id="@+id/showBoxs"
+                android:layout_width="wrap_content"
+                android:layout_height="fill_parent"
+                android:gravity="right|center_vertical"
+                android:padding="5dp"
+                android:text="@string/list"
+                android:textColor="#1B9FD8"
+                android:textSize="24sp"
+                android:textStyle="bold" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <!-- 大分割 -->
+
+    <LinearLayout
+        android:id="@+id/split2"
+        android:layout_width="match_parent"
+        android:layout_height="6dp"
+        android:layout_below="@id/saomiao_div"
+        android:background="@drawable/split"
+        android:orientation="horizontal" >
+    </LinearLayout>
+
+    <!-- ListView前面的标题 -->
+
+    <LinearLayout
+        android:id="@+id/ll_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/split2"
+        android:orientation="vertical"
+        android:paddingBottom="5dp"
+        android:paddingLeft="5dp"
+        android:paddingRight="5dp"
+        android:paddingTop="5dp" >
+
+        <LinearLayout
+            android:id="@+id/ll_scanTitle"
+            android:layout_width="match_parent"
+            android:layout_height="25dp"
+            android:orientation="horizontal" >
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="2"
+                android:gravity="center_vertical"
+                android:text="货号"
+                android:textColor="@color/black"
+                android:textSize="17sp" />
+
+            <TextView
+                android:layout_width="0dip"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="颜色"
+                android:textColor="@color/black"
+                android:textSize="17sp" />
+
+            <TextView
+                android:layout_width="0dip"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="尺码"
+                android:textColor="@color/black"
+                android:textSize="17sp" />
+
+            <TextView
+                android:layout_width="0dip"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="单据"
+                android:textColor="@color/black"
+                android:textSize="17sp" />
+
+            <TextView
+                android:layout_width="0dip"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="扫描"
+                android:textColor="@color/black"
+                android:textSize="17sp" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <View
+        android:id="@+id/v_1"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_below="@id/ll_title"
+        android:background="#F0F0F0" />
+    <!-- ListView -->
+
+    <ListView
+        android:id="@+id/dataDetail"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_below="@id/v_1"
+        android:layout_marginBottom="80dp"
+        android:divider="#F0F0F0"
+        android:dividerHeight="1dp"
+        android:focusable="false" >
+    </ListView>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:background="@drawable/top_line"
+        android:orientation="vertical" >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:orientation="horizontal" >
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="fill_parent"
+                android:layout_weight="1"
+                android:orientation="horizontal"
+                android:paddingLeft="5dp" >
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="fill_parent"
+                    android:gravity="center_vertical"
+                    android:text="箱数:"
+                    android:textSize="17sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/boxCount"
+                    android:layout_width="wrap_content"
+                    android:layout_height="fill_parent"
+                    android:layout_marginLeft="2dp"
+                    android:gravity="center_vertical"
+                    android:text="0"
+                    android:textColor="@color/black"
+                    android:textSize="20sp"
+                    android:textStyle="bold" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="fill_parent"
+                android:layout_weight="1.5"
+                android:orientation="vertical"
+                android:paddingRight="5dp" >
+
+                <LinearLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"
+                    android:orientation="horizontal" >
+
+                    <!-- 单箱 -->
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="fill_parent"
+                        android:gravity="center_vertical"
+                        android:text="单箱:"
+                        android:textSize="17sp"
+                        android:textStyle="bold" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="fill_parent"
+                        android:gravity="center"
+                        android:orientation="horizontal" >
+
+                        <!-- 箱数 -->
+
+                        <TextView
+                            android:id="@+id/boxACount"
+                            android:layout_width="wrap_content"
+                            android:layout_height="fill_parent"
+                            android:gravity="center_vertical"
+                            android:text="0"
+                            android:textColor="#F19415"
+                            android:textSize="20sp"
+                            android:textStyle="bold" />
+
+                        <!-- 分隔符 -->
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="fill_parent"
+                            android:gravity="center"
+                            android:text="/"
+                            android:textColor="@color/black"
+                            android:textSize="20sp"
+                            android:textStyle="bold" />
+                        <!-- 扫描 -->
+
+                        <TextView
+                            android:id="@+id/scanACount"
+                            android:layout_width="wrap_content"
+                            android:layout_height="fill_parent"
+                            android:layout_marginLeft="2dp"
+                            android:gravity="center_vertical"
+                            android:text="0"
+                            android:textColor="@color/blue"
+                            android:textSize="20sp"
+                            android:textStyle="bold" />
+                    </LinearLayout>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"
+                    android:orientation="horizontal" >
+
+                    <!-- 合计 -->
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="fill_parent"
+                        android:gravity="center_vertical"
+                        android:text="合计:"
+                        android:textSize="17sp"
+                        android:textStyle="bold" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="fill_parent"
+                        android:gravity="center"
+                        android:orientation="horizontal" >
+
+                        <!-- 单据 -->
+
+                        <TextView
+                            android:id="@+id/docCount"
+                            android:layout_width="wrap_content"
+                            android:layout_height="fill_parent"
+                            android:gravity="center_vertical"
+                            android:text="0"
+                            android:textColor="#F19415"
+                            android:textSize="20sp"
+                            android:textStyle="bold" />
+
+                        <!-- 分隔符 -->
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="fill_parent"
+                            android:gravity="center"
+                            android:text="/"
+                            android:textColor="@color/black"
+                            android:textSize="20sp"
+                            android:textStyle="bold" />
+                        <!-- 扫描 -->
+
+                        <TextView
+                            android:id="@+id/scanCount"
+                            android:layout_width="wrap_content"
+                            android:layout_height="fill_parent"
+                            android:layout_marginLeft="2dp"
+                            android:gravity="center_vertical"
+                            android:text="0"
+                            android:textColor="@color/blue"
+                            android:textSize="20sp"
+                            android:textStyle="bold" />
+                    </LinearLayout>
+                </LinearLayout>
+            </LinearLayout>
+        </LinearLayout>
+
+        <!-- 按钮 -->
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="30dp"
+            android:orientation="horizontal" >
+
+            <TextView
+                android:id="@+id/changeBox"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@drawable/upload_button"
+                android:gravity="center"
+                android:text="换箱"
+                android:textColor="@color/white" />
+
+            <TextView
+                android:id="@+id/complete"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@drawable/custom_button"
+                android:gravity="center"
+                android:text="完成"
+                android:textColor="@color/white" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <WebView
+        android:id="@+id/myWeb"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="gone" />
+
+</RelativeLayout>

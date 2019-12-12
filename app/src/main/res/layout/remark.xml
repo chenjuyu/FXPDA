@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="200dp"
+    android:orientation="vertical" >
+
+    <EditText
+        android:id="@+id/et_remark"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:background="@drawable/input_style"
+        android:gravity="left|top"
+        android:hint="请输入备注内容..."
+        android:inputType="textMultiLine"
+        android:minLines="8" />
+
+</LinearLayout>

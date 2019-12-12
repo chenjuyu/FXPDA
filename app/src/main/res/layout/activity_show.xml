@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context="com.fuxi.activity.ShowActivity">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="颜色"
+        android:textColor="#7289ff"
+        android:textSize="14sp"/>
+
+    <com.ihidea.multilinechooselib.MultiLineChooseLayout
+        android:id="@+id/singleChoose"
+        style="@style/FlowLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/textSingleLine"
+        android:layout_marginTop="5dp">
+    </com.ihidea.multilinechooselib.MultiLineChooseLayout>
+
+    <TextView
+        android:id="@+id/singleChooseTv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:text="结果"
+        android:textColor="#7289ff"
+        android:textSize="14sp"/>
+
+    <Button
+        android:id="@+id/button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="10dp"
+        android:text="清除所有选中项"/>
+
+</LinearLayout>

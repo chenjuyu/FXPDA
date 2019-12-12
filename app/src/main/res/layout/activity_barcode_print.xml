@@ -1,0 +1,284 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#fff"
+    android:focusable="true"
+    android:focusableInTouchMode="true" >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:paddingBottom="5dp"
+        android:paddingLeft="5dp"
+        android:paddingRight="5dp"
+        android:paddingTop="5dp" >
+
+        <!-- 货品编码 -->
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="40dp"
+            android:background="@drawable/text_bottom_line"
+            android:orientation="horizontal" >
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="fill_parent"
+                android:layout_weight="1.2"
+                android:gravity="center_vertical"
+                android:text="货品:"
+                android:textSize="17sp" />
+
+            <EditText
+                android:id="@+id/goodsCode"
+                android:layout_width="0dp"
+                android:layout_height="fill_parent"
+                android:layout_marginLeft="5dp"
+                android:layout_weight="4"
+                android:background="@null"
+                android:hint="请输入货品编码"
+                android:imeOptions="actionSearch"
+                android:paddingBottom="0sp"
+                android:paddingTop="0sp"
+                android:singleLine="true"
+                android:textSize="17sp" />
+
+            <com.fuxi.widget.FontTextView
+                android:id="@+id/goodsCodeIcon"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="right|center_vertical"
+                android:padding="5dp"
+                android:text="@string/query"
+                android:textColor="#1B9FD8"
+                android:textSize="24sp"
+                android:textStyle="bold" />
+        </LinearLayout>
+
+        <!-- 颜色编码 -->
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="40dp"
+            android:background="@drawable/text_bottom_line"
+            android:orientation="horizontal" >
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="fill_parent"
+                android:layout_weight="1"
+                android:gravity="center_vertical"
+                android:text="颜色:"
+                android:textSize="17sp" />
+
+            <EditText
+                android:id="@+id/colorCode"
+                android:layout_width="0dp"
+                android:layout_height="fill_parent"
+                android:layout_marginLeft="5dp"
+                android:layout_weight="4"
+                android:background="@null"
+                android:drawableRight="@drawable/input_bg"
+                android:editable="false"
+                android:hint="请输入颜色编码"
+                android:paddingBottom="0sp"
+                android:paddingTop="0sp"
+                android:singleLine="true"
+                android:textColor="@color/blue"
+                android:textSize="17sp" />
+        </LinearLayout>
+
+        <!-- 尺码编码 -->
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="40dp"
+            android:background="@drawable/text_bottom_line"
+            android:orientation="horizontal" >
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="fill_parent"
+                android:layout_weight="1"
+                android:gravity="center_vertical"
+                android:text="尺码:"
+                android:textSize="17sp" />
+
+            <EditText
+                android:id="@+id/sizeCode"
+                android:layout_width="0dp"
+                android:layout_height="fill_parent"
+                android:layout_marginLeft="5dp"
+                android:layout_weight="4"
+                android:background="@null"
+                android:drawableRight="@drawable/input_bg"
+                android:editable="false"
+                android:hint="请输入尺码编码"
+                android:paddingBottom="0sp"
+                android:paddingTop="0sp"
+                android:singleLine="true"
+                android:textColor="@color/blue"
+                android:textSize="17sp" />
+        </LinearLayout>
+
+        <!-- 货品名称 -->
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="40dp"
+            android:background="@drawable/text_bottom_line"
+            android:orientation="horizontal" >
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="fill_parent"
+                android:layout_weight="1"
+                android:gravity="center_vertical"
+                android:text="品名:"
+                android:textSize="17sp" />
+
+            <EditText
+                android:id="@+id/goodsName"
+                android:layout_width="0dp"
+                android:layout_height="fill_parent"
+                android:layout_marginLeft="5dp"
+                android:layout_weight="4"
+                android:background="@null"
+                android:editable="false"
+                android:enabled="false"
+                android:paddingBottom="0sp"
+                android:paddingTop="0sp"
+                android:singleLine="true"
+                android:textSize="17sp" />
+        </LinearLayout>
+
+        <!-- 零售价 -->
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="40dp"
+            android:background="@drawable/text_bottom_line"
+            android:orientation="horizontal" >
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="fill_parent"
+                android:layout_weight="1"
+                android:gravity="center_vertical"
+                android:text="售价:"
+                android:textSize="17sp" />
+
+            <EditText
+                android:id="@+id/retailSales"
+                android:layout_width="0dp"
+                android:layout_height="fill_parent"
+                android:layout_marginLeft="5dp"
+                android:layout_weight="4"
+                android:background="@null"
+                android:editable="false"
+                android:enabled="false"
+                android:paddingBottom="0sp"
+                android:paddingTop="0sp"
+                android:singleLine="true"
+                android:textSize="17sp" />
+        </LinearLayout>
+
+        <!-- 货品条码 -->
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="40dp"
+            android:background="@drawable/text_bottom_line"
+            android:orientation="horizontal" >
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="fill_parent"
+                android:layout_weight="1.4"
+                android:gravity="center_vertical"
+                android:text="货品条码:"
+                android:textSize="17sp" />
+
+            <EditText
+                android:id="@+id/goodsBarcode"
+                android:layout_width="0dp"
+                android:layout_height="fill_parent"
+                android:layout_marginLeft="5dp"
+                android:layout_weight="4"
+                android:background="@null"
+                android:editable="false"
+                android:enabled="false"
+                android:paddingBottom="0sp"
+                android:paddingTop="0sp"
+                android:singleLine="true"
+                android:textColor="@color/blue"
+                android:textSize="17sp" />
+        </LinearLayout>
+
+        <!-- 厂商条码 -->
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="40dp"
+            android:background="@drawable/text_bottom_line"
+            android:orientation="horizontal" >
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="fill_parent"
+                android:layout_weight="1.4"
+                android:gravity="center_vertical"
+                android:text="厂商条码:"
+                android:textSize="17sp" />
+
+            <EditText
+                android:id="@+id/supplierBarcode"
+                android:layout_width="0dp"
+                android:layout_height="fill_parent"
+                android:layout_marginLeft="5dp"
+                android:layout_weight="4"
+                android:background="@null"
+                android:editable="false"
+                android:enabled="false"
+                android:paddingBottom="0sp"
+                android:paddingTop="0sp"
+                android:singleLine="true"
+                android:textColor="@color/blue"
+                android:textSize="17sp" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <!-- 按钮 -->
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:orientation="horizontal" >
+
+        <TextView
+            android:id="@+id/printGoodsBarcode"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_weight="1"
+            android:background="@drawable/upload_button"
+            android:gravity="center"
+            android:text="打印货品条码"
+            android:textColor="#fff"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/printSupplierBarcode"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_weight="1"
+            android:background="@drawable/custom_button"
+            android:gravity="center"
+            android:text="打印厂商条码"
+            android:textColor="#fff"
+            android:textStyle="bold" />
+    </LinearLayout>
+
+</RelativeLayout>

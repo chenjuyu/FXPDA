@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:descendantFocusability="blocksDescendants"
+    android:orientation="horizontal"
+    android:paddingBottom="0dp"
+    android:paddingLeft="5dp"
+    android:paddingRight="5dp"
+    android:paddingTop="0dp" >
+
+    <!-- 尺码 -->
+
+    <TextView
+        android:id="@+id/tv_size"
+        android:layout_width="0dip"
+        android:layout_height="match_parent"
+        android:layout_weight="2"
+        android:gravity="center_vertical"
+        android:textColor="#86878c"
+        android:textSize="17sp" />
+
+    <com.fuxi.widget.FontTextView
+        android:id="@+id/reduce"
+        android:layout_width="50dp"
+        android:layout_height="match_parent"
+        android:layout_marginBottom="5dp"
+        android:layout_marginRight="1dp"
+        android:layout_marginTop="5dp"
+        android:background="@drawable/multi_select_button"
+        android:gravity="center"
+        android:paddingBottom="5dp"
+        android:paddingTop="5dp"
+        android:text="@string/subtract"
+        android:textColor="#8D9296"
+        android:textSize="17sp"
+        android:textStyle="bold" />
+
+    <!-- 数量 -->
+
+    <EditText
+        android:id="@+id/et_count"
+        android:layout_width="0dip"
+        android:layout_height="match_parent"
+        android:layout_marginBottom="5dp"
+        android:layout_marginTop="5dp"
+        android:layout_weight="1"
+        android:background="@null"
+        android:enabled="false"
+        android:gravity="center_vertical|center_horizontal"
+        android:numeric="integer"
+        android:paddingBottom="5dp"
+        android:paddingTop="5dp"
+        android:singleLine="true"
+        android:textColor="@color/black"
+        android:textSize="17sp"
+        android:textStyle="bold" />
+
+    <com.fuxi.widget.FontTextView
+        android:id="@+id/add"
+        android:layout_width="50dp"
+        android:layout_height="match_parent"
+        android:layout_marginBottom="5dp"
+        android:layout_marginLeft="1dp"
+        android:layout_marginTop="5dp"
+        android:background="@drawable/multi_select_button"
+        android:gravity="center"
+        android:paddingBottom="5dp"
+        android:paddingTop="5dp"
+        android:text="@string/plus"
+        android:textColor="#8D9296"
+        android:textSize="17sp"
+        android:textStyle="bold" />
+
+</LinearLayout>

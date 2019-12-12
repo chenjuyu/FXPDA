@@ -1,0 +1,2614 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#fff"
+    android:focusable="true"
+    android:focusableInTouchMode="true" >
+
+    <!-- 选项 -->
+
+    <LinearLayout
+        android:id="@+id/ll_title"
+        android:layout_width="match_parent"
+        android:layout_height="40dip"
+        android:background="#f0f0f0"
+        android:gravity="center_horizontal"
+        android:orientation="horizontal"
+        android:padding="2dp" >
+
+        <!-- 筛选块 -->
+
+        <com.fuxi.widget.CheckBoxTextView
+            android:id="@+id/base_setting"
+            style="@style/top_condition_div"
+            android:background="@drawable/left_radius_select"
+            android:clickable="true"
+            android:padding="1dp"
+            android:text="基本设置"
+            android:textStyle="bold" />
+
+        <com.fuxi.widget.CheckBoxTextView
+            android:id="@+id/input_setting"
+            style="@style/top_condition_div"
+            android:background="@drawable/mid_radius_select"
+            android:clickable="true"
+            android:padding="1dp"
+            android:text="录入设置"
+            android:textStyle="bold" />
+
+        <com.fuxi.widget.CheckBoxTextView
+            android:id="@+id/barcode_print_setting"
+            style="@style/top_condition_div"
+            android:background="@drawable/mid_radius_select"
+            android:clickable="true"
+            android:padding="1dp"
+            android:text="条码打印"
+            android:textStyle="bold" />
+
+        <com.fuxi.widget.CheckBoxTextView
+            android:id="@+id/docu_setting"
+            style="@style/top_condition_div"
+            android:background="@drawable/right_radius_select"
+            android:clickable="true"
+            android:padding="1dp"
+            android:text="单据设置"
+            android:textStyle="bold" />
+    </LinearLayout>
+
+    <!-- 基本设置 -->
+
+    <LinearLayout
+        android:id="@+id/ll_goods_info"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/ll_title"
+        android:layout_marginBottom="40dp"
+        android:orientation="vertical"
+        android:paddingLeft="5dp"
+        android:paddingRight="5dp" >
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scrollbars="none" >
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical" >
+
+                <!-- 打印机服务器地址 -->
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="#EFF1F0" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="3dp"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginRight="5dp"
+                    android:layout_marginTop="3dp"
+                    android:orientation="horizontal" >
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="left"
+                        android:padding="5dp"
+                        android:text="打印机地址"
+                        android:textSize="17sp" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal" >
+
+                        <EditText
+                            android:id="@+id/et_print_ip"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="5"
+                            android:background="@null"
+                            android:hint="如 : 192.168.1.1"
+                            android:padding="5dp"
+                            android:singleLine="true"
+                            android:textSize="17sp" />
+
+                        <com.fuxi.widget.FontTextView
+                            android:id="@+id/ftv_print_ip"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:gravity="right"
+                            android:padding="5dp"
+                            android:text="@string/problem"
+                            android:textColor="#1B9FD8"
+                            android:textSize="20sp"
+                            android:textStyle="bold" />
+                    </LinearLayout>
+                </LinearLayout>
+
+                <!-- 打印机端口 -->
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="#EFF1F0" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="3dp"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginRight="5dp"
+                    android:layout_marginTop="3dp"
+                    android:orientation="horizontal" >
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="left"
+                        android:padding="5dp"
+                        android:text="打印机端口"
+                        android:textSize="17sp" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal" >
+
+                        <EditText
+                            android:id="@+id/et_print_port"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="5"
+                            android:background="@null"
+                            android:hint="如 : 8000"
+                            android:padding="5dp"
+                            android:singleLine="true"
+                            android:textSize="17sp" />
+
+                        <com.fuxi.widget.FontTextView
+                            android:id="@+id/ftv_print_port"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:gravity="right"
+                            android:padding="5dp"
+                            android:text="@string/problem"
+                            android:textColor="#1B9FD8"
+                            android:textSize="20sp"
+                            android:textStyle="bold" />
+                    </LinearLayout>
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="#EFF1F0" />
+
+                <!-- 选择打印机 -->
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="3dp"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginRight="5dp"
+                    android:layout_marginTop="3dp"
+                    android:orientation="horizontal" >
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="left"
+                        android:padding="5dp"
+                        android:text="选择打印机"
+                        android:textSize="17sp" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal" >
+
+                        <EditText
+                            android:id="@+id/et_printer"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="5"
+                            android:background="@null"
+                            android:editable="false"
+                            android:focusable="false"
+                            android:focusableInTouchMode="false"
+                            android:hint="请选择打印机"
+                            android:padding="5dp"
+                            android:singleLine="true"
+                            android:textSize="17sp" />
+
+                        <com.fuxi.widget.FontTextView
+                            android:id="@+id/ftv_printer"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:gravity="right"
+                            android:padding="5dp"
+                            android:text="@string/list"
+                            android:textColor="#1B9FD8"
+                            android:textSize="20sp"
+                            android:textStyle="bold" />
+                    </LinearLayout>
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="#EFF1F0" />
+
+                <!-- 大分割 -->
+
+                <LinearLayout
+                    android:id="@+id/split1"
+                    android:layout_width="match_parent"
+                    android:layout_height="5dp"
+                    android:layout_below="@id/first_div"
+                    android:background="@drawable/split"
+                    android:orientation="horizontal" >
+                </LinearLayout>
+
+                <!-- 权限设置 -->
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical" >
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="32dp"
+                        android:orientation="horizontal" >
+
+                        <CheckBox
+                            android:id="@+id/barcodeWarningTone"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:scaleX="0.6"
+                            android:scaleY="0.6" />
+
+                        <TextView
+                            android:id="@+id/tvBarcodeWarningTone"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="条码扫描错误时使用声音提示"
+                            android:textSize="17sp" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="32dp"
+                        android:orientation="horizontal" >
+
+                        <CheckBox
+                            android:id="@+id/useGoodsboxBarcodeInStocktaking"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:scaleX="0.6"
+                            android:scaleY="0.6" />
+
+                        <TextView
+                            android:id="@+id/tvUseGoodsboxBarcodeInStocktaking"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="盘点单使用箱条码"
+                            android:textSize="17sp" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/ll_coverDoc"
+                        android:layout_width="wrap_content"
+                        android:layout_height="32dp"
+                        android:orientation="horizontal" >
+
+                        <CheckBox
+                            android:id="@+id/coverDoc"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:scaleX="0.6"
+                            android:scaleY="0.6" />
+
+                        <TextView
+                            android:id="@+id/tvCoverDoc"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="条码校验允许修改单据"
+                            android:textSize="17sp" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/ll_notAllow"
+                        android:layout_width="wrap_content"
+                        android:layout_height="32dp"
+                        android:orientation="horizontal" >
+
+                        <CheckBox
+                            android:id="@+id/notAllow"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:scaleX="0.6"
+                            android:scaleY="0.6" />
+
+                        <TextView
+                            android:id="@+id/tvNotAllow"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="校验时大于或非单据货品不录入"
+                            android:textSize="17sp" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="32dp"
+                        android:orientation="horizontal" >
+
+                        <CheckBox
+                            android:id="@+id/useDefSupplier"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:scaleX="0.6"
+                            android:scaleY="0.6" />
+
+                        <TextView
+                            android:id="@+id/tvUseDefSupplier"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="采购收(退)货使用货品默认厂商"
+                            android:textSize="17sp" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="32dp"
+                        android:orientation="horizontal" >
+
+                        <CheckBox
+                            android:id="@+id/useAreaProtection"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:scaleX="0.6"
+                            android:scaleY="0.6" />
+
+                        <TextView
+                            android:id="@+id/tvUseAreaProtection"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="销售订货和发货单使用区域保护"
+                            android:textSize="17sp" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="32dp"
+                        android:orientation="horizontal" >
+
+                        <CheckBox
+                            android:id="@+id/useSupplierCodeToAreaProtection"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:scaleX="0.6"
+                            android:scaleY="0.6" />
+
+                        <TextView
+                            android:id="@+id/tvUseSupplierCodeToAreaProtection"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="根据厂商货品编码校验地区重版"
+                            android:textSize="17sp" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="32dp"
+                        android:orientation="horizontal" >
+
+                        <CheckBox
+                            android:id="@+id/useSingleDiscount"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:scaleX="0.6"
+                            android:scaleY="0.6" />
+
+                        <TextView
+                            android:id="@+id/tvUseSingleDiscount"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="销售订货和发货单使用整单折扣"
+                            android:textSize="17sp" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="32dp"
+                        android:orientation="horizontal" >
+
+                        <CheckBox
+                            android:id="@+id/displayInventory"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:scaleX="0.6"
+                            android:scaleY="0.6" />
+
+                        <TextView
+                            android:id="@+id/tvDisplayInventory"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="单据明细长按显示系统库存"
+                            android:textSize="17sp" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="32dp"
+                        android:orientation="horizontal" >
+
+                        <CheckBox
+                            android:id="@+id/preciseToQueryStock"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:scaleX="0.6"
+                            android:scaleY="0.6" />
+
+                        <TextView
+                            android:id="@+id/tvPreciseToQueryStock"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="库存查询不忽略颜色和尺码"
+                            android:textSize="17sp" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="32dp"
+                        android:orientation="horizontal" >
+
+                        <CheckBox
+                            android:id="@+id/firstInputOfGoodsCode"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:scaleX="0.6"
+                            android:scaleY="0.6" />
+
+                        <TextView
+                            android:id="@+id/tvFirstInputOfGoodsCode"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="销售订单优先使用货号录入"
+                            android:textSize="17sp" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="32dp"
+                        android:orientation="horizontal" >
+
+                        <CheckBox
+                            android:id="@+id/notUseNegativeInventoryCheck"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:scaleX="0.6"
+                            android:scaleY="0.6" />
+
+                        <TextView
+                            android:id="@+id/tvNotUseNegativeInventoryCheck"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="单据不使用负库存检查"
+                            android:textSize="17sp" />
+                    </LinearLayout>
+                </LinearLayout>
+
+                <!-- 大分割 -->
+
+                <LinearLayout
+                    android:id="@+id/split2"
+                    android:layout_width="match_parent"
+                    android:layout_height="5dp"
+                    android:layout_below="@id/first_div"
+                    android:background="@drawable/split"
+                    android:orientation="horizontal" >
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/ll_update"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="5dp"
+                    android:orientation="horizontal" >
+
+                    <com.fuxi.widget.FontTextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="left|center_vertical"
+                        android:padding="5dp"
+                        android:text="@string/check_update"
+                        android:textColor="#1B9FD8"
+                        android:textSize="20sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:layout_width="100dp"
+                        android:layout_height="wrap_content"
+                        android:gravity="left"
+                        android:padding="5dp"
+                        android:text="检测更新"
+                        android:textSize="17sp" />
+
+                    <TextView
+                        android:id="@+id/version"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="right"
+                        android:padding="5dp"
+                        android:text="V1.2.8"
+                        android:textColor="@color/btn_color"
+                        android:textSize="17sp" />
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="#EFF1F0" />
+
+                <LinearLayout
+                    android:id="@+id/ll_above"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="5dp"
+                    android:orientation="horizontal" >
+
+                    <com.fuxi.widget.FontTextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="left|center_vertical"
+                        android:padding="5dp"
+                        android:text="@string/above"
+                        android:textColor="#1B9FD8"
+                        android:textSize="20sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:layout_width="100dp"
+                        android:layout_height="wrap_content"
+                        android:gravity="left"
+                        android:padding="5dp"
+                        android:text="关于我们"
+                        android:textSize="17sp" />
+
+                    <TextView
+                        android:id="@+id/aboveUs"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="right"
+                        android:padding="5dp"
+                        android:textColor="@color/btn_color"
+                        android:textSize="17sp" />
+
+                    <com.fuxi.widget.FontTextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="right"
+                        android:padding="5dp"
+                        android:text="@string/more"
+                        android:textColor="#BABABA"
+                        android:textSize="20sp"
+                        android:textStyle="bold" />
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="#EFF1F0" />
+            </LinearLayout>
+        </ScrollView>
+    </LinearLayout>
+
+    <!-- 录入设置 -->
+
+    <LinearLayout
+        android:id="@+id/ll_input_setting"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/ll_title"
+        android:layout_marginBottom="40dp"
+        android:orientation="vertical"
+        android:paddingLeft="5dp"
+        android:paddingRight="5dp" >
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scrollbars="none" >
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical" >
+
+                <!-- 销售订单颜色尺码批量录入参数 -->
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="单据录入方式选择"
+                    android:textSize="17sp"
+                    android:textStyle="bold" />
+
+                <RadioGroup
+                    android:id="@+id/goodsMultiSelectGroup"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical" >
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="32dp"
+                        android:orientation="horizontal" >
+
+                        <RadioButton
+                            android:id="@+id/commonSelect"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:checked="true"
+                            android:scaleX="0.6"
+                            android:scaleY="0.6" />
+
+                        <TextView
+                            android:id="@+id/tvCommonSelect"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="单货号颜色尺码录入"
+                            android:textSize="17sp" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="32dp"
+                        android:orientation="horizontal" >
+
+                        <RadioButton
+                            android:id="@+id/multiSelect"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:scaleX="0.6"
+                            android:scaleY="0.6" />
+
+                        <TextView
+                            android:id="@+id/tvMultiSelect"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="多货号颜色尺码录入"
+                            android:textSize="17sp" />
+                    </LinearLayout>
+                </RadioGroup>
+
+                <!-- 多颜色多尺码录入方式选择 -->
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="批量录入方式选择"
+                    android:textSize="17sp"
+                    android:textStyle="bold" />
+
+                <RadioGroup
+                    android:id="@+id/multiSelectTypeGroup"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical" >
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="32dp"
+                        android:orientation="horizontal" >
+
+                        <RadioButton
+                            android:id="@+id/singleColorMultiSizeSelect"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:checked="true"
+                            android:scaleX="0.6"
+                            android:scaleY="0.6" />
+
+                        <TextView
+                            android:id="@+id/tvSingleColorMultiSizeSelect"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="单颜色多尺码录入"
+                            android:textSize="17sp" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="32dp"
+                        android:orientation="horizontal" >
+
+                        <RadioButton
+                            android:id="@+id/multiColorMultiSizeSelect"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:scaleX="0.6"
+                            android:scaleY="0.6" />
+
+                        <TextView
+                            android:id="@+id/tvMultiColorMultiSizeSelect"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="多颜色多尺码录入"
+                            android:textSize="17sp" />
+                    </LinearLayout>
+                </RadioGroup>
+            </LinearLayout>
+        </ScrollView>
+    </LinearLayout>
+
+    <!-- 条码打印设置 -->
+
+    <LinearLayout
+        android:id="@+id/ll_barcode_print_setting"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/ll_title"
+        android:layout_marginBottom="40dp"
+        android:orientation="vertical"
+        android:paddingLeft="5dp"
+        android:paddingRight="5dp" >
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scrollbars="none" >
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical" >
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="#EFF1F0" />
+
+                <!-- 条码宽度 -->
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="3dp"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginRight="5dp"
+                    android:layout_marginTop="3dp"
+                    android:orientation="horizontal" >
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="left"
+                        android:padding="5dp"
+                        android:text="条码宽度"
+                        android:textSize="17sp" />
+
+                    <EditText
+                        android:id="@+id/et_print_barcode_width"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@null"
+                        android:hint="请设置打印条码的宽度"
+                        android:padding="5dp"
+                        android:singleLine="true"
+                        android:textSize="17sp" />
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="#EFF1F0" />
+
+                <!-- 条码高度 -->
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="3dp"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginRight="5dp"
+                    android:layout_marginTop="3dp"
+                    android:orientation="horizontal" >
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="left"
+                        android:padding="5dp"
+                        android:text="条码高度"
+                        android:textSize="17sp" />
+
+                    <EditText
+                        android:id="@+id/et_print_barcode_height"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@null"
+                        android:hint="请设置打印条码的高度"
+                        android:padding="5dp"
+                        android:singleLine="true"
+                        android:textSize="17sp" />
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="#EFF1F0" />
+
+                <!-- 条码类型 -->
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="3dp"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginRight="5dp"
+                    android:layout_marginTop="3dp"
+                    android:orientation="horizontal" >
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="left"
+                        android:padding="5dp"
+                        android:text="条码类型"
+                        android:textSize="17sp" />
+
+                    <EditText
+                        android:id="@+id/et_print_barcode_type"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@null"
+                        android:drawableRight="@drawable/input_bg"
+                        android:editable="false"
+                        android:hint="请选择打印条码的类型"
+                        android:padding="5dp"
+                        android:singleLine="true"
+                        android:textSize="17sp" />
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="#EFF1F0" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:text="显示文本"
+                    android:textSize="17sp"
+                    android:textStyle="bold" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal" >
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="35dp"
+                        android:layout_weight="1"
+                        android:orientation="horizontal" >
+
+                        <CheckBox
+                            android:id="@+id/showGoodsCode"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:scaleX="0.6"
+                            android:scaleY="0.6" />
+
+                        <TextView
+                            android:id="@+id/tvShowGoodsCode"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="货品编码"
+                            android:textSize="17sp" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="35dp"
+                        android:layout_weight="1"
+                        android:orientation="horizontal" >
+
+                        <CheckBox
+                            android:id="@+id/showGoodsName"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:scaleX="0.6"
+                            android:scaleY="0.6" />
+
+                        <TextView
+                            android:id="@+id/tvShowGoodsName"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="货品名称"
+                            android:textSize="17sp" />
+                    </LinearLayout>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal" >
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="35dp"
+                        android:layout_weight="1"
+                        android:orientation="horizontal" >
+
+                        <CheckBox
+                            android:id="@+id/showColor"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:scaleX="0.6"
+                            android:scaleY="0.6" />
+
+                        <TextView
+                            android:id="@+id/tvShowColor"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="颜色"
+                            android:textSize="17sp" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="35dp"
+                        android:layout_weight="1"
+                        android:orientation="horizontal" >
+
+                        <CheckBox
+                            android:id="@+id/showSize"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:scaleX="0.6"
+                            android:scaleY="0.6" />
+
+                        <TextView
+                            android:id="@+id/tvShowSize"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="尺码"
+                            android:textSize="17sp" />
+                    </LinearLayout>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal" >
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="35dp"
+                        android:layout_weight="1"
+                        android:orientation="horizontal" >
+
+                        <CheckBox
+                            android:id="@+id/showRetailSales"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:scaleX="0.6"
+                            android:scaleY="0.6" />
+
+                        <TextView
+                            android:id="@+id/tvShowRetailSales"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="零售价"
+                            android:textSize="17sp" />
+                    </LinearLayout>
+                </LinearLayout>
+            </LinearLayout>
+        </ScrollView>
+    </LinearLayout>
+
+    <!-- 单据设置 -->
+
+    <LinearLayout
+        android:id="@+id/ll_docu_setting"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/ll_title"
+        android:layout_marginBottom="40dp"
+        android:orientation="vertical"
+        android:paddingLeft="5dp"
+        android:paddingRight="5dp" >
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scrollbars="none" >
+
+            <!-- 销售订单列表 -->
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical" >
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="销售订单"
+                    android:textSize="17sp"
+                    android:textStyle="bold" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal" >
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="35dp"
+                        android:layout_weight="1"
+                        android:orientation="horizontal" >
+
+                        <CheckBox
+                            android:id="@+id/salesOrderEmployee"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:scaleX="0.6"
+                            android:scaleY="0.6" />
+
+                        <TextView
+                            android:id="@+id/tvSalesOrderEmployee"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="经手人"
+                            android:textSize="17sp" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="35dp"
+                        android:layout_weight="1"
+                        android:orientation="horizontal" >
+
+                        <CheckBox
+                            android:id="@+id/salesOrderCustomer"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:scaleX="0.6"
+                            android:scaleY="0.6" />
+
+                        <TextView
+                            android:id="@+id/tvSalesOrderCustomer"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="客户"
+                            android:textSize="17sp" />
+                    </LinearLayout>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal" >
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="35dp"
+                        android:layout_weight="1"
+                        android:orientation="horizontal" >
+
+                        <CheckBox
+                            android:id="@+id/salesOrderBrand"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:scaleX="0.6"
+                            android:scaleY="0.6" />
+
+                        <TextView
+                            android:id="@+id/tvSalesOrderBrand"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="品牌"
+                            android:textSize="17sp" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="35dp"
+                        android:layout_weight="1"
+                        android:orientation="horizontal" >
+
+                        <CheckBox
+                            android:id="@+id/salesOrderMemo"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:scaleX="0.6"
+                            android:scaleY="0.6" />
+
+                        <TextView
+                            android:id="@+id/tvSalesOrderMemo"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="备注"
+                            android:textSize="17sp" />
+                    </LinearLayout>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal" >
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="35dp"
+                        android:layout_weight="1"
+                        android:orientation="horizontal" >
+
+                        <CheckBox
+                            android:id="@+id/salesOrderDepartment"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:scaleX="0.6"
+                            android:scaleY="0.6" />
+
+                        <TextView
+                            android:id="@+id/tvSalesOrderDepartment"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="订货部门"
+                            android:textSize="17sp" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="35dp"
+                        android:layout_weight="1"
+                        android:orientation="horizontal" >
+
+                        <CheckBox
+                            android:id="@+id/salesOrderWarehouse"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:scaleX="0.6"
+                            android:scaleY="0.6" />
+
+                        <TextView
+                            android:id="@+id/tvSalesOrderWarehouse"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="发货部门"
+                            android:textSize="17sp" />
+                    </LinearLayout>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal" >
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="35dp"
+                        android:layout_weight="1"
+                        android:orientation="horizontal" >
+
+                        <CheckBox
+                            android:id="@+id/salesOrderAmountSum"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:scaleX="0.6"
+                            android:scaleY="0.6" />
+
+                        <TextView
+                            android:id="@+id/tvSalesOrderAmountSum"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="金额合计"
+                            android:textSize="17sp" />
+                    </LinearLayout>
+                </LinearLayout>
+
+                <!-- 销售发货单列表 -->
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="销售发货单"
+                    android:textSize="17sp"
+                    android:textStyle="bold" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal" >
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="35dp"
+                        android:layout_weight="1"
+                        android:orientation="horizontal" >
+
+                        <CheckBox
+                            android:id="@+id/salesEmployee"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:scaleX="0.6"
+                            android:scaleY="0.6" />
+
+                        <TextView
+                            android:id="@+id/tvSalesEmployee"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="经手人"
+                            android:textSize="17sp" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="35dp"
+                        android:layout_weight="1"
+                        android:orientation="horizontal" >
+
+                        <CheckBox
+                            android:id="@+id/salesCustomer"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:scaleX="0.6"
+                            android:scaleY="0.6" />
+
+                        <TextView
+                            android:id="@+id/tvSalesCustomer"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="客户"
+                            android:textSize="17sp" />
+                    </LinearLayout>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal" >
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="35dp"
+                        android:layout_weight="1"
+                        android:orientation="horizontal" >
+
+                        <CheckBox
+                            android:id="@+id/salesBrand"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:scaleX="0.6"
+                            android:scaleY="0.6" />
+
+                        <TextView
+                            android:id="@+id/tvSalesBrand"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="品牌"
+                            android:textSize="17sp" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="35dp"
+                        android:layout_weight="1"
+                        android:orientation="horizontal" >
+
+                        <CheckBox
+                            android:id="@+id/salesMemo"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:scaleX="0.6"
+                            android:scaleY="0.6" />
+
+                        <TextView
+                            android:id="@+id/tvSalesMemo"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="备注"
+                            android:textSize="17sp" />
+                    </LinearLayout>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal" >
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="35dp"
+                        android:layout_weight="1"
+                        android:orientation="horizontal" >
+
+                        <CheckBox
+                            android:id="@+id/salesOrderNo"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:scaleX="0.6"
+                            android:scaleY="0.6" />
+
+                        <TextView
+                            android:id="@+id/tvSalesOrderNo"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="订单单号"
+                            android:textSize="17sp" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="35dp"
+                        android:layout_weight="1"
+                        android:orientation="horizontal" >
+
+                        <CheckBox
+                            android:id="@+id/salesWarehouse"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:scaleX="0.6"
+                            android:scaleY="0.6" />
+
+                        <TextView
+                            android:id="@+id/tvSalesWarehouse"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="发货部门"
+                            android:textSize="17sp" />
+                    </LinearLayout>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal" >
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="35dp"
+                        android:layout_weight="1"
+                        android:orientation="horizontal" >
+
+                        <CheckBox
+                            android:id="@+id/salesAmountSum"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:scaleX="0.6"
+                            android:scaleY="0.6" />
+
+                        <TextView
+                            android:id="@+id/tvSalesAmountSum"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="金额合计"
+                            android:textSize="17sp" />
+                    </LinearLayout>
+                </LinearLayout>
+
+                <!-- 销售退货单列表 -->
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="销售退货单"
+                    android:textSize="17sp"
+                    android:textStyle="bold" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal" >
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="35dp"
+                        android:layout_weight="1"
+                        android:orientation="horizontal" >
+
+                        <CheckBox
+                            android:id="@+id/salesReturnEmployee"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:scaleX="0.6"
+                            android:scaleY="0.6" />
+
+                        <TextView
+                            android:id="@+id/tvSalesReturnEmployee"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="经手人"
+                            android:textSize="17sp" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="35dp"
+                        android:layout_weight="1"
+                        android:orientation="horizontal" >
+
+                        <CheckBox
+                            android:id="@+id/salesReturnCustomer"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:scaleX="0.6"
+                            android:scaleY="0.6" />
+
+                        <TextView
+                            android:id="@+id/tvSalesReturnCustomer"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="客户"
+                            android:textSize="17sp" />
+                    </LinearLayout>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal" >
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="35dp"
+                        android:layout_weight="1"
+                        android:orientation="horizontal" >
+
+                        <CheckBox
+                            android:id="@+id/salesReturnBrand"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:scaleX="0.6"
+                            android:scaleY="0.6" />
+
+                        <TextView
+                            android:id="@+id/tvSalesReturnBrand"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="品牌"
+                            android:textSize="17sp" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="35dp"
+                        android:layout_weight="1"
+                        android:orientation="horizontal" >
+
+                        <CheckBox
+                            android:id="@+id/salesReturnMemo"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:scaleX="0.6"
+                            android:scaleY="0.6" />
+
+                        <TextView
+                            android:id="@+id/tvSalesReturnMemo"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="备注"
+                            android:textSize="17sp" />
+                    </LinearLayout>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal" >
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="35dp"
+                        android:layout_weight="1"
+                        android:orientation="horizontal" >
+
+                        <CheckBox
+                            android:id="@+id/salesReturnWarehouse"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:scaleX="0.6"
+                            android:scaleY="0.6" />
+
+                        <TextView
+                            android:id="@+id/tvSalesReturnWarehouse"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="退货部门"
+                            android:textSize="17sp" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="35dp"
+                        android:layout_weight="1"
+                        android:orientation="horizontal" >
+
+                        <CheckBox
+                            android:id="@+id/salesReturnDepartment"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:scaleX="0.6"
+                            android:scaleY="0.6" />
+
+                        <TextView
+                            android:id="@+id/tvSalesReturnDepartment"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="收货部门"
+                            android:textSize="17sp" />
+                    </LinearLayout>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal" >
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="35dp"
+                        android:layout_weight="1"
+                        android:orientation="horizontal" >
+
+                        <CheckBox
+                            android:id="@+id/salesReturnAmountSum"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:scaleX="0.6"
+                            android:scaleY="0.6" />
+
+                        <TextView
+                            android:id="@+id/tvSalesReturnAmountSum"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="金额合计"
+                            android:textSize="17sp" />
+                    </LinearLayout>
+                </LinearLayout>
+
+                <!-- 采购收货单列表 -->
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="采购收货单"
+                    android:textSize="17sp"
+                    android:textStyle="bold" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal" >
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="35dp"
+                        android:layout_weight="1"
+                        android:orientation="horizontal" >
+
+                        <CheckBox
+                            android:id="@+id/purchaseEmployee"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:scaleX="0.6"
+                            android:scaleY="0.6" />
+
+                        <TextView
+                            android:id="@+id/tvPurchaseEmployee"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="经手人"
+                            android:textSize="17sp" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="35dp"
+                        android:layout_weight="1"
+                        android:orientation="horizontal" >
+
+                        <CheckBox
+                            android:id="@+id/purchaseSupplier"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:scaleX="0.6"
+                            android:scaleY="0.6" />
+
+                        <TextView
+                            android:id="@+id/tvPurchaseSupplier"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="厂商"
+                            android:textSize="17sp" />
+                    </LinearLayout>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal" >
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="35dp"
+                        android:layout_weight="1"
+                        android:orientation="horizontal" >
+
+                        <CheckBox
+                            android:id="@+id/purchaseBrand"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:scaleX="0.6"
+                            android:scaleY="0.6" />
+
+                        <TextView
+                            android:id="@+id/tvPurchaseBrand"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="品牌"
+                            android:textSize="17sp" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="35dp"
+                        android:layout_weight="1"
+                        android:orientation="horizontal" >
+
+                        <CheckBox
+                            android:id="@+id/purchaseMemo"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:scaleX="0.6"
+                            android:scaleY="0.6" />
+
+                        <TextView
+                            android:id="@+id/tvPurchaseMemo"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="备注"
+                            android:textSize="17sp" />
+                    </LinearLayout>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal" >
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="35dp"
+                        android:layout_weight="1"
+                        android:orientation="horizontal" >
+
+                        <CheckBox
+                            android:id="@+id/purchaseDepartment"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:scaleX="0.6"
+                            android:scaleY="0.6" />
+
+                        <TextView
+                            android:id="@+id/tvPurchaseDepartment"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="收货部门"
+                            android:textSize="17sp" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="35dp"
+                        android:layout_weight="1"
+                        android:orientation="horizontal" >
+
+                        <CheckBox
+                            android:id="@+id/purchaseAmountSum"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:scaleX="0.6"
+                            android:scaleY="0.6" />
+
+                        <TextView
+                            android:id="@+id/tvPurchaseAmountSum"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="金额合计"
+                            android:textSize="17sp" />
+                    </LinearLayout>
+                </LinearLayout>
+
+                <!-- 采购退货单列表 -->
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="采购退货单"
+                    android:textSize="17sp"
+                    android:textStyle="bold" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal" >
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="35dp"
+                        android:layout_weight="1"
+                        android:orientation="horizontal" >
+
+                        <CheckBox
+                            android:id="@+id/purchaseReturnEmployee"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:scaleX="0.6"
+                            android:scaleY="0.6" />
+
+                        <TextView
+                            android:id="@+id/tvPurchaseReturnEmployee"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="经手人"
+                            android:textSize="17sp" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="35dp"
+                        android:layout_weight="1"
+                        android:orientation="horizontal" >
+
+                        <CheckBox
+                            android:id="@+id/purchaseReturnSupplier"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:scaleX="0.6"
+                            android:scaleY="0.6" />
+
+                        <TextView
+                            android:id="@+id/tvPurchaseReturnSupplier"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="厂商"
+                            android:textSize="17sp" />
+                    </LinearLayout>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal" >
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="35dp"
+                        android:layout_weight="1"
+                        android:orientation="horizontal" >
+
+                        <CheckBox
+                            android:id="@+id/purchaseReturnBrand"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:scaleX="0.6"
+                            android:scaleY="0.6" />
+
+                        <TextView
+                            android:id="@+id/tvPurchaseReturnBrand"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="品牌"
+                            android:textSize="17sp" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="35dp"
+                        android:layout_weight="1"
+                        android:orientation="horizontal" >
+
+                        <CheckBox
+                            android:id="@+id/purchaseReturnMemo"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:scaleX="0.6"
+                            android:scaleY="0.6" />
+
+                        <TextView
+                            android:id="@+id/tvPurchaseReturnMemo"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="备注"
+                            android:textSize="17sp" />
+                    </LinearLayout>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal" >
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="35dp"
+                        android:layout_weight="1"
+                        android:orientation="horizontal" >
+
+                        <CheckBox
+                            android:id="@+id/purchaseReturnDepartment"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:scaleX="0.6"
+                            android:scaleY="0.6" />
+
+                        <TextView
+                            android:id="@+id/tvPurchaseReturnDepartment"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="退货部门"
+                            android:textSize="17sp" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="35dp"
+                        android:layout_weight="1"
+                        android:orientation="horizontal" >
+
+                        <CheckBox
+                            android:id="@+id/purchaseReturnAmountSum"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:scaleX="0.6"
+                            android:scaleY="0.6" />
+
+                        <TextView
+                            android:id="@+id/tvPurchaseReturnAmountSum"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="金额合计"
+                            android:textSize="17sp" />
+                    </LinearLayout>
+                </LinearLayout>
+
+                <!-- 转仓单列表 -->
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="转仓单"
+                    android:textSize="17sp"
+                    android:textStyle="bold" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal" >
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="35dp"
+                        android:layout_weight="1"
+                        android:orientation="horizontal" >
+
+                        <CheckBox
+                            android:id="@+id/stockMoveEmployee"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:scaleX="0.6"
+                            android:scaleY="0.6" />
+
+                        <TextView
+                            android:id="@+id/tvStockMoveEmployee"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="经手人"
+                            android:textSize="17sp" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="35dp"
+                        android:layout_weight="1"
+                        android:orientation="horizontal" >
+
+                        <CheckBox
+                            android:id="@+id/stockMoveMemo"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:scaleX="0.6"
+                            android:scaleY="0.6" />
+
+                        <TextView
+                            android:id="@+id/tvStockMoveMemo"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="备注"
+                            android:textSize="17sp" />
+                    </LinearLayout>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal" >
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="35dp"
+                        android:layout_weight="1"
+                        android:orientation="horizontal" >
+
+                        <CheckBox
+                            android:id="@+id/stockMoveWarehouseIn"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:scaleX="0.6"
+                            android:scaleY="0.6" />
+
+                        <TextView
+                            android:id="@+id/tvStockMoveWarehouseIn"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="转进仓库"
+                            android:textSize="17sp" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="35dp"
+                        android:layout_weight="1"
+                        android:orientation="horizontal" >
+
+                        <CheckBox
+                            android:id="@+id/stockMoveWarehouseOut"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:scaleX="0.6"
+                            android:scaleY="0.6" />
+
+                        <TextView
+                            android:id="@+id/tvStockMoveWarehouseOut"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="转出仓库"
+                            android:textSize="17sp" />
+                    </LinearLayout>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal" >
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="35dp"
+                        android:layout_weight="1"
+                        android:orientation="horizontal" >
+
+                        <CheckBox
+                            android:id="@+id/stockMoveBrand"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:scaleX="0.6"
+                            android:scaleY="0.6" />
+
+                        <TextView
+                            android:id="@+id/tvStockMoveBrand"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="品牌"
+                            android:textSize="17sp" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="35dp"
+                        android:layout_weight="1"
+                        android:orientation="horizontal" >
+
+                        <CheckBox
+                            android:id="@+id/stockMoveAmountSum"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:scaleX="0.6"
+                            android:scaleY="0.6" />
+
+                        <TextView
+                            android:id="@+id/tvStockMoveAmountSum"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="金额合计"
+                            android:textSize="17sp" />
+                    </LinearLayout>
+                </LinearLayout>
+
+                <!-- 进仓单列表 -->
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="进仓单"
+                    android:textSize="17sp"
+                    android:textStyle="bold" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal" >
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="35dp"
+                        android:layout_weight="1"
+                        android:orientation="horizontal" >
+
+                        <CheckBox
+                            android:id="@+id/stockInEmployee"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:scaleX="0.6"
+                            android:scaleY="0.6" />
+
+                        <TextView
+                            android:id="@+id/tvStockInEmployee"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="经手人"
+                            android:textSize="17sp" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="35dp"
+                        android:layout_weight="1"
+                        android:orientation="horizontal" >
+
+                        <CheckBox
+                            android:id="@+id/stockInMemo"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:scaleX="0.6"
+                            android:scaleY="0.6" />
+
+                        <TextView
+                            android:id="@+id/tvStockInMemo"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="备注"
+                            android:textSize="17sp" />
+                    </LinearLayout>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal" >
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="35dp"
+                        android:layout_weight="1"
+                        android:orientation="horizontal" >
+
+                        <CheckBox
+                            android:id="@+id/stockInWarehouse"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:scaleX="0.6"
+                            android:scaleY="0.6" />
+
+                        <TextView
+                            android:id="@+id/tvStockInWarehouse"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="仓库名称"
+                            android:textSize="17sp" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="35dp"
+                        android:layout_weight="1"
+                        android:orientation="horizontal" >
+
+                        <CheckBox
+                            android:id="@+id/stockInWarehouseOut"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:scaleX="0.6"
+                            android:scaleY="0.6" />
+
+                        <TextView
+                            android:id="@+id/tvStockInWarehouseOut"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="转出仓库"
+                            android:textSize="17sp" />
+                    </LinearLayout>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal" >
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="35dp"
+                        android:layout_weight="1"
+                        android:orientation="horizontal" >
+
+                        <CheckBox
+                            android:id="@+id/stockInBrand"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:scaleX="0.6"
+                            android:scaleY="0.6" />
+
+                        <TextView
+                            android:id="@+id/tvStockInBrand"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="品牌"
+                            android:textSize="17sp" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="35dp"
+                        android:layout_weight="1"
+                        android:orientation="horizontal" >
+
+                        <CheckBox
+                            android:id="@+id/stockInRelationNo"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:scaleX="0.6"
+                            android:scaleY="0.6" />
+
+                        <TextView
+                            android:id="@+id/tvStockInRelationNo"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="对应单号"
+                            android:textSize="17sp" />
+                    </LinearLayout>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal" >
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="35dp"
+                        android:layout_weight="1"
+                        android:orientation="horizontal" >
+
+                        <CheckBox
+                            android:id="@+id/stockInAmountSum"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:scaleX="0.6"
+                            android:scaleY="0.6" />
+
+                        <TextView
+                            android:id="@+id/tvStockInAmountSum"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="金额合计"
+                            android:textSize="17sp" />
+                    </LinearLayout>
+                </LinearLayout>
+
+                <!-- 出仓单列表 -->
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="出仓单"
+                    android:textSize="17sp"
+                    android:textStyle="bold" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal" >
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="35dp"
+                        android:layout_weight="1"
+                        android:orientation="horizontal" >
+
+                        <CheckBox
+                            android:id="@+id/stockOutEmployee"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:scaleX="0.6"
+                            android:scaleY="0.6" />
+
+                        <TextView
+                            android:id="@+id/tvStockOutEmployee"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="经手人"
+                            android:textSize="17sp" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="35dp"
+                        android:layout_weight="1"
+                        android:orientation="horizontal" >
+
+                        <CheckBox
+                            android:id="@+id/stockOutMemo"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:scaleX="0.6"
+                            android:scaleY="0.6" />
+
+                        <TextView
+                            android:id="@+id/tvStockOutMemo"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="备注"
+                            android:textSize="17sp" />
+                    </LinearLayout>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal" >
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="35dp"
+                        android:layout_weight="1"
+                        android:orientation="horizontal" >
+
+                        <CheckBox
+                            android:id="@+id/stockOutWarehouse"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:scaleX="0.6"
+                            android:scaleY="0.6" />
+
+                        <TextView
+                            android:id="@+id/tvStockOutWarehouse"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="仓库名称"
+                            android:textSize="17sp" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="35dp"
+                        android:layout_weight="1"
+                        android:orientation="horizontal" >
+
+                        <CheckBox
+                            android:id="@+id/stockOutWarehouseIn"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:scaleX="0.6"
+                            android:scaleY="0.6" />
+
+                        <TextView
+                            android:id="@+id/tvStockOutWarehouseIn"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="转进仓库"
+                            android:textSize="17sp" />
+                    </LinearLayout>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal" >
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="35dp"
+                        android:layout_weight="1"
+                        android:orientation="horizontal" >
+
+                        <CheckBox
+                            android:id="@+id/stockOutBrand"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:scaleX="0.6"
+                            android:scaleY="0.6" />
+
+                        <TextView
+                            android:id="@+id/tvStockOutBrand"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="品牌"
+                            android:textSize="17sp" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="35dp"
+                        android:layout_weight="1"
+                        android:orientation="horizontal" >
+
+                        <CheckBox
+                            android:id="@+id/stockOutRelationNo"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:scaleX="0.6"
+                            android:scaleY="0.6" />
+
+                        <TextView
+                            android:id="@+id/tvStockOutRelationNo"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="对应单号"
+                            android:textSize="17sp" />
+                    </LinearLayout>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal" >
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="35dp"
+                        android:layout_weight="1"
+                        android:orientation="horizontal" >
+
+                        <CheckBox
+                            android:id="@+id/stockOutAmountSum"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:scaleX="0.6"
+                            android:scaleY="0.6" />
+
+                        <TextView
+                            android:id="@+id/tvStockOutAmountSum"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="金额合计"
+                            android:textSize="17sp" />
+                    </LinearLayout>
+                </LinearLayout>
+
+                <!-- 盘点单列表 -->
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="盘点单"
+                    android:textSize="17sp"
+                    android:textStyle="bold" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal" >
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="35dp"
+                        android:layout_weight="1"
+                        android:orientation="horizontal" >
+
+                        <CheckBox
+                            android:id="@+id/stocktakingEmployee"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:scaleX="0.6"
+                            android:scaleY="0.6" />
+
+                        <TextView
+                            android:id="@+id/tvStocktakingEmployee"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="经手人"
+                            android:textSize="17sp" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="35dp"
+                        android:layout_weight="1"
+                        android:orientation="horizontal" >
+
+                        <CheckBox
+                            android:id="@+id/stocktakingMemo"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:scaleX="0.6"
+                            android:scaleY="0.6" />
+
+                        <TextView
+                            android:id="@+id/tvStocktakingMemo"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="备注"
+                            android:textSize="17sp" />
+                    </LinearLayout>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal" >
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="35dp"
+                        android:layout_weight="1"
+                        android:orientation="horizontal" >
+
+                        <CheckBox
+                            android:id="@+id/stocktakingWarehouse"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:scaleX="0.6"
+                            android:scaleY="0.6" />
+
+                        <TextView
+                            android:id="@+id/tvStocktakingWarehouse"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="仓库"
+                            android:textSize="17sp" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="35dp"
+                        android:layout_weight="1"
+                        android:orientation="horizontal" >
+
+                        <CheckBox
+                            android:id="@+id/stocktakingBrand"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:scaleX="0.6"
+                            android:scaleY="0.6" />
+
+                        <TextView
+                            android:id="@+id/tvStocktakingBrand"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="品牌"
+                            android:textSize="17sp" />
+                    </LinearLayout>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal" >
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="35dp"
+                        android:layout_weight="1"
+                        android:orientation="horizontal" >
+
+                        <CheckBox
+                            android:id="@+id/stocktakingAmountSum"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:scaleX="0.6"
+                            android:scaleY="0.6" />
+
+                        <TextView
+                            android:id="@+id/tvStocktakingAmountSum"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="金额合计"
+                            android:textSize="17sp" />
+                    </LinearLayout>
+                </LinearLayout>
+
+                <!-- 装箱单类别选择 -->
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="装箱单"
+                    android:textSize="17sp"
+                    android:textStyle="bold" />
+
+                <RadioGroup
+                    android:id="@+id/packingBoxGroup"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical" >
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="32dp"
+                        android:orientation="horizontal" >
+
+                        <RadioButton
+                            android:id="@+id/relationSales"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:checked="true"
+                            android:scaleX="0.6"
+                            android:scaleY="0.6" />
+
+                        <TextView
+                            android:id="@+id/tvRelationSales"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="装箱单关联销售发货单"
+                            android:textSize="17sp" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="32dp"
+                        android:orientation="horizontal" >
+
+                        <RadioButton
+                            android:id="@+id/relationStockOut"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:scaleX="0.6"
+                            android:scaleY="0.6" />
+
+                        <TextView
+                            android:id="@+id/tvRelationStockOut"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="装箱单关联出仓单"
+                            android:textSize="17sp" />
+                    </LinearLayout>
+                </RadioGroup>
+            </LinearLayout>
+        </ScrollView>
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/save"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_alignParentBottom="true"
+        android:background="@drawable/upload_button"
+        android:gravity="center"
+        android:text="保存"
+        android:textColor="#fff"
+        android:textSize="17sp" />
+
+    <WebView
+        android:id="@+id/myWeb"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="gone" />
+
+</RelativeLayout>

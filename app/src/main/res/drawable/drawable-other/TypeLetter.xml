@@ -1,0 +1,116 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<GoodsType>
+
+    <Type code="01" >
+S
+    </Type>
+    <Type code="02" >
+S
+    </Type>
+    <Type code="09" >
+S
+    </Type>
+    <Type code="07" >
+W
+    </Type>
+    <Type code="06" >
+W
+    </Type>
+    <Type code="05" >
+B
+    </Type>
+    <Type code="03" >
+Q
+    </Type>
+    <Type code="08" >
+Q
+    </Type>
+    <Type code="04" >
+P
+    </Type>
+    <Type code="17" >
+S
+    </Type>
+    <Type code="18" >
+Q
+    </Type>
+    <Type code="21" >
+S
+    </Type>
+    <Type code="22" >
+S
+    </Type>
+    <Type code="23" >
+S
+    </Type>
+    <Type code="24" >
+S
+    </Type>
+    <Type code="25" >
+S
+    </Type>
+    <Type code="26" >
+S
+    </Type>
+    <Type code="27" >
+S
+    </Type>
+    <Type code="28" >
+S
+    </Type>
+    <Type code="29" >
+S
+    </Type>
+    <Type code="71" >
+W
+    </Type>
+    <Type code="72" >
+W
+    </Type>
+    <Type code="73" >
+W
+    </Type>
+    <Type code="74" >
+W
+    </Type>
+    <Type code="75" >
+W
+    </Type>
+    <Type code="31" >
+Q
+    </Type>
+    <Type code="32" >
+Q
+    </Type>
+    <Type code="33" >
+Q
+    </Type>
+    <Type code="34" >
+Q
+    </Type>
+    <Type code="35" >
+Q
+    </Type>
+    <Type code="36" >
+Q
+    </Type>
+    <Type code="37" >
+Q
+    </Type>
+    <Type code="38" >
+Q
+    </Type>
+    <Type code="39" >
+Q
+    </Type>
+    <Type code="41" >
+P
+    </Type>
+    <Type code="42" >
+P
+    </Type>
+    <Type code="43" >
+P
+    </Type>
+
+</GoodsType>

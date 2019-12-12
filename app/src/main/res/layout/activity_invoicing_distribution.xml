@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#fff"
+    android:orientation="vertical" >
+
+    <!-- 货品信息 -->
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="40dip"
+        android:gravity="center_horizontal"
+        android:orientation="horizontal"
+        android:paddingLeft="5dp"
+        android:paddingRight="5dp" >
+
+        <TextView
+            android:id="@+id/goods_name"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center_vertical"
+            android:textColor="@color/blue"
+            android:textSize="17sp" />
+    </LinearLayout>
+
+    <!-- 分割线 -->
+
+    <LinearLayout
+        android:id="@+id/split1"
+        android:layout_width="match_parent"
+        android:layout_height="3dp"
+        android:background="@drawable/split"
+        android:orientation="horizontal" >
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="35dp"
+        android:background="@drawable/text_bottom_line"
+        android:orientation="horizontal"
+        android:paddingLeft="5dp"
+        android:paddingRight="5dp" >
+
+        <!-- 颜色 -->
+
+        <TextView
+            android:id="@+id/tv_color"
+            android:layout_width="0dip"
+            android:layout_height="match_parent"
+            android:layout_weight="2"
+            android:gravity="center_vertical"
+            android:text="颜色"
+            android:textColor="@color/black"
+            android:textSize="17sp" />
+
+        <!-- 尺码 -->
+
+        <TextView
+            android:id="@+id/tv_size"
+            android:layout_width="0dip"
+            android:layout_height="match_parent"
+            android:layout_weight="2"
+            android:gravity="center"
+            android:text="尺码"
+            android:textColor="@color/black"
+            android:textSize="17sp" />
+        <!-- 合计 -->
+
+        <TextView
+            android:id="@+id/tv_count"
+            android:layout_width="0dip"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="合计"
+            android:textColor="@color/black"
+            android:textSize="17sp" />
+    </LinearLayout>
+
+    <!-- 显示列表(尺码颜色) -->
+
+    <ListView
+        android:id="@+id/lv_datas"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:divider="#F0F0F0"
+        android:dividerHeight="1dp" >
+    </ListView>
+
+</LinearLayout>
