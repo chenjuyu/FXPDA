@@ -44,7 +44,7 @@
 
         <!-- 欢迎界面 com.fuxi.activity.WelcomeActivity-->
         <activity
-            android:name="com.fuxi.activity.ShowActivity"
+            android:name="com.fuxi.activity.WelcomeActivity"
             android:label="@string/app_name"
             android:theme="@android:style/Theme.Light.NoTitleBar.Fullscreen">
             <intent-filter>
@@ -297,6 +297,13 @@
         <activity
             android:name="com.fuxi.activity.OPMReportingActivity"
             android:windowSoftInputMode="adjustPan|stateAlwaysHidden" />
+
+
+        <!-- 订货会报表查询界面 -->
+        <activity
+            android:name="com.fuxi.activity.ShowActivity"
+            android:windowSoftInputMode="adjustPan|stateAlwaysHidden" />
+
     </application>
 
 </manifest>

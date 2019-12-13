@@ -348,7 +348,7 @@ public class LoginActivity extends BaseWapperActivity {
 			super.handleMessage(msg);
 			switch (msg.what) {
 			case CHECK_LOGIN_ERROR:
-				 prompt();//toLogin();// prompt();// toLogin(); //手机不要验证 2019-02-27 直接登录
+                toLogin(); //toLogin();// prompt();// toLogin(); //手机不要验证 2019-02-27 直接登录
 				break;
 			case CHECK_LOGIN_SUCCESS:
 				toLogin();

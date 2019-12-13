@@ -9,16 +9,21 @@ import java.util.Map;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+
+import android.Manifest;
 import android.app.AlertDialog;
 import android.app.AlertDialog.Builder;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
+import android.support.v4.app.ActivityCompat;
 import android.text.SpannableString;
 import android.view.GestureDetector;
 import android.view.KeyEvent;
@@ -37,6 +42,8 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.TextView.OnEditorActionListener;
 import android.widget.Toast;
+
+import com.dommy.qrcode.util.Constant;
 import com.fuxi.activity.BaseWapperActivity.DataCallback;
 import com.fuxi.adspter.OddAdapter;
 import com.fuxi.adspter.SalesOddAdapter;
@@ -56,6 +63,7 @@ import com.fuxi.vo.Paramer;
 import com.fuxi.vo.RequestVo;
 import com.fuxi.widget.FontTextView;
 import com.fuxi.widget.PopWinShare;
+import com.google.zxing.activity.CaptureActivity;
 
 /**
  * Title: StockMoveDetailActivity Description: 转仓单明细活动界面
@@ -99,7 +107,7 @@ public class StockMoveDetailActivity extends BaseWapperActivity implements OnIte
     private EditText et_qty; // 添加的数量
     private ImageView iv_pic; // 图片
     private FontTextView ftvToggle;
-
+    private FontTextView ftv_scanIcon;
     // 实例化对象
     private ArrayList<HashMap<String, Object>> tempDatas = new ArrayList<HashMap<String, Object>>();// 负库存检查返回的记录
     private ArrayList<HashMap<String, Object>> datas = new ArrayList<HashMap<String, Object>>();// 存储箱条码扫描记录
@@ -459,6 +467,7 @@ public class StockMoveDetailActivity extends BaseWapperActivity implements OnIte
                     et_barcode.setCompoundDrawables(null, null, drawable, null);
                     SpannableString s = new SpannableString("点击选择货品");
                     et_barcode.setHint(s);
+                    ftv_scanIcon.setVisibility(View.GONE);
                 } else {
                     et_barcode.setText(null);
                     et_barcode.setFocusable(true);
@@ -469,8 +478,14 @@ public class StockMoveDetailActivity extends BaseWapperActivity implements OnIte
                     SpannableString s = new SpannableString("输入条码/货号");
                     et_barcode.setHint(s);
                     et_barcode.requestFocus();
+                    ftv_scanIcon.setVisibility(View.VISIBLE);
                 }
                 inputFlag = !inputFlag;
+                break;
+            case  R.id.scanIcon :
+
+                 startQrCode();
+
                 break;
             default:
                 break;
@@ -1254,6 +1269,7 @@ public class StockMoveDetailActivity extends BaseWapperActivity implements OnIte
         etBrand.setOnTouchListener(tl);
         tv_add.setOnClickListener(this);
         ftvToggle.setOnClickListener(this);
+        ftv_scanIcon.setOnClickListener(this);
         tv_save.setOnClickListener(this);
         iv_pic.setOnClickListener(this);
         et_barcode.setOnKeyListener(this);
@@ -1392,6 +1408,7 @@ public class StockMoveDetailActivity extends BaseWapperActivity implements OnIte
         ll_split2 = (LinearLayout) findViewById(R.id.split2);
         ll_brand = (LinearLayout) findViewById(R.id.ll_brand);
         ftvToggle = (FontTextView) findViewById(R.id.toggle);
+        ftv_scanIcon =(FontTextView) findViewById(R.id.scanIcon);
     }
 
     @Override
@@ -1507,6 +1524,19 @@ public class StockMoveDetailActivity extends BaseWapperActivity implements OnIte
                     }
                 }
                 break;
+
+            case Constant.REQ_QR_CODE :
+                if(resultCode == RESULT_OK ){
+                    Bundle bundle = data.getExtras();
+                    String scanResult = bundle.getString(Constant.INTENT_EXTRA_KEY_QR_SCAN);
+                    et_barcode.setText(scanResult);
+                    addBarCode();
+                    // Toast.makeText(SalesDetailActivity.this,scanResult,Toast.LENGTH_LONG).show();
+                }
+                break;
+
+
+
             default:
                 break;
         }
@@ -1679,6 +1709,7 @@ public class StockMoveDetailActivity extends BaseWapperActivity implements OnIte
                         tv_barcode.setText("箱号");
                         tv_qty.setText("箱数");
                         boxQtySum = 1;
+                        ftv_scanIcon.setVisibility(View.VISIBLE);
                     } else {
                         popWinShare.tvToggle.setText("切换装箱");
                         setTitle("转仓单(散件)");
@@ -1686,6 +1717,7 @@ public class StockMoveDetailActivity extends BaseWapperActivity implements OnIte
                         tv_barcode.setText("货号");
                         tv_qty.setText("数量");
                         boxQtySum = 0;
+                        ftv_scanIcon.setVisibility(View.GONE);
                     }
                     popWinShare.dismiss();
                     break;
@@ -1733,12 +1765,65 @@ public class StockMoveDetailActivity extends BaseWapperActivity implements OnIte
                     inte.putExtra("coverSavePath", coverSavePath);
                     startActivity(inte);
                     break;
+
+                case R.id.scanIcon:
+
+                    startQrCode();
+
+
+                    break;
                 default:
                     break;
             }
 
         }
 
+    }
+
+    // 开始扫码
+    private void startQrCode() {
+        // 申请相机权限
+        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {
+            // 申请权限
+            ActivityCompat.requestPermissions(StockMoveDetailActivity.this, new String[]{Manifest.permission.CAMERA}, Constant.REQ_PERM_CAMERA);
+            return;
+        }
+        // 申请文件读写权限（部分朋友遇到相册选图需要读写权限的情况，这里一并写一下）
+        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
+            // 申请权限
+            ActivityCompat.requestPermissions(StockMoveDetailActivity.this, new String[]{Manifest.permission.READ_EXTERNAL_STORAGE}, Constant.REQ_PERM_EXTERNAL_STORAGE);
+            return;
+        }
+        // 二维码扫码
+        Intent intent = new Intent(StockMoveDetailActivity.this, CaptureActivity.class);
+        startActivityForResult(intent, Constant.REQ_QR_CODE);
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        switch (requestCode) {
+            case Constant.REQ_PERM_CAMERA:
+                // 摄像头权限申请
+                if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                    // 获得授权
+                    startQrCode();
+                } else {
+                    // 被禁止授权
+                    Toast.makeText(StockMoveDetailActivity.this, "请至权限中心打开本应用的相机访问权限", Toast.LENGTH_LONG).show();
+                }
+                break;
+            case Constant.REQ_PERM_EXTERNAL_STORAGE:
+                // 文件读写权限申请
+                if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                    // 获得授权
+                    startQrCode();
+                } else {
+                    // 被禁止授权
+                    Toast.makeText(StockMoveDetailActivity.this, "请至权限中心打开本应用的文件读写权限", Toast.LENGTH_LONG).show();
+                }
+                break;
+        }
     }
 
     /**
