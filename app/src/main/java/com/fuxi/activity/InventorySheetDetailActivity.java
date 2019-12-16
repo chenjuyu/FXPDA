@@ -10,15 +10,20 @@ import java.util.Map;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+
+import android.Manifest;
 import android.app.AlertDialog;
 import android.app.AlertDialog.Builder;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.os.Handler;
+import android.support.annotation.NonNull;
+import android.support.v4.app.ActivityCompat;
 import android.view.GestureDetector;
 import android.view.KeyEvent;
 import android.view.MotionEvent;
@@ -36,6 +41,8 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.TextView.OnEditorActionListener;
 import android.widget.Toast;
+
+import com.dommy.qrcode.util.Constant;
 import com.fuxi.adspter.OddAdapter;
 import com.fuxi.dao.BarCodeDao;
 import com.fuxi.dao.GoodsBoxBarcodeRecordDao;
@@ -47,7 +54,11 @@ import com.fuxi.util.Tools;
 import com.fuxi.vo.BarCode;
 import com.fuxi.vo.GoodsBoxBarcodeRecord;
 import com.fuxi.vo.RequestVo;
+import com.fuxi.widget.FontTextView;
 import com.fuxi.widget.PopWinShare;
+import com.google.zxing.activity.CaptureActivity;
+
+import jxl.format.Font;
 
 /**
  * Title: InventorySheetDetailActivity Description: 盘点单明细活动界面
@@ -92,6 +103,7 @@ public class InventorySheetDetailActivity extends BaseWapperActivity implements 
     private EditText et_barcode; // 条码
     private EditText et_qty; // 添加的数量
     private ImageView iv_pic; // 图片
+    private FontTextView ftv_scanIcon;
 
     // 其它属性
     private ArrayList<HashMap<String, Object>> datas = new ArrayList<HashMap<String, Object>>();// 存储箱条码扫描记录
@@ -983,6 +995,16 @@ public class InventorySheetDetailActivity extends BaseWapperActivity implements 
                     memo = data.getStringExtra("remark");
                 }
                 break;
+
+            case Constant.REQ_QR_CODE :
+                if(resultCode == RESULT_OK ){
+                    Bundle bundle = data.getExtras();
+                    String scanResult = bundle.getString(Constant.INTENT_EXTRA_KEY_QR_SCAN);
+                    et_barcode.setText(scanResult);
+                    add();
+                    // Toast.makeText(SalesDetailActivity.this,scanResult,Toast.LENGTH_LONG).show();
+                }
+                break;
             default:
                 break;
         }
@@ -1058,11 +1080,61 @@ public class InventorySheetDetailActivity extends BaseWapperActivity implements 
                     Toast.makeText(InventorySheetDetailActivity.this, "当前图片无对应的货品编码", Toast.LENGTH_SHORT).show();
                 }
                 break;
+
+            case R.id.scanIcon :
+                startQrCode();
+                break;
+
+
             default:
                 break;
         }
     }
+    // 开始扫码
+    private void startQrCode() {
+        // 申请相机权限
+        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {
+            // 申请权限
+            ActivityCompat.requestPermissions(InventorySheetDetailActivity.this, new String[]{Manifest.permission.CAMERA}, Constant.REQ_PERM_CAMERA);
+            return;
+        }
+        // 申请文件读写权限（部分朋友遇到相册选图需要读写权限的情况，这里一并写一下）
+        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
+            // 申请权限
+            ActivityCompat.requestPermissions(InventorySheetDetailActivity.this, new String[]{Manifest.permission.READ_EXTERNAL_STORAGE}, Constant.REQ_PERM_EXTERNAL_STORAGE);
+            return;
+        }
+        // 二维码扫码
+        Intent intent = new Intent(InventorySheetDetailActivity.this, CaptureActivity.class);
+        startActivityForResult(intent, Constant.REQ_QR_CODE);
+    }
 
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        switch (requestCode) {
+            case Constant.REQ_PERM_CAMERA:
+                // 摄像头权限申请
+                if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                    // 获得授权
+                    startQrCode();
+                } else {
+                    // 被禁止授权
+                    Toast.makeText(InventorySheetDetailActivity.this, "请至权限中心打开本应用的相机访问权限", Toast.LENGTH_LONG).show();
+                }
+                break;
+            case Constant.REQ_PERM_EXTERNAL_STORAGE:
+                // 文件读写权限申请
+                if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                    // 获得授权
+                    startQrCode();
+                } else {
+                    // 被禁止授权
+                    Toast.makeText(InventorySheetDetailActivity.this, "请至权限中心打开本应用的文件读写权限", Toast.LENGTH_LONG).show();
+                }
+                break;
+        }
+    }
     @Override
     public boolean onKey(View v, int keyCode, KeyEvent event) {
         return false;
@@ -1084,6 +1156,7 @@ public class InventorySheetDetailActivity extends BaseWapperActivity implements 
         tv_add.setOnClickListener(this);
         tv_save.setOnClickListener(this);
         iv_pic.setOnClickListener(this);
+        ftv_scanIcon.setOnClickListener(this);
         TouchListener tl = new TouchListener();
         et_department.setOnTouchListener(tl);
         et_employee.setOnTouchListener(tl);
@@ -1209,6 +1282,8 @@ public class InventorySheetDetailActivity extends BaseWapperActivity implements 
                 datas.add(hm);
             }
         }
+
+        tv_add.setVisibility(View.GONE);
     }
 
     @Override
@@ -1230,6 +1305,7 @@ public class InventorySheetDetailActivity extends BaseWapperActivity implements 
         ll_saomiao_div = (LinearLayout) findViewById(R.id.saomiao_div);
         ll_split2 = (LinearLayout) findViewById(R.id.split2);
         ll_brand = (LinearLayout) findViewById(R.id.ll_brand);
+        ftv_scanIcon =(FontTextView) findViewById(R.id.scanIcon);
     }
 
     /**

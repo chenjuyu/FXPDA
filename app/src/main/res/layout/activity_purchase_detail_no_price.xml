@@ -294,6 +294,23 @@
                 android:text="添加"
                 android:textColor="#fff"
                 android:textStyle="bold" />
+
+            <!-- 换成扫描 -->
+            <com.fuxi.widget.FontTextView
+                android:id="@+id/scanIcon"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_weight="1"
+                android:gravity="right|center"
+                android:padding="0dp"
+                android:text="@string/scan"
+                android:textColor="#1B9FD8"
+                android:textSize="40sp"
+                android:textStyle="bold" />
+
+
+
+
         </LinearLayout>
     </LinearLayout>
     <!-- 大分割 -->

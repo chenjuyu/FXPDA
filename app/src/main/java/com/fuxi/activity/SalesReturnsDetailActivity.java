@@ -9,17 +9,22 @@ import java.util.Map;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+
+import android.Manifest;
 import android.app.AlertDialog;
 import android.app.AlertDialog.Builder;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.os.SystemClock;
+import android.support.annotation.NonNull;
+import android.support.v4.app.ActivityCompat;
 import android.text.SpannableString;
 import android.view.KeyEvent;
 import android.view.MotionEvent;
@@ -37,6 +42,8 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.TextView.OnEditorActionListener;
 import android.widget.Toast;
+
+import com.dommy.qrcode.util.Constant;
 import com.fuxi.adspter.OddAdapter;
 import com.fuxi.adspter.SalesOrderOddAdapter;
 import com.fuxi.dao.BarCodeDao;
@@ -55,6 +62,7 @@ import com.fuxi.vo.Paramer;
 import com.fuxi.vo.RequestVo;
 import com.fuxi.widget.FontTextView;
 import com.fuxi.widget.PopWinShare;
+import com.google.zxing.activity.CaptureActivity;
 
 /**
  * Title: SalesReturnsDetailActivity Description: 销售退货单明细活动界面
@@ -106,7 +114,8 @@ public class SalesReturnsDetailActivity extends BaseWapperActivity implements On
     private FontTextView ftv_goodsCode;
     private FontTextView ftv_colorCode;
     private FontTextView ftv_sizeCode;
-
+    private FontTextView ftv_scanIcon;
+    private FontTextView ftv_goodsCodeIcon;
     private ArrayList<HashMap<String, Object>> datas = new ArrayList<HashMap<String, Object>>();// 存储箱条码扫描记录
     private List<Map<String, Object>> dataList = new ArrayList<Map<String, Object>>();
     private List<Map<String, Object>> subList = new ArrayList<Map<String, Object>>();// 提交的数量集合
@@ -501,10 +510,61 @@ public class SalesReturnsDetailActivity extends BaseWapperActivity implements On
                     Toast.makeText(SalesReturnsDetailActivity.this, "当前图片无对应的货品编码", Toast.LENGTH_SHORT).show();
                 }
                 break;
+            case R.id.scanIcon:
+
+                startQrCode();
+                break;
             default:
                 break;
         }
     }
+
+    // 开始扫码
+    private void startQrCode() {
+        // 申请相机权限
+        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {
+            // 申请权限
+            ActivityCompat.requestPermissions(SalesReturnsDetailActivity.this, new String[]{Manifest.permission.CAMERA}, Constant.REQ_PERM_CAMERA);
+            return;
+        }
+        // 申请文件读写权限（部分朋友遇到相册选图需要读写权限的情况，这里一并写一下）
+        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
+            // 申请权限
+            ActivityCompat.requestPermissions(SalesReturnsDetailActivity.this, new String[]{Manifest.permission.READ_EXTERNAL_STORAGE}, Constant.REQ_PERM_EXTERNAL_STORAGE);
+            return;
+        }
+        // 二维码扫码
+        Intent intent = new Intent(SalesReturnsDetailActivity.this, CaptureActivity.class);
+        startActivityForResult(intent, Constant.REQ_QR_CODE);
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        switch (requestCode) {
+            case Constant.REQ_PERM_CAMERA:
+                // 摄像头权限申请
+                if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                    // 获得授权
+                    startQrCode();
+                } else {
+                    // 被禁止授权
+                    Toast.makeText(SalesReturnsDetailActivity.this, "请至权限中心打开本应用的相机访问权限", Toast.LENGTH_LONG).show();
+                }
+                break;
+            case Constant.REQ_PERM_EXTERNAL_STORAGE:
+                // 文件读写权限申请
+                if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                    // 获得授权
+                    startQrCode();
+                } else {
+                    // 被禁止授权
+                    Toast.makeText(SalesReturnsDetailActivity.this, "请至权限中心打开本应用的文件读写权限", Toast.LENGTH_LONG).show();
+                }
+                break;
+        }
+    }
+
 
     @Override
     protected void onHeadRightButton(View v) {
@@ -1510,6 +1570,35 @@ public class SalesReturnsDetailActivity extends BaseWapperActivity implements On
                         overridePendingTransition(R.anim.activity_open, 0);
                     }
                     break;
+                case R.id.goodsCodeIcon :
+                    if(inputType==1){ //货号录入
+                        inputType =0;
+                        resetBarcode();
+                        et_barcode.setOnTouchListener(tl);
+                        et_barcode.setFocusableInTouchMode(false);
+                        Drawable drawable = getResources().getDrawable(R.drawable.input_bg);
+                        drawable.setBounds(0, 0, drawable.getMinimumWidth(), drawable.getMinimumHeight()); // 此为必须写的
+                        et_barcode.setCompoundDrawables(null, null, drawable, null);
+                        SpannableString s = new SpannableString("请输入货号");
+                        et_barcode.setHint(s);
+                        barcodeInputByManual = true;
+                        ll_color_size.setVisibility(View.VISIBLE);
+                        ftv_scanIcon.setVisibility(View.GONE);
+                    }else{ //条码
+                        inputType=1;
+                        et_barcode.setFocusableInTouchMode(true);
+                        // 取消触屏事件
+                        resetBarcode();
+                        et_barcode.setOnTouchListener(null);
+                        SpannableString s = new SpannableString("请输入条码");
+                        et_barcode.setHint(s);
+                        et_barcode.setCompoundDrawables(null, null, null, null);
+                        barcodeInputByManual = false;
+                        ll_color_size.setVisibility(View.GONE);
+                        ftv_scanIcon.setVisibility(View.VISIBLE);
+                    }
+
+                   break;
                 default:
                     break;
             }
@@ -1535,9 +1624,13 @@ public class SalesReturnsDetailActivity extends BaseWapperActivity implements On
         ftv_goodsCode.setOnTouchListener(tl);
         et_colorCode.setOnTouchListener(tl);
         et_sizeCode.setOnTouchListener(tl);
+
+        ftv_goodsCodeIcon.setOnTouchListener(tl);
+
         et_colorCode.setOnClickListener(this);
         et_sizeCode.setOnClickListener(this);
         bt_addDetail.setOnClickListener(this);
+        ftv_scanIcon.setOnClickListener(this);
         bt_submit.setOnClickListener(this);
         iv_pic.setOnClickListener(this);
         et_barcode.setOnKeyListener(this);
@@ -1667,7 +1760,12 @@ public class SalesReturnsDetailActivity extends BaseWapperActivity implements On
         }
         // 默认隐藏扫码区的颜色尺码选项
         ll_color_size.setVisibility(View.GONE);
-        ftv_goodsCode.setVisibility(View.GONE);
+
+        //ftv_goodsCode.setVisibility(View.GONE);
+        ftv_goodsCode.setVisibility(View.VISIBLE);
+
+        bt_addDetail.setVisibility(View.GONE);
+
         ftv_colorCode.setVisibility(View.GONE);
         ftv_sizeCode.setVisibility(View.GONE);
     }
@@ -1701,6 +1799,9 @@ public class SalesReturnsDetailActivity extends BaseWapperActivity implements On
         ftv_goodsCode = (FontTextView) findViewById(R.id.goodsCodeIcon);
         ftv_colorCode = (FontTextView) findViewById(R.id.colorCodeIcon);
         ftv_sizeCode = (FontTextView) findViewById(R.id.sizeCodeIcon);
+        ftv_scanIcon =(FontTextView) findViewById(R.id.scanIcon);
+
+        ftv_goodsCodeIcon =(FontTextView) findViewById(R.id.goodsCodeIcon);
     }
 
     @Override
@@ -1811,6 +1912,21 @@ public class SalesReturnsDetailActivity extends BaseWapperActivity implements On
                     memo = data.getStringExtra("remark");
                 }
                 break;
+            case Constant.REQ_QR_CODE :
+                if(resultCode == RESULT_OK ){
+                    Bundle bundle = data.getExtras();
+                    String scanResult = bundle.getString(Constant.INTENT_EXTRA_KEY_QR_SCAN);
+                    et_barcode.setText(scanResult);
+                    addBarCode();
+                    // Toast.makeText(SalesDetailActivity.this,scanResult,Toast.LENGTH_LONG).show();
+                }
+
+
+
+
+
+
+
             default:
                 break;
         }

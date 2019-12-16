@@ -9,13 +9,18 @@ import java.util.List;
 import java.util.Map;
 import org.json.JSONArray;
 import org.json.JSONObject;
+
+import android.Manifest;
 import android.app.AlertDialog;
 import android.app.AlertDialog.Builder;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
+import android.support.v4.app.ActivityCompat;
 import android.text.SpannableString;
 import android.view.KeyEvent;
 import android.view.MotionEvent;
@@ -33,6 +38,8 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.TextView.OnEditorActionListener;
 import android.widget.Toast;
+
+import com.dommy.qrcode.util.Constant;
 import com.fuxi.activity.BaseWapperActivity.DataCallback;
 import com.fuxi.adspter.SalesTicketAdapter;
 import com.fuxi.dao.BarCodeDao;
@@ -46,6 +53,7 @@ import com.fuxi.vo.BarCode;
 import com.fuxi.vo.RequestVo;
 import com.fuxi.widget.FontTextView;
 import com.fuxi.widget.PopWinShare;
+import com.google.zxing.activity.CaptureActivity;
 
 /**
  * Title: SalesTicketActivity Description: 销售小票活动界面
@@ -94,6 +102,7 @@ public class SalesTicketActivity extends BaseWapperActivity implements OnItemLon
     private TextView tv_qtysum;
     private TextView tv_amount; // 总金额
     private FontTextView ftvToggle;
+    private FontTextView ftv_scanIcon;
 
     private String posSalesId;// 销售小票ID
     private String posSalesNo;// 销售小票ID
@@ -297,11 +306,13 @@ public class SalesTicketActivity extends BaseWapperActivity implements OnItemLon
                     et_barcode.setCompoundDrawables(null, null, drawable, null);
                     SpannableString s = new SpannableString("点击选择货品");
                     et_barcode.setHint(s);
+                    ftv_scanIcon.setVisibility(View.GONE);
                 } else {
                     et_barcode.setText(null);
                     et_barcode.setFocusable(true);
                     et_barcode.setFocusableInTouchMode(true);
                     et_barcode.setClickable(true);
+                    ftv_scanIcon.setVisibility(View.VISIBLE);
                     et_barcode.setOnTouchListener(null);
                     et_barcode.setCompoundDrawables(null, null, null, null);
                     SpannableString s = new SpannableString("输入条码/货号");
@@ -310,7 +321,61 @@ public class SalesTicketActivity extends BaseWapperActivity implements OnItemLon
                 }
                 inputFlag = !inputFlag;
                 break;
+
+            case R.id.scanIcon :
+
+                startQrCode();
+                break;
+
+
+
             default:
+                break;
+        }
+    }
+
+    // 开始扫码
+    private void startQrCode() {
+        // 申请相机权限
+        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {
+            // 申请权限
+            ActivityCompat.requestPermissions(SalesTicketActivity.this, new String[]{Manifest.permission.CAMERA}, Constant.REQ_PERM_CAMERA);
+            return;
+        }
+        // 申请文件读写权限（部分朋友遇到相册选图需要读写权限的情况，这里一并写一下）
+        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
+            // 申请权限
+            ActivityCompat.requestPermissions(SalesTicketActivity.this, new String[]{Manifest.permission.READ_EXTERNAL_STORAGE}, Constant.REQ_PERM_EXTERNAL_STORAGE);
+            return;
+        }
+        // 二维码扫码
+        Intent intent = new Intent(SalesTicketActivity.this, CaptureActivity.class);
+        startActivityForResult(intent, Constant.REQ_QR_CODE);
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        switch (requestCode) {
+            case Constant.REQ_PERM_CAMERA:
+                // 摄像头权限申请
+                if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                    // 获得授权
+                    startQrCode();
+                } else {
+                    // 被禁止授权
+                    Toast.makeText(SalesTicketActivity.this, "请至权限中心打开本应用的相机访问权限", Toast.LENGTH_LONG).show();
+                }
+                break;
+            case Constant.REQ_PERM_EXTERNAL_STORAGE:
+                // 文件读写权限申请
+                if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                    // 获得授权
+                    startQrCode();
+                } else {
+                    // 被禁止授权
+                    Toast.makeText(SalesTicketActivity.this, "请至权限中心打开本应用的文件读写权限", Toast.LENGTH_LONG).show();
+                }
                 break;
         }
     }
@@ -587,11 +652,15 @@ public class SalesTicketActivity extends BaseWapperActivity implements OnItemLon
         et_vip.setOnTouchListener(tl);
         et_integral.setOnTouchListener(tl);
         et_discount.setOnTouchListener(tl);
+
         bt_addDetail.setOnClickListener(this);
+        ftv_scanIcon.setOnClickListener(this);
+
         bt_submit.setOnClickListener(this);
         ftvToggle.setOnClickListener(this);
         et_barcode.setOnEditorActionListener(new EditorActionListener());
         et_qty.setOnEditorActionListener(new EditorActionListener());
+
     }
 
     private class TouchListener implements OnTouchListener {
@@ -873,6 +942,18 @@ public class SalesTicketActivity extends BaseWapperActivity implements OnItemLon
                     }
                 }
                 break;
+
+            case Constant.REQ_QR_CODE :
+                if(resultCode == RESULT_OK ){
+                    Bundle bundle = data.getExtras();
+                    String scanResult = bundle.getString(Constant.INTENT_EXTRA_KEY_QR_SCAN);
+                    et_barcode.setText(scanResult);
+                    addBarCode();
+                    // Toast.makeText(SalesDetailActivity.this,scanResult,Toast.LENGTH_LONG).show();
+                }
+                break;
+
+
             default:
                 break;
         }
@@ -925,6 +1006,7 @@ public class SalesTicketActivity extends BaseWapperActivity implements OnItemLon
 
     @Override
     protected void processLogic() {
+        bt_addDetail.setVisibility(View.GONE);
         if (NetUtil.hasNetwork(getApplicationContext())) {
             if (LoginParameterUtil.online) {
                 // 获取用户操作权限(新增)
@@ -1004,6 +1086,7 @@ public class SalesTicketActivity extends BaseWapperActivity implements OnItemLon
             dialog.create();
             dialog.show();
         }
+
     }
 
     /**
@@ -1084,6 +1167,7 @@ public class SalesTicketActivity extends BaseWapperActivity implements OnItemLon
         ll_saomiao_div = (LinearLayout) findViewById(R.id.saomiao_div);
         ll_split2 = (LinearLayout) findViewById(R.id.split2);
         ftvToggle = (FontTextView) findViewById(R.id.toggle);
+        ftv_scanIcon =(FontTextView) findViewById(R.id.scanIcon);
     }
 
     /**
