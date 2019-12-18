@@ -298,8 +298,16 @@
             android:name="com.fuxi.activity.OPMReportingActivity"
             android:windowSoftInputMode="adjustPan|stateAlwaysHidden" />
 
+        <!-- 采购订单界面 -->
+        <activity
+            android:name="com.fuxi.activity.PurchaseOrderActivity"
+            android:windowSoftInputMode="adjustPan|stateAlwaysHidden" />
 
-        <!-- 订货会报表查询界面 -->
+        <activity
+            android:name="com.fuxi.activity.PurchaseOrderDetailActivity"
+            android:windowSoftInputMode="adjustPan|stateAlwaysHidden" />
+
+        <!-- demo -->
         <activity
             android:name="com.fuxi.activity.ShowActivity"
             android:windowSoftInputMode="adjustPan|stateAlwaysHidden" />

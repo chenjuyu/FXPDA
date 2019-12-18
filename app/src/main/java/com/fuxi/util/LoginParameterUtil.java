@@ -68,6 +68,10 @@ public class LoginParameterUtil {
     public static Map<String, Boolean> salesRightMap;
     // 销售退货单操作权限
     public static Map<String, Boolean> salesReturnRightMap;
+
+    //采购订单操作权限
+    public static Map<String,Boolean> purchaseOrderRightMap;
+
     // 采购收货单操作权限
     public static Map<String, Boolean> purchaseRightMap;
     // 采购退货单操作权限

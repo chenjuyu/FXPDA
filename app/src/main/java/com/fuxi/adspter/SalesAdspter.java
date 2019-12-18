@@ -12,6 +12,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import com.fuxi.activity.InventorySheetActivity;
 import com.fuxi.activity.PurchaseActivity;
+import com.fuxi.activity.PurchaseOrderActivity;
 import com.fuxi.activity.PurchaseReturnActivity;
 import com.fuxi.activity.SalesActivity;
 import com.fuxi.activity.SalesOrderActivity;
@@ -116,10 +117,18 @@ public class SalesAdspter extends BaseAdapter {
         Activity activity = (Activity) context;
         zujian.number.setText(String.valueOf(data.get(position).get("No")));
         zujian.department.setText(String.valueOf(data.get(position).get("Department")));
-        if (activity instanceof PurchaseActivity || activity instanceof PurchaseReturnActivity) {
-            zujian.customer.setText(String.valueOf(data.get(position).get("Supplier")));
+        if (activity instanceof PurchaseActivity || activity instanceof PurchaseReturnActivity || activity instanceof PurchaseOrderActivity) {
+            if(data.get(position).get("Supplier")==null || data.get(position).get("Supplier").equals("")){
+                zujian.customer.setText("");
+            }else {
+                zujian.customer.setText(String.valueOf(data.get(position).get("Supplier")));
+            }
         } else {
-            zujian.customer.setText(String.valueOf(data.get(position).get("Customer")));
+            if(data.get(position).get("Customer")==null || data.get(position).get("Customer").equals("")){
+                zujian.customer.setText("");
+            }else {
+                zujian.customer.setText(String.valueOf(data.get(position).get("Customer")));
+            }
         }
         if (activity instanceof WarehouseStockInActivity || activity instanceof WarehouseStockOutActivity || activity instanceof StockMoveActivity) {
             zujian.amount.setText("￥" + Tools.formatDecimal(String.valueOf(data.get(position).get("RelationAmountSum"))));
@@ -130,8 +139,19 @@ public class SalesAdspter extends BaseAdapter {
         }
         zujian.count.setText(String.valueOf(data.get(position).get("QuantitySum")));
         zujian.invoicedate.setText(String.valueOf(data.get(position).get("Date")));
-        zujian.employee.setText(String.valueOf(data.get(position).get("Employee")));
-        zujian.brand.setText(String.valueOf(data.get(position).get("Brand")));
+        if(data.get(position).get("Employee")==null || "".equals(data.get(position).get("Employee"))){
+            zujian.employee.setText("");
+        }else{
+            zujian.employee.setText(String.valueOf(data.get(position).get("Employee")));
+        }
+        if(data.get(position).get("Brand")==null || "".equals(data.get(position).get("Brand"))){
+            zujian.brand.setText("");
+        }else{
+            zujian.brand.setText(String.valueOf(data.get(position).get("Brand")));
+        }
+
+
+
         if (activity instanceof SalesOrderActivity) {
             zujian.other.setText(String.valueOf(data.get(position).get("Warehouse")));
         } else if (activity instanceof SalesActivity) {
@@ -266,6 +286,13 @@ public class SalesAdspter extends BaseAdapter {
                 zujian.amount.setVisibility(View.VISIBLE);
             }
         }
+
+         //采购订单
+          if(activity instanceof PurchaseOrderActivity){
+              zujian.other.setVisibility(View.GONE);
+
+          }
+
         // 采购收货单
         if (activity instanceof PurchaseActivity) {
             zujian.other.setVisibility(View.GONE);

@@ -166,7 +166,10 @@ public class SelectActivity extends BaseWapperActivity implements OnRefreshListe
             setTitle("选择条码打印类型");
         } else if ("selectCustomerByUserNo".equals(selectType)) {
             setTitle("选择订货会客户");
-        } else {
+        } else if("selectPurchaseOrderNo".equals(selectType)){
+            setTitle("选择采购订单号");
+        }
+        else {
             setTitle("选择");
         }
     }
@@ -278,6 +281,8 @@ public class SelectActivity extends BaseWapperActivity implements OnRefreshListe
             url = "/select.do?getPackingBoxStockOutNoOfComplete";
         } else if ("selectCustomerByUserNo".equals(selectType)) {
             url = "/select.do?getCustomerByUserNo";
+        }else if("selectPurchaseOrderNo".equals(selectType)){
+            url ="/select.do?getPurchaseOrderNo";
         }
         return url;
     }

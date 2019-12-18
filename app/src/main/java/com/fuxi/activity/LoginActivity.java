@@ -529,6 +529,7 @@ public class LoginActivity extends BaseWapperActivity {
                         JSONArray packingBoxMenuRight = retObj.getJSONObject("obj").getJSONArray("packingBoxMenuRight");
                         JSONArray giftMenuRight = retObj.getJSONObject("obj").getJSONArray("giftMenuRight");
                         JSONArray dailyKnotsMenuRight = retObj.getJSONObject("obj").getJSONArray("dailyKnotsMenuRight");
+                        JSONArray purchaseOrderMenuRight =retObj.getJSONObject("obj").getJSONArray("purchaseOrderMenuRight");
                         // 货品资料操作权限
                         LoginParameterUtil.goodsRightMap = convertCollection(goodsMenuRight.getJSONObject(0));
                         // 客户资料操作权限
@@ -539,6 +540,9 @@ public class LoginActivity extends BaseWapperActivity {
                         LoginParameterUtil.salesRightMap = convertCollection(salesMenuRight.getJSONObject(0));
                         // 销售退货单操作权限
                         LoginParameterUtil.salesReturnRightMap = convertCollection(salesReturnMenuRight.getJSONObject(0));
+
+                        //采购订单操作权限
+                        LoginParameterUtil.purchaseOrderRightMap =convertCollection(purchaseOrderMenuRight.getJSONObject(0));
                         // 采购收货单操作权限
                         LoginParameterUtil.purchaseRightMap = convertCollection(purchaseMenuRight.getJSONObject(0));
                         // 采购退货单操作权限
