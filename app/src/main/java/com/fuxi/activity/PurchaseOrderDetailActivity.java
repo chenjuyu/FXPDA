@@ -1492,7 +1492,11 @@ public class PurchaseOrderDetailActivity extends BaseWapperActivity implements O
                 datas.add(hm);
             }
         }
-
+     //开放可以输入
+        et_barcode.setEnabled(true);
+        et_barcode.setFocusable(true);
+        et_barcode.setFocusableInTouchMode(true);
+        et_barcode.requestFocus();
 
         bt_addDetail.setVisibility(View.GONE); //不可见
 
@@ -1770,14 +1774,14 @@ public class PurchaseOrderDetailActivity extends BaseWapperActivity implements O
                     if (inputType == 1) {
                         // 改变标题
                         popWinShare.tvToggle.setText("切换散件");
-                        setTitle("采购收货单(装箱)");
+                        setTitle("采购订货单(装箱)");
                         inputType = 2;
                         tv_barcode.setText("箱号");
                         tv_qty.setText("箱数");
                         boxQtySum = 1;
                     } else {
                         popWinShare.tvToggle.setText("切换装箱");
-                        setTitle("采购收货单(散件)");
+                        setTitle("采购订货单(散件)");
                         inputType = 1;
                         tv_barcode.setText("货号");
                         tv_qty.setText("数量");
@@ -1801,8 +1805,8 @@ public class PurchaseOrderDetailActivity extends BaseWapperActivity implements O
                     popWinShare.dismiss();
                     Intent intents = new Intent(PurchaseOrderDetailActivity.this, PrintActivity.class);
                     intents.putExtra("id", PurchaseID);
-                    intents.putExtra("tableName", "Purchase");
-                    intents.putExtra("docType", "采购收货单");
+                    intents.putExtra("tableName", "PurchaseOrder");
+                    intents.putExtra("docType", "采购订货单");
                     startActivity(intents);
                     break;
                 case R.id.layout_price:
@@ -1820,7 +1824,7 @@ public class PurchaseOrderDetailActivity extends BaseWapperActivity implements O
                 case R.id.layout_barcode_verification:
                     popWinShare.dismiss();
                     Intent inte = new Intent(PurchaseOrderDetailActivity.this, BarcodeVerificationActivity.class);
-                    inte.putExtra("idStr", "PurchaseID");
+                    inte.putExtra("idStr", "PurchaseOrderID");
                     inte.putExtra("id", PurchaseID);
                     inte.putExtra("inputType", inputType);
                     inte.putExtra("type", type);

@@ -2189,6 +2189,12 @@ public class SalesOrderDetailActivity extends BaseWapperActivity implements OnIt
         ftv_colorCode.setVisibility(View.GONE);
         ftv_sizeCode.setVisibility(View.GONE);
         bt_addDetail.setVisibility(View.GONE);
+        et_barcode.setEnabled(true);
+        et_barcode.setFocusable(true);
+        et_barcode.setFocusableInTouchMode(true);
+        et_barcode.requestFocus();
+
+
         // 首次进入销售订单时使用货号录入方式
         if (LoginParameterUtil.firstInputOfGoodsCode) {
             if (popWinShare == null) {

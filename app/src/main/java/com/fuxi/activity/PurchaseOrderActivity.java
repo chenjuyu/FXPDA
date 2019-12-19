@@ -97,7 +97,7 @@ public class PurchaseOrderActivity extends BaseWapperActivity implements OnRefre
         tvShowAll.setChecked(true);
         adapter =new SalesAdspter(this,dataList);
         lvDatas.setAdapter(adapter);
-
+        lvDatas.setOnRefreshListener(this); //重要
         lvDatas.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
@@ -220,7 +220,7 @@ public class PurchaseOrderActivity extends BaseWapperActivity implements OnRefre
     @Override
     protected void findViewById() {
 
-        lvDatas =(RefreshListView) findViewById(R.id.lv_datas);
+
         tvShowAll =(CheckBoxTextView) findViewById(R.id.show_all);
         tvShowAudit =(CheckBoxTextView) findViewById(R.id.show_audit);
         tvShowUnAudit =(CheckBoxTextView) findViewById(R.id.show_unaudit);
@@ -229,6 +229,7 @@ public class PurchaseOrderActivity extends BaseWapperActivity implements OnRefre
         et_begin_date =(EditText) findViewById(R.id.begin_date);
         et_end_date =(EditText) findViewById(R.id.end_date);
         et_department =(EditText) findViewById(R.id.department);
+        lvDatas =(RefreshListView) findViewById(R.id.lv_datas);
 
         et_customer =(EditText) findViewById(R.id.customer);
         et_employee =(EditText) findViewById(R.id.employee);
