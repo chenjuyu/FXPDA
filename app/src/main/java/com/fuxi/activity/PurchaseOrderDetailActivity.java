@@ -1794,7 +1794,7 @@ public class PurchaseOrderDetailActivity extends BaseWapperActivity implements O
                     popWinShare.dismiss();
                     Intent intent = new Intent(PurchaseOrderDetailActivity.this, RemarkActivity.class);
                     intent.putExtra("id", PurchaseID);
-                    intent.putExtra("idName", "PurchaseID");
+                    intent.putExtra("idName", "PurchaseOrderID");
                     intent.putExtra("updatePath", updateMemo);
                     intent.putExtra("memo", memo);
                     intent.putExtra("auditFlag", Boolean.parseBoolean(auditFlag));

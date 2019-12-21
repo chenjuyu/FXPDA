@@ -1156,7 +1156,7 @@ public class SettingActivity extends BaseWapperActivity implements OnCheckedChan
                 }
                 LoginParameterUtil.useGoodsboxBarcodeInStocktaking = useGoodsboxBarcodeInStocktaking;
             }
-            if (null != pUseSupplierCodeToAreaProtection) {
+        /*    if (null != pUseSupplierCodeToAreaProtection) {
                 Paramer tpuseSupplierCodeToAreaProtection = paramerDao.find("useSupplierCodeToAreaProtection");
                 if (tpuseSupplierCodeToAreaProtection == null) {
                     count = paramerDao.insert(pUseSupplierCodeToAreaProtection);
@@ -1164,7 +1164,7 @@ public class SettingActivity extends BaseWapperActivity implements OnCheckedChan
                     count = paramerDao.update(pUseSupplierCodeToAreaProtection);
                 }
                 LoginParameterUtil.useSupplierCodeToAreaProtection = useSupplierCodeToAreaProtection;
-            }
+            } */
             if (null != pCoverDoc) {
                 Paramer tpCoverDoc = paramerDao.find("coverDoc");
                 if (tpCoverDoc == null) {
@@ -1201,7 +1201,7 @@ public class SettingActivity extends BaseWapperActivity implements OnCheckedChan
                 }
                 LoginParameterUtil.barcodeWarningTone = barcodeWarningTone;
             }
-            if (null != pUseAreaProtection) {
+           /* if (null != pUseAreaProtection) {
                 Paramer tpuseAreaProtection = paramerDao.find("useAreaProtection");
                 if (tpuseAreaProtection == null) {
                     count = paramerDao.insert(pUseAreaProtection);
@@ -1209,7 +1209,7 @@ public class SettingActivity extends BaseWapperActivity implements OnCheckedChan
                     count = paramerDao.update(pUseAreaProtection);
                 }
                 LoginParameterUtil.useAreaProtection = useAreaProtection;
-            }
+            } */
             if (null != pUseSingleDiscount) {
                 Paramer tpuseSingleDiscount = paramerDao.find("useSingleDiscount");
                 if (tpuseSingleDiscount == null) {
@@ -1237,7 +1237,7 @@ public class SettingActivity extends BaseWapperActivity implements OnCheckedChan
                 }
                 LoginParameterUtil.firstInputOfGoodsCode = firstInputOfGoodsCode;
             }
-            if (null != pNotUseNegativeInventoryCheck) {
+          /*  if (null != pNotUseNegativeInventoryCheck) {
                 Paramer tpnotUseNegativeInventoryCheck = paramerDao.find("notUseNegativeInventoryCheck");
                 if (tpnotUseNegativeInventoryCheck == null) {
                     count = paramerDao.insert(pNotUseNegativeInventoryCheck);
@@ -1246,6 +1246,7 @@ public class SettingActivity extends BaseWapperActivity implements OnCheckedChan
                 }
                 LoginParameterUtil.notUseNegativeInventoryCheck = notUseNegativeInventoryCheck;
             }
+            */
             // 其它设置
             if (null != pSalesOrderEmployee) {
                 Paramer tsalesOrderEmployee = paramerDao.find("salesOrderEmployee");
@@ -3580,6 +3581,16 @@ public class SettingActivity extends BaseWapperActivity implements OnCheckedChan
 
     @Override
     protected void processLogic() {
+        cb_useAreaProtection.setVisibility(View.GONE);
+        tv_useAreaProtection.setVisibility(View.GONE);
+
+        cb_useSupplierCodeToAreaProtection.setVisibility(View.GONE);
+        tv_useSupplierCodeToAreaProtection.setVisibility(View.GONE);
+
+        cb_notUseNegativeInventoryCheck.setVisibility(View.GONE);
+        tv_notUseNegativeInventoryCheck.setVisibility(View.GONE);
+
+
         if (NetUtil.hasNetwork(getApplicationContext())) {
             if (LoginParameterUtil.online) {
                 try {
@@ -3597,12 +3608,14 @@ public class SettingActivity extends BaseWapperActivity implements OnCheckedChan
                     // 获取打印机列表
                     getPrinter();
                 }
-                // 系统管理员登录
-                if ("1".equals(LoginParameterUtil.customer.getUserId())) {
+                // 系统管理员登录  20191213 vicky 让去掉
+                /*     if ("1".equals(LoginParameterUtil.customer.getUserId())) {
                     adminValidate = true;
                 } else {
                     adminValidate = false;
-                }
+                } */
+                adminValidate =true;
+
             } else {
                 AlertDialog.Builder dialog = new AlertDialog.Builder(SettingActivity.this, AlertDialog.THEME_HOLO_LIGHT);
                 dialog.setTitle("系统提示");

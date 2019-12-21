@@ -193,7 +193,13 @@ public class WelcomeActivity extends Activity {
                         LoginParameterUtil.corpName = obj.getString("corpName"); // 获取该文件的信息
                         LoginParameterUtil.regId = obj.getString("regId"); // 获取该文件的信息
                         LoginParameterUtil.EditQty =obj.getBoolean("EditQty");//装箱单明细，允许修改数量
-                        
+                        // 销售订货和发货单使用区域保护
+                        LoginParameterUtil.useAreaProtection =obj.getBoolean("useAreaProtection");
+                        //#根据厂商货品编码校验地区重版
+                        LoginParameterUtil.useSupplierCodeToAreaProtection =obj.getBoolean("useSupplierCodeToAreaProtection");
+                        //
+                        LoginParameterUtil.notUseNegativeInventoryCheck =obj.getBoolean("notUseNegativeInventoryCheck");
+                        //#单据不使用负库存检查
                         checkVersion();
                     } else {
                         Log.i("HttpGet", "HttpGet方式请求失败");
