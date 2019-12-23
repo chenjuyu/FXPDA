@@ -20,9 +20,11 @@ import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Color;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
+import android.text.SpannableString;
 import android.view.KeyEvent;
 import android.view.MotionEvent;
 import android.view.View;
@@ -60,6 +62,8 @@ import com.fuxi.vo.RequestVo;
 import com.fuxi.widget.FontTextView;
 import com.fuxi.widget.PopWinShare;
 import com.google.zxing.activity.CaptureActivity;
+
+import jxl.format.Font;
 
 /**
  * Title: PurchaseOrderDetailActivity Description: 采购收货单明细活动界面
@@ -105,7 +109,7 @@ public class PurchaseOrderDetailActivity extends BaseWapperActivity implements O
     private TextView bt_addDetail;
     private TextView bt_submit;
     private ImageView iv_pic;
-
+    private FontTextView ftv_goodsCodeIcon;
     private FontTextView ftv_scanIcon;
 
     private ArrayList<HashMap<String, Object>> datas = new ArrayList<HashMap<String, Object>>();// 存储箱条码扫描记录
@@ -129,6 +133,9 @@ public class PurchaseOrderDetailActivity extends BaseWapperActivity implements O
     private String departmentid;
     private String employeeId;
     private String brandId;
+    private String goodsId;
+    private String colorId;
+    private String sizeId;
     private String businessDeptId;// 经手人的业务部门
     private String businessDeptName;// 经手人的业务部门
     private String typeName;
@@ -455,7 +462,36 @@ public class PurchaseOrderDetailActivity extends BaseWapperActivity implements O
                     Toast.makeText(PurchaseOrderDetailActivity.this, "当前图片无对应的货品编码", Toast.LENGTH_SHORT).show();
                 }
                 break;
+            case  R.id.goodsCodeIcon :
+                  if(inputType==1){
+                      inputType =0;
+                      resetBarcode();
+                      et_barcode.setOnTouchListener(tl);
+                      et_barcode.setFocusableInTouchMode(false);
+                      Drawable drawable = getResources().getDrawable(R.drawable.input_bg);
+                      drawable.setBounds(0, 0, drawable.getMinimumWidth(), drawable.getMinimumHeight()); // 此为必须写的
+                      et_barcode.setCompoundDrawables(null, null, drawable, null);
+                      SpannableString s = new SpannableString("请输入货号");
+                      et_barcode.setHint(s);
+                     // barcodeInputByManual = true;
+                   //   ll_color_size.setVisibility(View.VISIBLE);
+                      ftv_scanIcon.setVisibility(View.GONE);
+                  }else{
+                      inputType=1;
+                      et_barcode.setFocusableInTouchMode(true);
+                      // 取消触屏事件
+                      resetBarcode();
+                      et_barcode.setOnTouchListener(null);
+                      SpannableString s = new SpannableString("请输入条码");
+                      et_barcode.setHint(s);
+                      et_barcode.setCompoundDrawables(null, null, null, null);
+                    //  barcodeInputByManual = false;
+                    //  ll_color_size.setVisibility(View.GONE);
+                      ftv_scanIcon.setVisibility(View.VISIBLE);
+                  }
 
+
+                break;
             case R.id.scanIcon :
 
                 startQrCode();
@@ -1331,6 +1367,22 @@ public class PurchaseOrderDetailActivity extends BaseWapperActivity implements O
                         overridePendingTransition(R.anim.activity_open, 0);
                     }
                     break;
+                case R.id.barcode :
+                    if(event.getAction() ==MotionEvent.ACTION_DOWN){
+
+                        if(supplierid ==null || "".equals(supplierid)){
+
+                            Toast.makeText(PurchaseOrderDetailActivity.this,"请先选择厂商",Toast.LENGTH_SHORT).show();
+                            return false;
+                        }
+
+
+                        Intent intent = new Intent(PurchaseOrderDetailActivity.this, SelectActivity.class);
+                        intent.putExtra("selectType", "selectProduct");
+                        startActivityForResult(intent, R.id.barcode);
+                        overridePendingTransition(R.anim.activity_open, 0);
+                    }
+                    break;
                 default:
                     break;
             }
@@ -1356,6 +1408,7 @@ public class PurchaseOrderDetailActivity extends BaseWapperActivity implements O
         et_brand.setOnTouchListener(tl);
         bt_addDetail.setOnClickListener(this);
         ftv_scanIcon.setOnClickListener(this);
+        ftv_goodsCodeIcon.setOnClickListener(this);
         bt_submit.setOnClickListener(this);
         iv_pic.setOnClickListener(this);
         et_barcode.setOnKeyListener(this);
@@ -1527,7 +1580,7 @@ public class PurchaseOrderDetailActivity extends BaseWapperActivity implements O
         ll_supplier = (LinearLayout) findViewById(R.id.ll_supplier);
         ll_brand = (LinearLayout) findViewById(R.id.ll_brand);
         ll_title = (LinearLayout) findViewById(R.id.ll_title);
-
+        ftv_goodsCodeIcon =(FontTextView) findViewById(R.id.goodsCodeIcon);
         ftv_scanIcon=(FontTextView) findViewById(R.id.scanIcon);
 
     }
@@ -1607,14 +1660,137 @@ public class PurchaseOrderDetailActivity extends BaseWapperActivity implements O
                     // Toast.makeText(SalesDetailActivity.this,scanResult,Toast.LENGTH_LONG).show();
                 }
                 break;
+            case R.id.barcode :
+                if(resultCode ==1){
+
+                    // 设置扫码区自动获取焦点
+                    et_barcode.setText(data.getStringExtra("Name"));
+                    et_barcode.setSelection(et_barcode.getText().toString().length());
+                    goodsId = data.getStringExtra("GoodsID");
+                    goodsCode = data.getStringExtra("Code");
+
+                    if (LoginParameterUtil.multiSelectType == 1) {
+                        // 选择多颜色和尺码方式二
+                        Intent intent = new Intent(PurchaseOrderDetailActivity.this, MultiSelectNewWayActivity.class);
+                        intent.putExtra("goodsId", goodsId);
+                        intent.putExtra("deptId", departmentid);
+                        intent.putExtra("tableName", "PurchaseOrder");
+                        startActivityForResult(intent, 10);
+                        overridePendingTransition(R.anim.activity_open, 0);
+                    } else {
+                        // 选择多颜色和尺码方式一
+                        Intent intent = new Intent(PurchaseOrderDetailActivity.this, MultiSelectActivity.class);
+                        intent.putExtra("goodsId", goodsId);
+                        startActivityForResult(intent, 10);
+                        overridePendingTransition(R.anim.activity_open, 0);
+                    }
 
 
 
+                }
+                break;
+            case 10 :
+                if (resultCode == 1) {
+                    Bundle bundle = data.getExtras();
+                    List<Map<String, Object>> tdatas = (List<Map<String, Object>>) bundle.get("datas");
+                    for (int i = 0; i < tdatas.size(); i++) {
+                        // 修改单据后允许提交数据
+                        sendFlag = true;
+                        isAdd = true;
+                        Map<String, Object> map = tdatas.get(i);
+                        goodsId = String.valueOf(map.get("GoodsID"));
+                        colorId = String.valueOf(map.get("ColorID"));
+                        sizeId = String.valueOf(map.get("SizeID"));
+                        String tcolorCode = String.valueOf(map.get("ColorCode"));
+                        String tsizeCode = String.valueOf(map.get("SizeCode"));
+                        int qty = Integer.parseInt(String.valueOf(map.get("Quantity")));
+                        String barcodeStr = goodsCode + tcolorCode + tsizeCode;
+                        ajaxAddItemByGoodsCode(barcodeStr, qty);
+                    }
+                }
 
-
+                break;
             default:
                 break;
         }
+    }
+
+    /**
+     * 根据货号,颜色,尺码ID加载货品明细记录
+     *
+     * @param barcodeStr
+     * @param qty
+     */
+    public void ajaxAddItemByGoodsCode(String barcodeStr, final int qty) {
+        RequestVo vo = new RequestVo();
+        vo.requestUrl = "/select.do?addIteamByGoodsCode";
+        vo.context = this;
+        HashMap map = new HashMap();
+        map.put("Barcode", barcodeStr);
+        map.put("GoodsID", goodsId);
+        map.put("ColorID", colorId);
+        map.put("SizeID", sizeId);
+        map.put("CustomerId", supplierid);
+        map.put("Type", type);
+        vo.requestDataMap = map;
+        super.getDataFromServer(vo, new DataCallback<JSONObject>() {
+            @Override
+            public void processData(JSONObject retObj, boolean paramBoolean) {
+                try {
+                    if (retObj == null) {
+                        return;
+                    }
+                    if (retObj.getBoolean("success")) {
+                        JSONObject barCodeInfo = retObj.getJSONObject("obj");
+                        BarCode bc = new BarCode();
+                        bc.setBarcode(barCodeInfo.getString("BarCode"));
+                        bc.setGoodsid(barCodeInfo.getString("GoodsID"));
+                        bc.setGoodscode(barCodeInfo.getString("GoodsCode"));
+                        bc.setGoodsname(barCodeInfo.getString("GoodsName"));
+                        bc.setColorid(barCodeInfo.getString("ColorID"));
+                        bc.setColorcode(barCodeInfo.getString("ColorCode"));
+                        bc.setColorname(barCodeInfo.getString("ColorName"));
+                        bc.setSizeid(barCodeInfo.getString("SizeID"));
+                        bc.setSizename(barCodeInfo.getString("SizeName"));
+                        bc.setSizecode(barCodeInfo.getString("SizeCode"));
+                        bc.setSizeGroupId(barCodeInfo.getString("SizeGroupID"));
+                        bc.setSizeStr(null);// 每箱的配码
+                        if (barCodeInfo.isNull("IndexNo")) {
+                            bc.setIndexno(1);
+                        } else {
+                            barCodeInfo.getInt("IndexNo");
+                        }
+                        bc.setType(type);
+                        bc.setCustomerId(supplierid);
+                        bc.setQty(qty);
+                        if (barCodeInfo.isNull("RetailSales")) {
+                            bc.setRetailSales(null);
+                        } else {
+                            bc.setRetailSales(new BigDecimal(barCodeInfo.getDouble("RetailSales")));
+                        }
+                        if (barCodeInfo.isNull("UnitPrice")) {
+                            bc.setUnitPrice(null);
+                            bc.setDiscountPrice(null);
+                        } else {
+                            bc.setUnitPrice(new BigDecimal(barCodeInfo.getDouble("UnitPrice")));
+                            bc.setDiscountPrice(getPriceByType(barCodeInfo.getDouble("UnitPrice")));
+                        }
+                        addItem(bc);
+                        LoadImage(bc);
+                    } else {
+                        // 设置条码提示音
+                        if (LoginParameterUtil.barcodeWarningTone) {
+                            settingVoice("error", getApplicationContext());
+                        }
+                        Toast.makeText(PurchaseOrderDetailActivity.this, "货品添加失败", Toast.LENGTH_SHORT).show();
+                        et_barcode.selectAll();
+                    }
+                } catch (Exception e) {
+                    Toast.makeText(PurchaseOrderDetailActivity.this, "系统错误", Toast.LENGTH_LONG).show();
+                    Logger.e(TAG, e.getMessage());
+                }
+            }
+        });
     }
 
     @Override

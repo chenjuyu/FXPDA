@@ -245,6 +245,15 @@ public class LoginParameterUtil {
     public static boolean salesReturnDepartment; // 收货部门
     public static boolean salesReturnAmountSum;
 
+    // 采购订单
+    public static boolean purchaseOrderEmployee;
+    public static boolean purchaseOrderSupplier;
+    public static boolean purchaseOrderBrand;
+    public static boolean purchaseOrderMemo;
+    public static boolean purchaseOrderDepartment; // 收货部门
+    public static boolean purchaseOrderAmountSum;
+
+
     // 采购收货单
     public static boolean purchaseEmployee;
     public static boolean purchaseSupplier;

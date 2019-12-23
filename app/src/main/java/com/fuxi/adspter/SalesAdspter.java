@@ -290,7 +290,36 @@ public class SalesAdspter extends BaseAdapter {
          //采购订单
           if(activity instanceof PurchaseOrderActivity){
               zujian.other.setVisibility(View.GONE);
-
+              if (!LoginParameterUtil.purchaseOrderEmployee) {
+                  zujian.employee.setVisibility(View.GONE);
+              } else {
+                  zujian.employee.setVisibility(View.VISIBLE);
+              }
+              if (!LoginParameterUtil.purchaseOrderSupplier) {
+                  zujian.customer.setVisibility(View.GONE);
+              } else {
+                  zujian.customer.setVisibility(View.VISIBLE);
+              }
+              if (!LoginParameterUtil.purchaseOrderBrand) {
+                  zujian.brand.setVisibility(View.GONE);
+              } else {
+                  zujian.brand.setVisibility(View.VISIBLE);
+              }
+              if (!LoginParameterUtil.purchaseOrderMemo) {
+                  zujian.memo.setVisibility(View.GONE);
+              } else {
+                  zujian.memo.setVisibility(View.VISIBLE);
+              }
+              if (!LoginParameterUtil.purchaseOrderDepartment) {
+                  zujian.department.setVisibility(View.GONE);
+              } else {
+                  zujian.department.setVisibility(View.VISIBLE);
+              }
+              if (!LoginParameterUtil.purchaseOrderAmountSum) {
+                  zujian.amount.setVisibility(View.GONE);
+              } else {
+                  zujian.amount.setVisibility(View.VISIBLE);
+              }
           }
 
         // 采购收货单

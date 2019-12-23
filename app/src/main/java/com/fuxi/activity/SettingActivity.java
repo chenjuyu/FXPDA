@@ -127,6 +127,16 @@ public class SettingActivity extends BaseWapperActivity implements OnCheckedChan
     private CheckBox cb_salesReturnWarehouse; // 退货部门
     private CheckBox cb_salesReturnDepartment; // 收货部门
     private CheckBox cb_salesReturnAmountSum;
+
+
+    // 采购订货单
+    private CheckBox cb_purchaseOrderEmployee;
+    private CheckBox cb_purchaseOrderSupplier;
+    private CheckBox cb_purchaseOrderBrand;
+    private CheckBox cb_purchaseOrderMemo;
+    private CheckBox cb_purchaseOrderDepartment; // 收货部门
+    private CheckBox cb_purchaseOrderAmountSum;
+
     // 采购收货单
     private CheckBox cb_purchaseEmployee;
     private CheckBox cb_purchaseSupplier;
@@ -217,6 +227,16 @@ public class SettingActivity extends BaseWapperActivity implements OnCheckedChan
     private TextView tv_salesReturnWarehouse; // 退货部门
     private TextView tv_salesReturnDepartment; // 收货部门
     private TextView tv_salesReturnAmountSum;
+
+    // 采购订货单
+    private TextView tv_purchaseOrderEmployee;
+    private TextView tv_purchaseOrderSupplier;
+    private TextView tv_purchaseOrderBrand;
+    private TextView tv_purchaseOrderMemo;
+    private TextView tv_purchaseOrderDepartment; // 收货部门
+    private TextView tv_purchaseOrderAmountSum;
+
+
     // 采购收货单
     private TextView tv_purchaseEmployee;
     private TextView tv_purchaseSupplier;
@@ -353,6 +373,15 @@ public class SettingActivity extends BaseWapperActivity implements OnCheckedChan
     private boolean salesReturnWarehouse; // 退货部门
     private boolean salesReturnDepartment; // 收货部门
     private boolean salesReturnAmountSum;
+
+    // 采购收货单
+    private boolean purchaseOrderEmployee;
+    private boolean purchaseOrderSupplier;
+    private boolean purchaseOrderBrand;
+    private boolean purchaseOrderMemo;
+    private boolean purchaseOrderDepartment; // 收货部门
+    private boolean purchaseOrderAmountSum;
+
     // 采购收货单
     private boolean purchaseEmployee;
     private boolean purchaseSupplier;
@@ -458,6 +487,15 @@ public class SettingActivity extends BaseWapperActivity implements OnCheckedChan
     private Paramer pSalesReturnWarehouse; // 退货部门
     private Paramer pSalesReturnDepartment; // 收货部门
     private Paramer pSalesReturnAmountSum;
+
+    // 采购订单
+    private Paramer pPurchaseOrderEmployee;
+    private Paramer pPurchaseOrderSupplier;
+    private Paramer pPurchaseOrderBrand;
+    private Paramer pPurchaseOrderMemo;
+    private Paramer pPurchaseOrderDepartment; // 收货部门
+    private Paramer pPurchaseOrderAmountSum;
+
     // 采购收货单
     private Paramer pPurchaseEmployee;
     private Paramer pPurchaseSupplier;
@@ -565,6 +603,16 @@ public class SettingActivity extends BaseWapperActivity implements OnCheckedChan
         pSalesReturnWarehouse = paramerDao.find("salesReturnWarehouse");
         pSalesReturnDepartment = paramerDao.find("salesReturnDepartment");
         pSalesReturnAmountSum = paramerDao.find("salesReturnAmountSum");
+
+
+        // 采购订货单
+        pPurchaseOrderEmployee = paramerDao.find("purchaseOrderEmployee");
+        pPurchaseOrderSupplier = paramerDao.find("purchaseOrderSupplier");
+        pPurchaseOrderBrand = paramerDao.find("purchaseOrderBrand");
+        pPurchaseOrderMemo = paramerDao.find("purchaseOrderMemo");
+        pPurchaseOrderDepartment = paramerDao.find("purchaseOrderDepartment");
+        pPurchaseOrderAmountSum = paramerDao.find("purchaseOrderAmountSum");
+
         // 采购收货单
         pPurchaseEmployee = paramerDao.find("purchaseEmployee");
         pPurchaseSupplier = paramerDao.find("purchaseSupplier");
@@ -805,6 +853,34 @@ public class SettingActivity extends BaseWapperActivity implements OnCheckedChan
             salesReturnAmountSum = Boolean.parseBoolean(pSalesReturnAmountSum.getValue());
             cb_salesReturnAmountSum.setChecked(salesReturnAmountSum);
         }
+
+        // 采购订货单
+        if (null != pPurchaseOrderEmployee) {
+            purchaseOrderEmployee = Boolean.parseBoolean(pPurchaseOrderEmployee.getValue());
+            cb_purchaseOrderEmployee.setChecked(purchaseOrderEmployee);
+        }
+        if (null != pPurchaseOrderSupplier) {
+            purchaseOrderSupplier = Boolean.parseBoolean(pPurchaseOrderSupplier.getValue());
+            cb_purchaseOrderSupplier.setChecked(purchaseOrderSupplier);
+        }
+        if (null != pPurchaseOrderBrand) {
+            purchaseOrderBrand = Boolean.parseBoolean(pPurchaseOrderBrand.getValue());
+            cb_purchaseOrderBrand.setChecked(purchaseOrderBrand);
+        }
+        if (null != pPurchaseOrderMemo) {
+            purchaseOrderMemo = Boolean.parseBoolean(pPurchaseOrderMemo.getValue());
+            cb_purchaseOrderMemo.setChecked(purchaseOrderMemo);
+        }
+        if (null != pPurchaseOrderDepartment) {
+            purchaseOrderDepartment = Boolean.parseBoolean(pPurchaseOrderDepartment.getValue());
+            cb_purchaseOrderDepartment.setChecked(purchaseOrderDepartment);
+        }
+        if (null != pPurchaseOrderAmountSum) {
+            purchaseOrderAmountSum = Boolean.parseBoolean(pPurchaseOrderAmountSum.getValue());
+            cb_purchaseOrderAmountSum.setChecked(purchaseOrderAmountSum);
+        }
+
+
         // 采购收货单
         if (null != pPurchaseEmployee) {
             purchaseEmployee = Boolean.parseBoolean(pPurchaseEmployee.getValue());
@@ -1447,6 +1523,67 @@ public class SettingActivity extends BaseWapperActivity implements OnCheckedChan
                 }
                 LoginParameterUtil.salesReturnAmountSum = salesReturnAmountSum;
             }
+
+
+            // 采购订单
+            if (null != pPurchaseOrderEmployee) {
+                Paramer tpurchaseOrderEmployee = paramerDao.find("purchaseOrderEmployee");
+                if (tpurchaseOrderEmployee == null) {
+                    count = paramerDao.insert(pPurchaseOrderEmployee);
+                } else {
+                    count = paramerDao.update(pPurchaseOrderEmployee);
+                }
+                LoginParameterUtil.purchaseOrderEmployee = purchaseOrderEmployee;
+            }
+            if (null != pPurchaseOrderSupplier) {
+                Paramer tpurchaseOrderSupplier = paramerDao.find("purchaseOrderSupplier");
+                if (tpurchaseOrderSupplier == null) {
+                    count = paramerDao.insert(pPurchaseOrderSupplier);
+                } else {
+                    count = paramerDao.update(pPurchaseOrderSupplier);
+                }
+                LoginParameterUtil.purchaseOrderSupplier = purchaseOrderSupplier;
+            }
+            if (null != pPurchaseOrderBrand) {
+                Paramer tpurchaseOrderBrand = paramerDao.find("purchaseOrderBrand");
+                if (tpurchaseOrderBrand == null) {
+                    count = paramerDao.insert(pPurchaseOrderBrand);
+                } else {
+                    count = paramerDao.update(pPurchaseOrderBrand);
+                }
+                LoginParameterUtil.purchaseOrderBrand = purchaseOrderBrand;
+            }
+            if (null != pPurchaseOrderMemo) {
+                Paramer tpurchaseOrderMemo = paramerDao.find("purchaseOrderMemo");
+                if (tpurchaseOrderMemo == null) {
+                    count = paramerDao.insert(pPurchaseOrderMemo);
+                } else {
+                    count = paramerDao.update(pPurchaseOrderMemo);
+                }
+                LoginParameterUtil.purchaseOrderMemo = purchaseOrderMemo;
+            }
+            if (null != pPurchaseOrderDepartment) {
+                Paramer tpurchaseOrderDepartment = paramerDao.find("purchaseOrderDepartment");
+                if (tpurchaseOrderDepartment == null) {
+                    count = paramerDao.insert(pPurchaseOrderDepartment);
+                } else {
+                    count = paramerDao.update(pPurchaseOrderDepartment);
+                }
+                LoginParameterUtil.purchaseOrderDepartment = purchaseOrderDepartment;
+            }
+            if (null != pPurchaseOrderAmountSum) {
+                Paramer tpurchaseOrderAmountSum = paramerDao.find("purchaseOrderAmountSum");
+                if (tpurchaseOrderAmountSum == null) {
+                    count = paramerDao.insert(pPurchaseOrderAmountSum);
+                } else {
+                    count = paramerDao.update(pPurchaseOrderAmountSum);
+                }
+                LoginParameterUtil.purchaseOrderAmountSum = purchaseOrderAmountSum;
+            }
+
+
+
+
             // 采购收货单
             if (null != pPurchaseEmployee) {
                 Paramer tpurchaseEmployee = paramerDao.find("purchaseEmployee");
@@ -2613,6 +2750,103 @@ public class SettingActivity extends BaseWapperActivity implements OnCheckedChan
                 }
                 cb_salesReturnAmountSum.setChecked(salesReturnAmountSum);
                 break;
+
+            case R.id.purchaseOrderEmployee:
+            case R.id.tvPurchaseOrderEmployee:
+                // 条码扫描错误时使用声音提示
+                if (purchaseOrderEmployee) {
+                    purchaseOrderEmployee = false;
+                } else {
+                    purchaseOrderEmployee = true;
+                }
+                if (null == pPurchaseOrderEmployee) {
+                    pPurchaseOrderEmployee = new Paramer("purchaseOrderEmployee", String.valueOf(purchaseOrderEmployee));
+                } else {
+                    pPurchaseOrderEmployee.setValue(String.valueOf(purchaseOrderEmployee));
+                }
+                cb_purchaseOrderEmployee.setChecked(purchaseOrderEmployee);
+                  break;
+
+            case R.id.purchaseOrderSupplier:
+            case R.id.tvPurchaseOrderSupplier:
+                // 条码扫描错误时使用声音提示
+                if (purchaseOrderSupplier) {
+                    purchaseOrderSupplier = false;
+                } else {
+                    purchaseOrderSupplier = true;
+                }
+                if (null == pPurchaseOrderSupplier) {
+                    pPurchaseOrderSupplier = new Paramer("purchaseOrderSupplier", String.valueOf(purchaseOrderSupplier));
+                } else {
+                    pPurchaseOrderSupplier.setValue(String.valueOf(purchaseOrderSupplier));
+                }
+                cb_purchaseOrderSupplier.setChecked(purchaseOrderSupplier);
+                break;
+
+            case R.id.purchaseOrderBrand:
+            case R.id.tvPurchaseOrderBrand:
+                // 条码扫描错误时使用声音提示
+                if (purchaseOrderBrand) {
+                    purchaseOrderBrand = false;
+                } else {
+                    purchaseOrderBrand = true;
+                }
+                if (null == pPurchaseOrderBrand) {
+                    pPurchaseOrderBrand = new Paramer("purchaseOrderBrand", String.valueOf(purchaseOrderBrand));
+                } else {
+                    pPurchaseOrderBrand.setValue(String.valueOf(purchaseOrderBrand));
+                }
+                cb_purchaseOrderBrand.setChecked(purchaseOrderBrand);
+                break;
+
+            case R.id.purchaseOrderMemo:
+            case R.id.tvPurchaseOrderMemo:
+                // 条码扫描错误时使用声音提示
+                if (purchaseOrderMemo) {
+                    purchaseOrderMemo = false;
+                } else {
+                    purchaseOrderMemo = true;
+                }
+                if (null == pPurchaseOrderMemo) {
+                    pPurchaseOrderMemo = new Paramer("purchaseOrderMemo", String.valueOf(purchaseOrderMemo));
+                } else {
+                    pPurchaseOrderMemo.setValue(String.valueOf(purchaseOrderMemo));
+                }
+                cb_purchaseOrderMemo.setChecked(purchaseOrderMemo);
+                break;
+
+
+            case R.id.purchaseOrderDepartment:
+            case R.id.tvPurchaseOrderDepartment:
+                // 条码扫描错误时使用声音提示
+                if (purchaseOrderDepartment) {
+                    purchaseOrderDepartment = false;
+                } else {
+                    purchaseOrderDepartment = true;
+                }
+                if (null == pPurchaseOrderDepartment) {
+                    pPurchaseOrderDepartment = new Paramer("purchaseOrderDepartment", String.valueOf(purchaseOrderDepartment));
+                } else {
+                    pPurchaseOrderDepartment.setValue(String.valueOf(purchaseOrderDepartment));
+                }
+                cb_purchaseOrderDepartment.setChecked(purchaseOrderDepartment);
+                break;
+            case R.id.purchaseOrderAmountSum:
+            case R.id.tvPurchaseOrderAmountSum:
+                // 条码扫描错误时使用声音提示
+                if (purchaseOrderAmountSum) {
+                    purchaseOrderAmountSum = false;
+                } else {
+                    purchaseOrderAmountSum = true;
+                }
+                if (null == pPurchaseOrderAmountSum) {
+                    pPurchaseOrderAmountSum = new Paramer("purchaseOrderAmountSum", String.valueOf(purchaseOrderAmountSum));
+                } else {
+                    pPurchaseOrderAmountSum.setValue(String.valueOf(purchaseOrderAmountSum));
+                }
+                cb_purchaseOrderAmountSum.setChecked(purchaseOrderAmountSum);
+                break;
+
             case R.id.purchaseEmployee:
             case R.id.tvPurchaseEmployee:
                 // 条码扫描错误时使用声音提示
@@ -3681,6 +3915,16 @@ public class SettingActivity extends BaseWapperActivity implements OnCheckedChan
         cb_salesReturnWarehouse.setOnClickListener(this); // 退货部门
         cb_salesReturnDepartment.setOnClickListener(this); // 收货部门
         cb_salesReturnAmountSum.setOnClickListener(this);
+
+
+        cb_purchaseOrderEmployee.setOnClickListener(this);
+        cb_purchaseOrderSupplier.setOnClickListener(this);
+        cb_purchaseOrderBrand.setOnClickListener(this);
+        cb_purchaseOrderMemo.setOnClickListener(this);
+        cb_purchaseOrderDepartment.setOnClickListener(this); // 收货部门
+        cb_purchaseOrderAmountSum.setOnClickListener(this);
+
+
         cb_purchaseEmployee.setOnClickListener(this);
         cb_purchaseSupplier.setOnClickListener(this);
         cb_purchaseBrand.setOnClickListener(this);
@@ -3751,6 +3995,14 @@ public class SettingActivity extends BaseWapperActivity implements OnCheckedChan
         tv_salesReturnWarehouse.setOnClickListener(this); // 退货部门
         tv_salesReturnDepartment.setOnClickListener(this); // 收货部门
         tv_salesReturnAmountSum.setOnClickListener(this);
+
+        tv_purchaseOrderEmployee.setOnClickListener(this);
+        tv_purchaseOrderSupplier.setOnClickListener(this);
+        tv_purchaseOrderBrand.setOnClickListener(this);
+        tv_purchaseOrderMemo.setOnClickListener(this);
+        tv_purchaseOrderDepartment.setOnClickListener(this); // 收货部门
+        tv_purchaseOrderAmountSum.setOnClickListener(this);
+
         tv_purchaseEmployee.setOnClickListener(this);
         tv_purchaseSupplier.setOnClickListener(this);
         tv_purchaseBrand.setOnClickListener(this);
@@ -3881,6 +4133,14 @@ public class SettingActivity extends BaseWapperActivity implements OnCheckedChan
         cb_salesReturnWarehouse = (CheckBox) findViewById(R.id.salesReturnWarehouse); // 退货部门
         cb_salesReturnDepartment = (CheckBox) findViewById(R.id.salesReturnDepartment); // 收货部门
         cb_salesReturnAmountSum = (CheckBox) findViewById(R.id.salesReturnAmountSum);
+
+        cb_purchaseOrderEmployee = (CheckBox) findViewById(R.id.purchaseOrderEmployee);
+        cb_purchaseOrderSupplier = (CheckBox) findViewById(R.id.purchaseOrderSupplier);
+        cb_purchaseOrderBrand = (CheckBox) findViewById(R.id.purchaseOrderBrand);
+        cb_purchaseOrderMemo = (CheckBox) findViewById(R.id.purchaseOrderMemo);
+        cb_purchaseOrderDepartment = (CheckBox) findViewById(R.id.purchaseOrderDepartment); // 收货部门
+        cb_purchaseOrderAmountSum = (CheckBox) findViewById(R.id.purchaseOrderAmountSum);
+
         cb_purchaseEmployee = (CheckBox) findViewById(R.id.purchaseEmployee);
         cb_purchaseSupplier = (CheckBox) findViewById(R.id.purchaseSupplier);
         cb_purchaseBrand = (CheckBox) findViewById(R.id.purchaseBrand);
@@ -3956,6 +4216,14 @@ public class SettingActivity extends BaseWapperActivity implements OnCheckedChan
         tv_salesReturnWarehouse = (TextView) findViewById(R.id.tvSalesReturnWarehouse); // 退货部门
         tv_salesReturnDepartment = (TextView) findViewById(R.id.tvSalesReturnDepartment); // 收货部门
         tv_salesReturnAmountSum = (TextView) findViewById(R.id.tvSalesReturnAmountSum);
+
+        tv_purchaseOrderEmployee = (TextView) findViewById(R.id.tvPurchaseOrderEmployee);
+        tv_purchaseOrderSupplier = (TextView) findViewById(R.id.tvPurchaseOrderSupplier);
+        tv_purchaseOrderBrand = (TextView) findViewById(R.id.tvPurchaseOrderBrand);
+        tv_purchaseOrderMemo = (TextView) findViewById(R.id.tvPurchaseOrderMemo);
+        tv_purchaseOrderDepartment = (TextView) findViewById(R.id.tvPurchaseOrderDepartment); // 收货部门
+        tv_purchaseOrderAmountSum = (TextView) findViewById(R.id.tvPurchaseOrderAmountSum);
+
         tv_purchaseEmployee = (TextView) findViewById(R.id.tvPurchaseEmployee);
         tv_purchaseSupplier = (TextView) findViewById(R.id.tvPurchaseSupplier);
         tv_purchaseBrand = (TextView) findViewById(R.id.tvPurchaseBrand);
