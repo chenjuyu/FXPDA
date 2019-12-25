@@ -369,9 +369,10 @@
                     </LinearLayout>
 
                     <LinearLayout
+                        android:id="@+id/llA"
                         android:layout_width="wrap_content"
                         android:layout_height="32dp"
-                        android:orientation="horizontal" >
+                        android:orientation="horizontal">
 
                         <CheckBox
                             android:id="@+id/useAreaProtection"
@@ -389,6 +390,7 @@
                     </LinearLayout>
 
                     <LinearLayout
+                        android:id="@+id/llB"
                         android:layout_width="wrap_content"
                         android:layout_height="32dp"
                         android:orientation="horizontal" >
@@ -489,6 +491,7 @@
                     </LinearLayout>
 
                     <LinearLayout
+                        android:id="@+id/llC"
                         android:layout_width="wrap_content"
                         android:layout_height="32dp"
                         android:orientation="horizontal" >

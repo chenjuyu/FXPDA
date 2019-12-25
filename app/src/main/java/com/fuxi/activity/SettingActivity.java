@@ -322,6 +322,10 @@ public class SettingActivity extends BaseWapperActivity implements OnCheckedChan
     private EditText etPassword;
     private View tempView;
 
+    private  LinearLayout llA;
+    private  LinearLayout llB;
+    private  LinearLayout llC;
+
     private String printIp;
     private String printPort;
     private String printer;
@@ -559,6 +563,10 @@ public class SettingActivity extends BaseWapperActivity implements OnCheckedChan
      * 显示设置的参数值
      */
     private void show() {
+
+         llA.setVisibility(View.GONE);
+         llB.setVisibility(View.GONE);
+         llC.setVisibility(View.GONE);
         // 获取显示值
         printPIp = paramerDao.find("printIp");
         printPPort = paramerDao.find("printPort");
@@ -3815,7 +3823,7 @@ public class SettingActivity extends BaseWapperActivity implements OnCheckedChan
 
     @Override
     protected void processLogic() {
-        cb_useAreaProtection.setVisibility(View.GONE);
+       /* cb_useAreaProtection.setVisibility(View.GONE);
         tv_useAreaProtection.setVisibility(View.GONE);
 
         cb_useSupplierCodeToAreaProtection.setVisibility(View.GONE);
@@ -3823,9 +3831,10 @@ public class SettingActivity extends BaseWapperActivity implements OnCheckedChan
 
         cb_notUseNegativeInventoryCheck.setVisibility(View.GONE);
         tv_notUseNegativeInventoryCheck.setVisibility(View.GONE);
+     */
 
 
-        if (NetUtil.hasNetwork(getApplicationContext())) {
+         if (NetUtil.hasNetwork(getApplicationContext())) {
             if (LoginParameterUtil.online) {
                 try {
                     tv_version.setText("V" + getVersionName());
@@ -4289,6 +4298,10 @@ public class SettingActivity extends BaseWapperActivity implements OnCheckedChan
         rb_multiSelect = (RadioButton) findViewById(R.id.multiSelect);
         rb_singleColorMultiSizeSelect = (RadioButton) findViewById(R.id.singleColorMultiSizeSelect);
         rb_multiColorMultiSizeSelect = (RadioButton) findViewById(R.id.multiColorMultiSizeSelect);
+
+        llA =(LinearLayout) findViewById(R.id.llA);
+        llB =(LinearLayout) findViewById(R.id.llB);
+        llC =(LinearLayout) findViewById(R.id.llC);
     }
 
     @Override

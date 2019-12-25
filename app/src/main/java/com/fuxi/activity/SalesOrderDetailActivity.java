@@ -1997,7 +1997,7 @@ public class SalesOrderDetailActivity extends BaseWapperActivity implements OnIt
                         SpannableString s = new SpannableString("请输入货号");
                         et_barcode.setHint(s);
                         barcodeInputByManual = true;
-                        ll_color_size.setVisibility(View.VISIBLE);
+                        ll_color_size.setVisibility(View.GONE);
                         ftv_scanIcon.setVisibility(View.GONE);
                     }else{ //条码
                         inputType=1;
@@ -2331,7 +2331,7 @@ public class SalesOrderDetailActivity extends BaseWapperActivity implements OnIt
                                 startActivityForResult(intent, 10);
                                 overridePendingTransition(R.anim.activity_open, 0);
                             }
-                        } else {
+                        }else {
                             // 设置扫码区自动获取焦点
                             et_colorCode.requestFocus();
                             et_colorCode.dispatchTouchEvent(MotionEvent.obtain(SystemClock.uptimeMillis(), SystemClock.uptimeMillis(), MotionEvent.ACTION_DOWN, et_colorCode.getLeft() + 5, et_colorCode.getTop() + 5, 0));
@@ -2359,6 +2359,7 @@ public class SalesOrderDetailActivity extends BaseWapperActivity implements OnIt
                     sizeId = data.getStringExtra("SizeID");
                     sizeCode = data.getStringExtra("SizeCode");
                     // 设置扫码区自动获取焦点
+                    addIteamByManual(); //返回后，添加保存
                     et_barcode.requestFocus();
                 }
                 break;

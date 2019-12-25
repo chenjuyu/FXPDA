@@ -54,8 +54,8 @@ public class MainActivity extends BaseWapperActivity implements OnItemClickListe
      * 初始化数据
      */
     private void getData() {
-        if (Boolean.valueOf(this.getString(R.string.use_position))) {
-            if (LoginParameterUtil.customer != null && "1".equals(LoginParameterUtil.customer.getUserId())) {
+        if (Boolean.valueOf(this.getString(R.string.use_position))) { //&& "1".equals(LoginParameterUtil.customer.getUserId())
+            if (LoginParameterUtil.customer != null ) {
                 if (LoginParameterUtil.usingOrderGoodsModule) {
                     img_activity =
                             new String[] {"com.fuxi.activity.BaseInformationActivity", "com.fuxi.activity.SalesManagementActivity", "com.fuxi.activity.PurchaseManagementActivity", "com.fuxi.activity.WarehouseManagementActivity", "com.fuxi.activity.PositionManagementActivity",
@@ -84,8 +84,8 @@ public class MainActivity extends BaseWapperActivity implements OnItemClickListe
                     imgs = new Integer[] {R.string.base_info, R.string.sales_manage, R.string.purchase_manage, R.string.warehouse_manage, R.string.position_manage, R.string.posSales_manage, R.string.packing_box, R.string.barcode_print};
                 }
             }
-        } else {
-            if (LoginParameterUtil.customer != null && "1".equals(LoginParameterUtil.customer.getUserId())) {
+        } else { // && "1".equals(LoginParameterUtil.customer.getUserId())
+            if (LoginParameterUtil.customer != null ) {
                 if (LoginParameterUtil.usingOrderGoodsModule) {
                     img_activity =
                             new String[] {"com.fuxi.activity.BaseInformationActivity", "com.fuxi.activity.SalesManagementActivity", "com.fuxi.activity.PurchaseManagementActivity", "com.fuxi.activity.WarehouseManagementActivity", "com.fuxi.activity.PosSalesManagementActivity",

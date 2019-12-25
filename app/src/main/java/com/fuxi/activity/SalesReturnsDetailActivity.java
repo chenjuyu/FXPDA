@@ -1582,7 +1582,7 @@ public class SalesReturnsDetailActivity extends BaseWapperActivity implements On
                         SpannableString s = new SpannableString("请输入货号");
                         et_barcode.setHint(s);
                         barcodeInputByManual = true;
-                        ll_color_size.setVisibility(View.VISIBLE);
+                        ll_color_size.setVisibility(View.GONE);
                         ftv_scanIcon.setVisibility(View.GONE);
                     }else{ //条码
                         inputType=1;

@@ -28,9 +28,9 @@ public class PurchaseManagementActivity extends BaseWapperActivity implements On
      * 初始化数据
      */
     private void getData() {
-        img_activity = new String[] {"com.fuxi.activity.PurchaseActivity", "com.fuxi.activity.PurchaseReturnActivity","com.fuxi.activity.PurchaseOrderActivity"};
-        img_text = new String[] {"采购收货单", "采购退货单","采购订货单"};
-        imgs = new Integer[] {R.string.purchase_in, R.string.purchase_return,R.string.sales_order};
+        img_activity = new String[] {"com.fuxi.activity.PurchaseOrderActivity","com.fuxi.activity.PurchaseActivity", "com.fuxi.activity.PurchaseReturnActivity"};
+        img_text = new String[] {"采购订货单","采购收货单", "采购退货单"};
+        imgs = new Integer[] {R.string.sales_order,R.string.purchase_in, R.string.purchase_return};
     }
 
     @Override

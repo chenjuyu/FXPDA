@@ -9,11 +9,11 @@ android {
     }
 
     defaultConfig {
-        applicationId "com.xinai"
+        applicationId "com.fuxi"
         minSdkVersion 16
         targetSdkVersion 26//28 26
-        versionCode 1
-        versionName "1.0"
+        versionCode 0
+        versionName "2.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
 
     }

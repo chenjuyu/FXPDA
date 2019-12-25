@@ -120,8 +120,10 @@ public class MyGridAdapter extends BaseAdapter {
             }
             if (activity instanceof PurchaseManagementActivity) {
                 if (position == 0) {
-                    iv.setTextColor(activity.getResources().getColor(R.color.icon_blue));
+                   iv.setTextColor(activity.getResources().getColor(R.color.yellow));
                 } else if (position == 1) {
+                    iv.setTextColor(activity.getResources().getColor(R.color.icon_blue));
+                }else if(position ==2){
                     iv.setTextColor(activity.getResources().getColor(R.color.icon_red));
                 }
             }

@@ -272,6 +272,20 @@
                     android:paddingTop="0sp"
                     android:singleLine="true"
                     android:textSize="17sp" />
+
+                <com.fuxi.widget.FontTextView
+                    android:id="@+id/toggle"
+                    android:layout_width="0dp"
+                    android:layout_height="fill_parent"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:padding="6dp"
+                    android:paddingRight="15dp"
+                    android:text="@string/toggle"
+                    android:textColor="#1B9FD8"
+                    android:textSize="20sp" />
+
+
             </LinearLayout>
         </LinearLayout>
         <!-- 添加按钮 -->

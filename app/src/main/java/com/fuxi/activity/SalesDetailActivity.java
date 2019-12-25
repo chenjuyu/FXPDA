@@ -118,6 +118,7 @@ public class SalesDetailActivity extends BaseWapperActivity implements OnItemLon
     private FontTextView ftv_sizeCode;
     private FontTextView ftv_scanIcon;
 
+
     private ArrayList<HashMap<String, Object>> tempDatas = new ArrayList<HashMap<String, Object>>();// 负库存检查返回的记录
     private ArrayList<HashMap<String, Object>> datas = new ArrayList<HashMap<String, Object>>();// 存储箱条码扫描记录
     private List<Map<String, Object>> dataList = new ArrayList<Map<String, Object>>();
@@ -1875,7 +1876,7 @@ public class SalesDetailActivity extends BaseWapperActivity implements OnItemLon
                         SpannableString s = new SpannableString("请输入货号");
                         et_barcode.setHint(s);
                         barcodeInputByManual = true;
-                        ll_color_size.setVisibility(View.VISIBLE);
+                        ll_color_size.setVisibility(View.GONE);
                         ftv_scanIcon.setVisibility(View.GONE);
                     }else{ //条码
                         inputType=1;
