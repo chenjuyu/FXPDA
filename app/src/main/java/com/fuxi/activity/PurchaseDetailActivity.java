@@ -1537,7 +1537,7 @@ public class PurchaseDetailActivity extends BaseWapperActivity implements OnItem
         if (PurchaseID != null && !"".equals(PurchaseID) && "false".equals(auditFlag)) {
             List<GoodsBoxBarcodeRecord> list = recordDao.getList(PurchaseID);
             // 禁用扫码区
-            closeScanButton();
+            //closeScanButton();
             for (int i = 0; i < list.size(); i++) {
                 HashMap<String, Object> hm = new HashMap<String, Object>();
                 hm.put("Barcode", list.get(i).getGoodsBoxBarcode());

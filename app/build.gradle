@@ -13,9 +13,16 @@ android {
         minSdkVersion 16
         targetSdkVersion 26//28 26
         versionCode 0
-        versionName "2.0"
+        versionName "2.0.1"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
 
+    }
+    applicationVariants.all {
+        variant ->
+            variant.outputs.all {
+                //在这里修改apk文件名
+                outputFileName = "FXAPP-v${variant.versionName}.apk"
+            }
     }
 
     buildTypes {

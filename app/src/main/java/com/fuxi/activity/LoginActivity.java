@@ -512,6 +512,10 @@ public class LoginActivity extends BaseWapperActivity {
                         boolean queryStockTotal = retObj.getJSONObject("obj").getBoolean("queryStockTotal");
                         boolean discountRatePermitFlag = retObj.getJSONObject("obj").getBoolean("discountRatePermitFlag");
                         boolean showGiftMenuFlag = retObj.getJSONObject("obj").getBoolean("showGiftMenuFlag");
+
+                        //采购订单单价权限
+                        boolean purchaseOrderUnitPriceRight =retObj.getJSONObject("obj").getBoolean("purchaseOrderUnitPriceRight");
+
                         String relationMovein = retObj.getJSONObject("obj").getString("relationMovein");
                         JSONArray goodsMenuRight = retObj.getJSONObject("obj").getJSONArray("goodsUserMenuRight");
                         JSONArray customerMenuRight = retObj.getJSONObject("obj").getJSONArray("customerUserMenuRight");
@@ -530,6 +534,7 @@ public class LoginActivity extends BaseWapperActivity {
                         JSONArray giftMenuRight = retObj.getJSONObject("obj").getJSONArray("giftMenuRight");
                         JSONArray dailyKnotsMenuRight = retObj.getJSONObject("obj").getJSONArray("dailyKnotsMenuRight");
                         JSONArray purchaseOrderMenuRight =retObj.getJSONObject("obj").getJSONArray("purchaseOrderMenuRight");
+
                         // 货品资料操作权限
                         LoginParameterUtil.goodsRightMap = convertCollection(goodsMenuRight.getJSONObject(0));
                         // 客户资料操作权限
@@ -628,6 +633,8 @@ public class LoginActivity extends BaseWapperActivity {
                         LoginParameterUtil.showGiftMenuFlag = showGiftMenuFlag;
                         LoginParameterUtil.customer.setUserName(userName);
                         LoginParameterUtil.customer.setUserId(userId);
+                         //采购订单明细单价权限
+                        LoginParameterUtil.purchaseOrderUnitPriceRight =purchaseOrderUnitPriceRight;
                         // 跳转至主界面
                         Intent intent = new Intent(LoginActivity.this, MainActivity.class);
                         startActivity(intent);
@@ -788,6 +795,36 @@ public class LoginActivity extends BaseWapperActivity {
         if (null != pSalesReturnAmountSum) {
             LoginParameterUtil.salesReturnAmountSum = Boolean.parseBoolean(pSalesReturnAmountSum.getValue());
         }
+
+        //--------------------------------
+
+        Paramer pPurchaseOrderEmployee = paramerDao.find("purchaseOrderEmployee");
+        if (null != pPurchaseOrderEmployee) {
+            LoginParameterUtil.purchaseOrderEmployee = Boolean.parseBoolean(pPurchaseOrderEmployee.getValue());
+        }
+        Paramer pPurchaseOrderSupplier = paramerDao.find("purchaseOrderSupplier");
+        if (null != pPurchaseOrderSupplier) {
+            LoginParameterUtil.purchaseSupplier = Boolean.parseBoolean(pPurchaseOrderSupplier.getValue());
+        }
+        Paramer pPurchaseOrderBrand = paramerDao.find("purchaseOrderBrand");
+        if (null != pPurchaseOrderBrand) {
+            LoginParameterUtil.purchaseOrderBrand = Boolean.parseBoolean(pPurchaseOrderBrand.getValue());
+        }
+        Paramer pPurchaseOrderMemo = paramerDao.find("purchaseOrderMemo");
+        if (null != pPurchaseOrderMemo) {
+            LoginParameterUtil.purchaseOrderMemo = Boolean.parseBoolean(pPurchaseOrderMemo.getValue());
+        }
+        Paramer pPurchaseOrderDepartment = paramerDao.find("purchaseOrderDepartment");
+        if (null != pPurchaseOrderDepartment) {
+            LoginParameterUtil.purchaseOrderDepartment = Boolean.parseBoolean(pPurchaseOrderDepartment.getValue());
+        }
+        Paramer pPurchaseOrderAmountSum = paramerDao.find("purchaseOrderAmountSum");
+        if (null != pPurchaseOrderAmountSum) {
+            LoginParameterUtil.purchaseOrderAmountSum = Boolean.parseBoolean(pPurchaseOrderAmountSum.getValue());
+        }
+
+
+        //---------------------------------------------------
         Paramer pPurchaseEmployee = paramerDao.find("purchaseEmployee");
         if (null != pPurchaseEmployee) {
             LoginParameterUtil.purchaseEmployee = Boolean.parseBoolean(pPurchaseEmployee.getValue());

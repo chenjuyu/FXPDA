@@ -1564,7 +1564,7 @@ public class PurchaseReturnDetailActivity extends BaseWapperActivity implements 
         // 获取箱条码扫描记录
         if (PurchaseID != null && !"".equals(PurchaseID) && "false".equals(auditFlag)) {
             // 禁用扫码区
-            closeScanButton();
+           // closeScanButton();
             List<GoodsBoxBarcodeRecord> list = recordDao.getList(PurchaseID);
             for (int i = 0; i < list.size(); i++) {
                 HashMap<String, Object> hm = new HashMap<String, Object>();

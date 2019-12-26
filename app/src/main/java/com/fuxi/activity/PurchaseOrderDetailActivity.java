@@ -1474,7 +1474,7 @@ public class PurchaseOrderDetailActivity extends BaseWapperActivity implements O
         // 获取用户操作权限(新增)
         modifyRight = LoginParameterUtil.purchaseOrderRightMap.get("ModifyRight");
         auditRight = LoginParameterUtil.purchaseOrderRightMap.get("AuditRight");
-        if (!LoginParameterUtil.purchaseUnitPriceRight) {
+        if (!LoginParameterUtil.purchaseOrderUnitPriceRight) {
             ll_scanTitle.removeView(tv_unitPrice);
             tv_symbol.setVisibility(View.GONE);//2019-08-22 没有权限 隐藏
             tv_amount.setVisibility(View.GONE);
@@ -1924,7 +1924,7 @@ public class PurchaseOrderDetailActivity extends BaseWapperActivity implements O
                 popWinShare.ll_parent.removeView(popWinShare.layoutPrint);
                 popWinShare.ll_parent.removeView(popWinShare.view_2);
             }
-            if (dataList.size() > 0 && LoginParameterUtil.purchaseUnitPriceRight) {
+            if (dataList.size() > 0 && LoginParameterUtil.purchaseOrderUnitPriceRight) {
                 popWinShare.layout_price.setEnabled(false);
                 popWinShare.cb_last_price.setEnabled(false);
                 popWinShare.layout_price.setBackgroundColor(Color.GRAY);

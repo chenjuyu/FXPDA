@@ -3494,8 +3494,8 @@ public class SettingActivity extends BaseWapperActivity implements OnCheckedChan
             case R.id.ftv_print_ip:
                 getRequestPath();
                 Builder dialog = new AlertDialog.Builder(SettingActivity.this, AlertDialog.THEME_HOLO_LIGHT);
-                dialog.setTitle("PDA云打印IP设置");
-                dialog.setMessage("使用步骤:\n①首次使用PDA云打印时,请在连接打印机的电脑端使用浏览器前往 " + strIp + "/print/CLodop_Setup_for_Win32NT.exe下载 C-Lodop云打印服务程序。\n" + "②在打印机地址中输入安装C-Lodop云打印服务程序电脑的IP。");
+                dialog.setTitle("APP云打印IP设置");
+                dialog.setMessage("使用步骤:\n①首次使用APP云打印时,请在连接打印机的电脑端使用浏览器前往 " + strIp + "/print/CLodop_Setup_for_Win32NT.exe下载 C-Lodop云打印服务程序。\n" + "②在打印机地址中输入安装C-Lodop云打印服务程序电脑的IP。");
                 // 相当于点击确认按钮
                 dialog.setPositiveButton("确认", new DialogInterface.OnClickListener() {
                     @Override
@@ -3508,7 +3508,7 @@ public class SettingActivity extends BaseWapperActivity implements OnCheckedChan
                 break;
             case R.id.ftv_print_port:
                 Builder dialogs = new AlertDialog.Builder(SettingActivity.this, AlertDialog.THEME_HOLO_LIGHT);
-                dialogs.setTitle("PDA云打印端口设置");
+                dialogs.setTitle("APP云打印端口设置");
                 dialogs.setMessage("请输入您安装的C-Lodop云打印服务程序对应的服务端口。");
                 ImageView imageView = new ImageView(getApplicationContext());
                 imageView.setBackground(this.getResources().getDrawable(R.drawable.print_prot));

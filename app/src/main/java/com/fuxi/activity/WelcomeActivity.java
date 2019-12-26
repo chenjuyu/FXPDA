@@ -63,6 +63,14 @@ public class WelcomeActivity extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+
+      //解决点击图标重新打开应用
+        if((getIntent().getFlags() & Intent.FLAG_ACTIVITY_BROUGHT_TO_FRONT) !=0){
+            finish();
+            return;
+        }
+
         setContentView(R.layout.welcome_activity);
         // 实例化TextView
         TextView tv_wel = (TextView) findViewById(R.id.welcome_version);

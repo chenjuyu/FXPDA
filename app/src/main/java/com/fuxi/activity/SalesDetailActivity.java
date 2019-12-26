@@ -2084,7 +2084,7 @@ public class SalesDetailActivity extends BaseWapperActivity implements OnItemLon
         // 获取箱条码扫描记录
         if (SalesID != null && !"".equals(SalesID) && "false".equals(auditFlag)) {
             // 禁用扫码区
-            closeScanButton();
+           //sss closeScanButton();
             List<GoodsBoxBarcodeRecord> list = recordDao.getList(SalesID);
             for (int i = 0; i < list.size(); i++) {
                 HashMap<String, Object> hm = new HashMap<String, Object>();

@@ -1746,7 +1746,7 @@ public class SalesReturnsDetailActivity extends BaseWapperActivity implements On
         // 获取箱条码扫描记录
         if (SalesID != null && !"".equals(SalesID) && "false".equals(auditFlag)) {
             // 禁用扫码区
-            closeScanButton();
+           // closeScanButton();
             List<GoodsBoxBarcodeRecord> list = recordDao.getList(SalesID);
             for (int i = 0; i < list.size(); i++) {
                 HashMap<String, Object> hm = new HashMap<String, Object>();
@@ -1886,6 +1886,9 @@ public class SalesReturnsDetailActivity extends BaseWapperActivity implements On
                     sizeCode = data.getStringExtra("SizeCode");
                     // 设置扫码区自动获取焦点
                     et_barcode.requestFocus();
+
+                    addIteamByManual(); //返回后，添加保存
+
                 }
                 break;
             case R.id.et_payment_type:

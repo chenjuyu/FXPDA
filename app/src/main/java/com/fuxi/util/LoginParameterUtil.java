@@ -252,7 +252,8 @@ public class LoginParameterUtil {
     public static boolean purchaseOrderMemo;
     public static boolean purchaseOrderDepartment; // 收货部门
     public static boolean purchaseOrderAmountSum;
-
+    //订单明细单价浏览权限
+    public static  boolean purchaseOrderUnitPriceRight;
 
     // 采购收货单
     public static boolean purchaseEmployee;
