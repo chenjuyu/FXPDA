@@ -23,6 +23,8 @@ import org.apache.http.util.EntityUtils;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+
+import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -1114,9 +1116,9 @@ public class LoginActivity extends BaseWapperActivity {
         switch (v.getId()) {
             case R.id.bt_login:
                 login();
-                break;
+                break;  //SystemSettingsActivity.class
             case R.id.tv_sys_settings:
-                intent = new Intent(LoginActivity.this, SystemSettingsActivity.class);
+                intent = new Intent(LoginActivity.this,PosReportActivity.class);
                 intent.putExtra("Login", true);
                 startActivity(intent);
                 finish();

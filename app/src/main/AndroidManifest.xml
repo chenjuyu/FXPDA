@@ -312,6 +312,14 @@
             android:name="com.fuxi.activity.ShowActivity"
             android:windowSoftInputMode="adjustPan|stateAlwaysHidden" />
 
+        <activity
+            android:name="com.fuxi.activity.ReportActivity"
+            android:windowSoftInputMode="adjustPan|stateAlwaysHidden" />
+
+        <activity
+            android:name="com.fuxi.activity.PosReportActivity"
+            android:windowSoftInputMode="adjustPan|stateAlwaysHidden" />
+
     </application>
 
 </manifest>

@@ -100,6 +100,7 @@ public class PrintActivity extends BaseWapperActivity {
                 printTemplate = bundle.getString("printTemplate");
             }
         }
+
         // 获取连接地址
         getRequestPath();
         printByLodop();
