@@ -69,8 +69,9 @@ dependencies {
     implementation 'com.lzy.net:okgo:3.0.4'
 
     implementation 'com.squareup.okhttp3:okhttp:3.10.0'
-
+    implementation 'jp.wasabeef:glide-transformations:3.0.1' //是为Glide做图片变换的一个库 圆形图片 ,圆角
     api 'com.github.bumptech.glide:glide:4.2.0'
+
     api project(':multilinechooselib')
     api project(':qrcode')
 }

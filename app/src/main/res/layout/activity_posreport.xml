@@ -1,20 +1,177 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="@color/home_item_selector"
     android:orientation="vertical" >
-
 
     <com.fuxi.switchbutton.widget.SwitchButton
         android:id="@+id/switchButton"
         android:layout_width="match_parent"
-        android:layout_height="45dp"
+        android:layout_height="35dp"
         android:layout_margin="5dp"
         android:textColor="@color/switch_textcolor_selector"
         app:sw_checkedColor="@color/icon_blue"
-        app:sw_strokeColor="@color/icon_blue"
-        app:sw_switchCount="5"
+        app:sw_strokeColor="@color/white"
+        app:sw_switchCount="4"
         app:sw_textArray="@array/test" />
+   <!--合计数  android:paddingLeft="5dp" android:paddingRight="5dp"-->
+    <LinearLayout
+        android:layout_marginTop="0dp"
+
+
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+    <LinearLayout
+        android:id="@+id/llQ"
+        android:orientation="vertical"
+        android:background="@color/white"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+       <TextView
+           android:layout_width="wrap_content"
+           android:layout_height="wrap_content"
+           android:text="合计数"
+           android:layout_gravity="center"
+           android:textColor="@color/darkgray"
+           />
+        <TextView
+            android:id="@+id/totalQty"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/pink"
+            android:text="2867"
+            android:layout_gravity="center"
+            android:layout_marginTop="5dp"
+            />
+    </LinearLayout>
+
+     <LinearLayout
+            android:id="@+id/llA"
+            android:orientation="vertical"
+            android:background="@color/white"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="销售额"
+                android:layout_gravity="center"
+                android:textColor="@color/darkgray"
+                />
+            <TextView
+                android:id="@+id/totalAmt"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/pink"
+                android:text="￥58888"
+                android:layout_gravity="center"
+                android:layout_marginTop="5dp"
+                />
+     </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/llC"
+            android:orientation="vertical"
+            android:background="@color/white"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="毛利"
+                android:layout_gravity="center"
+                android:textColor="@color/darkgray"
+                />
+            <TextView
+                android:id="@+id/totalML"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/pink"
+                android:text="￥58888"
+                android:layout_gravity="center"
+                android:layout_marginTop="5dp"
+                />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/llD"
+            android:orientation="vertical"
+            android:background="@color/white"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="毛利率(%)"
+                android:layout_gravity="center"
+                android:textColor="@color/darkgray"
+                />
+            <TextView
+                android:id="@+id/totalMLV"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/pink"
+                android:text="35.25"
+                android:layout_gravity="center"
+                android:layout_marginTop="5dp"
+                />
+        </LinearLayout>
+    </LinearLayout>
+
+    <!-- 标题栏-->
+    <LinearLayout
+        android:layout_marginTop="2dp"
+        android:paddingLeft="5dp"
+        android:paddingRight="5dp"
+        android:layout_width="fill_parent"
+        android:background="@drawable/border"
+        android:layout_height="40dp"
+        android:gravity="center"
+        android:orientation="horizontal">
+     <TextView
+         android:id="@+id/tvCodeTitle"
+         android:text="货品编码"
+         android:layout_weight="1"
+         android:gravity="center_horizontal"
+         android:layout_width="wrap_content"
+         android:layout_height="wrap_content" />
+        <TextView
+            android:id="@+id/tvAmtTitle"
+            android:text="销售金额"
+            android:layout_weight="1"
+            android:gravity="center_horizontal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        <TextView
+            android:id="@+id/tvMLTitle"
+            android:text="毛利润"
+            android:layout_weight="1"
+            android:gravity="center_horizontal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <TextView
+            android:id="@+id/tvother"
+            android:text="其它"
+            android:layout_weight="1"
+            android:gravity="center_horizontal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+    </LinearLayout>
+
+    <!-- 显示列表 -->
+
+    <com.fuxi.widget.RefreshListView
+        android:id="@+id/lv_datas"
+        android:layout_width="fill_parent"
+        android:layout_height="0dip"
+        android:layout_weight="100"
+        android:divider="#F0F0F0"
+        android:dividerHeight="1dp" />
+
 
 </LinearLayout>

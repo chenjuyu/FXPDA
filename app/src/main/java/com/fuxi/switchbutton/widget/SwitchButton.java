@@ -46,7 +46,7 @@ import com.fuxi.main.R;
  * @author LiangZiChao created on 2014-8-28下午3:19:45
  */
 @SuppressLint("Recycle")
-public class SwitchButton extends RadioGroup implements View.OnClickListener ,OnCheckedChangeListener {
+public class SwitchButton extends RadioGroup implements OnCheckedChangeListener {
 
 	private final int[] CHECKED_STATE = { android.R.attr.state_checked }, UNCHECKED_STATE = { -android.R.attr.state_checked };
 
@@ -318,12 +318,12 @@ public class SwitchButton extends RadioGroup implements View.OnClickListener ,On
 	public interface OnChangeListener {
 		public void onChange(int position);
 	}
-
+/*
 	@Override
 	public void onClick(View v) {
 		Log.i("SwitchButton","aaa");
 	}
-
+*/
 	private static final AtomicInteger sNextGeneratedId = new AtomicInteger(1);
 
 	public int getViewId() {

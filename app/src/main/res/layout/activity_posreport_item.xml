@@ -1,0 +1,133 @@
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="match_parent"
+    android:padding="10dp"
+    android:orientation="vertical"
+    android:background="@drawable/border"
+    >
+  <!-- 货品名称 与图片显示 -->
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal">
+
+    <ImageView
+        android:id="@+id/ivpic"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+   <!-- 颜色尺码显示 -->
+    <LinearLayout
+        android:paddingLeft="10dp"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+     <TextView
+         android:id="@+id/tv_code"
+         android:layout_width="fill_parent"
+         android:textStyle="bold"
+         android:layout_height="wrap_content"/>
+
+     <LinearLayout
+         android:paddingTop="10dp"
+         android:orientation="horizontal"
+         android:layout_width="fill_parent"
+         android:layout_height="fill_parent">
+     <TextView
+         android:id="@+id/tv_color"
+         android:textColor="@color/darkgray"
+         android:layout_width="wrap_content"
+         android:layout_height="wrap_content"/>
+      <TextView
+             android:text=" - "
+             android:layout_width="wrap_content"
+             android:textColor="@color/darkgray"
+             android:layout_height="wrap_content"/>
+       <TextView
+             android:id="@+id/tv_size"
+             android:layout_width="wrap_content"
+             android:textColor="@color/darkgray"
+             android:layout_height="wrap_content"/>
+
+        <!-- LinearLayout 实现两端对齐-->
+      <TextView
+             android:layout_width="wrap_content"
+             android:layout_height="wrap_content"
+             android:layout_weight="1" />
+
+         <TextView
+             android:layout_width="wrap_content"
+             android:layout_height="wrap_content"
+             android:textColor="@color/orange"
+             android:text="￥"
+             />
+         <TextView
+           android:paddingRight="50dp"
+           android:id="@+id/tv_Amt"
+           android:layout_width="wrap_content"
+           android:textColor="@color/orange"
+           android:layout_height="wrap_content"/>
+     </LinearLayout>
+
+    </LinearLayout>
+    </LinearLayout>
+
+    <!--单价数量折扣显示 -->
+   <LinearLayout
+       android:paddingTop="10dp"
+       android:layout_width="fill_parent"
+       android:layout_height="wrap_content"
+       android:orientation="horizontal">
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/darkgray"
+        android:text="单价数量:  "
+        />
+    <TextView
+           android:layout_width="wrap_content"
+           android:layout_height="wrap_content"
+          android:textColor="@color/darkgray"
+           android:text="￥"
+           />
+    <TextView
+           android:layout_width="wrap_content"
+           android:layout_height="wrap_content"
+           android:textColor="@color/darkgray"
+           android:id="@+id/tv_unitprice"
+           />
+    <TextView
+           android:layout_width="wrap_content"
+           android:layout_height="wrap_content"
+           android:textColor="@color/darkgray"
+           android:text=" * "
+           />
+   <TextView
+           android:layout_width="wrap_content"
+           android:layout_height="wrap_content"
+           android:textColor="@color/orange"
+
+           android:id="@+id/tv_qty"
+           />
+       <!-- LinearLayout 实现两端对齐-->
+       <TextView
+           android:layout_width="wrap_content"
+           android:layout_height="wrap_content"
+           android:layout_weight="1" />
+       <TextView
+           android:layout_width="wrap_content"
+           android:layout_height="wrap_content"
+           android:textColor="@color/darkgray"
+           android:text="折扣:  "
+           />
+   <TextView
+           android:paddingRight="50dp"
+           android:layout_width="wrap_content"
+           android:layout_height="wrap_content"
+           android:textColor="@color/darkgray"
+           android:id="@+id/tv_discount"
+           />
+
+   </LinearLayout>
+
+</LinearLayout>
