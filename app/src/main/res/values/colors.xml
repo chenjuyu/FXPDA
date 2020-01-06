@@ -25,5 +25,9 @@
     <color name="icon_red">#ED624B</color>
     <color name="hint_color">#F0F0F0</color>
     <color name="list_text_color">#86878c</color>
+     <!-- 幽灵白-->
+    <color name="ghostwhite">#F8F8ff</color>
+
+
 
 </resources>

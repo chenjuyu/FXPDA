@@ -64,6 +64,7 @@ public abstract class BaseWapperActivity extends Activity implements OnClickList
     private RelativeLayout head_layout; // TitleLayout
     private TextView headLeftBtn;
     protected TextView headRightBtn;
+    protected  TextView headsearch;
 
     private AppManager manager = new AppManager();
 
@@ -103,6 +104,9 @@ public abstract class BaseWapperActivity extends Activity implements OnClickList
         head_title = (TextView) super.findViewById(R.id.head_title);
         headLeftBtn = (TextView) super.findViewById(R.id.head_left);
         headRightBtn = (TextView) super.findViewById(R.id.head_right);
+
+        headsearch =(TextView) super.findViewById(R.id.head_search);
+
         buttomClick = new ButtomClick();
         keyListener = new KeyListener();
         initView();
@@ -110,6 +114,7 @@ public abstract class BaseWapperActivity extends Activity implements OnClickList
         StatusBarUtil.setColorNoTranslucent(this, statusColor);
         headLeftBtn.setOnTouchListener(buttomClick);
         headRightBtn.setOnTouchListener(buttomClick);
+        headsearch.setOnTouchListener(buttomClick);
         // 设置位于最上层
         // headRightBtn.bringToFront();
 
@@ -287,6 +292,9 @@ public abstract class BaseWapperActivity extends Activity implements OnClickList
                 case R.id.head_right:
                     onHeadRightButton(v);
                     break;
+                case R.id.head_search:
+                    onHeadSearchButton(v);
+                    break;
                 default:
                     break;
             }
@@ -331,6 +339,10 @@ public abstract class BaseWapperActivity extends Activity implements OnClickList
     protected void setHeadRightVisibility(int visibility) {
         headRightBtn.setVisibility(visibility);
     }
+    protected void setHeadSearchVisibility(int visibility) {
+        headsearch.setVisibility(visibility);
+    }
+
 
     protected void setHeadRightText(int textid) {
         headRightBtn.setText(textid);
@@ -341,6 +353,10 @@ public abstract class BaseWapperActivity extends Activity implements OnClickList
     }
 
     protected void onHeadRightButton(View v) {
+
+    }
+
+    protected void onHeadSearchButton(View v) {
 
     }
 

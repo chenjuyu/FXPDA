@@ -1,0 +1,253 @@
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:focusable="true"
+    android:focusableInTouchMode="true"
+    android:orientation="vertical"
+    android:background="@color/ghostwhite"
+    >
+
+  <!-- 日期-->
+ <LinearLayout
+     android:id="@+id/first_div"
+     android:layout_width="fill_parent"
+     android:layout_height="40dp"
+     android:background="@drawable/border"
+     android:paddingRight="20dp"
+     android:orientation="horizontal">
+ <EditText
+     android:id="@+id/begin_date"
+     android:layout_width="wrap_content"
+     android:layout_height="40dp"
+     android:text="2020-01-06"
+     android:layout_weight="3"
+     android:gravity="center"
+     android:background="@color/white"
+     android:drawableRight="@drawable/input_bg"
+     android:paddingBottom="0sp"
+     android:paddingTop="0sp"
+     android:textSize="16sp"
+     android:focusable="false"
+     />
+ <TextView
+     android:layout_width="0dp"
+     android:layout_height="40dp"
+     android:paddingLeft="10dp"
+     android:text="至"
+     android:layout_weight="1"
+     android:gravity="center"
+     android:textSize="16sp"
+     android:background="@color/white"
+     android:textColor="@color/home_item_selector"
+     />
+     <EditText
+         android:id="@+id/end_date"
+         android:layout_width="wrap_content"
+         android:layout_height="40dp"
+         android:text="2020-01-06"
+         android:layout_weight="3"
+         android:gravity="center"
+         android:background="@color/white"
+         android:textSize="16sp"
+         android:drawableRight="@drawable/input_bg"
+         android:focusable="false"
+         />
+ </LinearLayout>
+
+   <!-- 货号-->
+<LinearLayout
+    android:paddingRight="20dp"
+    android:paddingLeft="10dp"
+    android:id="@+id/ll_second"
+    android:orientation="horizontal"
+    android:background="@drawable/border"
+    android:layout_width="fill_parent"
+    android:layout_below="@id/first_div"
+    android:layout_marginTop="5dp"
+    android:gravity="center"
+    android:layout_height="50dp">
+<TextView
+    android:text="货品"
+    android:textColor="@color/darkgray"
+    android:textSize="16sp"
+    android:layout_weight="2"
+    android:layout_width="0dp"
+    android:layout_height="wrap_content"/>
+ <EditText
+     android:id="@+id/et_barcode"
+     android:layout_width="wrap_content"
+     android:layout_height="wrap_content"
+     android:hint="货号/条码"
+     android:textColorHint="@color/home_item_selector"
+     android:background="@drawable/et_underline_unselected"
+     android:layout_weight="3"
+     android:focusable="false"
+     />
+
+</LinearLayout>
+
+ <LinearLayout
+     android:paddingRight="20dp"
+     android:paddingLeft="10dp"
+     android:id="@+id/ll_three"
+     android:layout_below="@id/ll_second"
+     android:orientation="horizontal"
+     android:layout_width="fill_parent"
+     android:background="@drawable/border"
+     android:layout_height="50dp">
+  <TextView
+      android:layout_width="0dp"
+      android:layout_weight="2"
+      android:textSize="16sp"
+      android:text="店铺"
+      android:textColor="@color/darkgray"
+
+      android:background="@color/white"
+      android:layout_height="wrap_content"/>
+     <EditText
+         android:id="@+id/et_department"
+         android:layout_width="wrap_content"
+         android:layout_height="40dp"
+         android:hint="店铺"
+         android:enabled="false"
+         android:layout_weight="3"
+         android:background="@color/white"
+         android:textColorHint="@color/home_item_selector"
+         android:drawableRight="@drawable/input_bg"
+         android:focusable="false"
+         />
+
+ </LinearLayout>
+
+
+
+    <LinearLayout
+        android:paddingRight="20dp"
+        android:paddingLeft="10dp"
+        android:id="@+id/ll_fourth"
+        android:layout_below="@id/ll_three"
+        android:orientation="horizontal"
+        android:layout_width="fill_parent"
+        android:background="@drawable/border"
+        android:layout_height="50dp">
+        <TextView
+            android:layout_width="0dp"
+            android:layout_weight="2"
+            android:text="会员"
+            android:textColor="@color/darkgray"
+            android:textSize="16sp"
+            android:background="@color/white"
+            android:layout_height="wrap_content"/>
+        <EditText
+            android:id="@+id/et_vip"
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:hint="会员"
+            android:enabled="false"
+            android:layout_weight="3"
+            android:background="@color/white"
+            android:textColorHint="@color/home_item_selector"
+            android:drawableRight="@drawable/input_bg"
+            android:focusable="false"
+            />
+
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:paddingRight="20dp"
+        android:paddingLeft="10dp"
+        android:id="@+id/ll_five"
+        android:layout_below="@id/ll_fourth"
+        android:orientation="horizontal"
+        android:layout_width="fill_parent"
+        android:background="@drawable/border"
+        android:layout_height="50dp">
+        <TextView
+            android:layout_width="0dp"
+            android:layout_weight="2"
+            android:text="货品类别"
+            android:textColor="@color/darkgray"
+            android:textSize="16sp"
+            android:background="@color/white"
+            android:layout_height="wrap_content"/>
+        <EditText
+            android:id="@+id/et_goodstype"
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:hint="货品类别"
+            android:enabled="false"
+            android:layout_weight="3"
+            android:background="@color/white"
+            android:textColorHint="@color/home_item_selector"
+            android:drawableRight="@drawable/input_bg"
+            android:focusable="false"
+            />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:paddingRight="20dp"
+        android:paddingLeft="10dp"
+        android:id="@+id/ll_six"
+        android:layout_below="@id/ll_five"
+        android:orientation="horizontal"
+        android:layout_width="fill_parent"
+        android:background="@drawable/border"
+        android:layout_height="50dp">
+        <TextView
+            android:layout_width="0dp"
+            android:layout_weight="2"
+            android:text="货品售货员"
+            android:textSize="16sp"
+            android:textColor="@color/darkgray"
+            android:background="@color/white"
+            android:layout_height="wrap_content"/>
+        <EditText
+            android:id="@+id/et_employee"
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:hint="货品售货员"
+            android:enabled="false"
+            android:layout_weight="3"
+            android:background="@color/white"
+            android:textColorHint="@color/home_item_selector"
+            android:drawableRight="@drawable/input_bg"
+            android:focusable="false"
+            />
+
+    </LinearLayout>
+
+
+
+
+
+   <!-- 底部 -->
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_alignParentBottom="true"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content">
+     <TextView
+         android:layout_width="wrap_content"
+         android:layout_height="40dp"
+         android:gravity="center"
+         android:id="@+id/tv_ret"
+         android:text="重置"
+         android:background="@drawable/border_top"
+         android:layout_weight="1"
+         />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:gravity="center"
+            android:id="@+id/tv_submit"
+            android:text="确定"
+            android:background="@color/camera_pop_normal"
+            android:layout_weight="1"
+            android:textColor="@color/white"
+            />
+
+    </LinearLayout>
+</RelativeLayout>

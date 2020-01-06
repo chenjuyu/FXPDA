@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:dist="http://schemas.android.com/apk/distribution"
+    xmlns:tools="http://schemas.android.com/tools"
     package="com.fuxi.main">
 
 
@@ -320,6 +321,16 @@
             android:name="com.fuxi.activity.PosReportActivity"
             android:windowSoftInputMode="adjustPan|stateAlwaysHidden" />
 
+        <!--报表条件查询页面 -->
+        <activity
+            android:name="com.fuxi.activity.PosReportSearchActivity"
+            android:windowSoftInputMode="adjustPan|stateAlwaysHidden" />
+
+
+
     </application>
+
+  <!-- 第三方类库的强制覆盖一些类的版本与主程序一样  解决引用最小android版本的问题-->
+    <uses-sdk tools:overrideLibrary="fule.com.mydatapicker,fule.com.mywheelview"/>
 
 </manifest>

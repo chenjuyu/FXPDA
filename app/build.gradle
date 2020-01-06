@@ -68,10 +68,24 @@ dependencies {
     implementation 'com.squareup.picasso:picasso:2.5.2'
     implementation 'com.lzy.net:okgo:3.0.4'
 
+    implementation 'com.google.code.gson:gson:2.8.4'
     implementation 'com.squareup.okhttp3:okhttp:3.10.0'
     implementation 'jp.wasabeef:glide-transformations:3.0.1' //是为Glide做图片变换的一个库 圆形图片 ,圆角
     api 'com.github.bumptech.glide:glide:4.2.0'
-
     api project(':multilinechooselib')
     api project(':qrcode')
+    api project(':mydatapicker')
+    api project(':mywheelview')
 }
+//强制所有的第三方包使用指定版本的其他插件support包 版本不同的解决：
+configurations.all {
+    resolutionStrategy.eachDependency { DependencyResolveDetails details ->
+        def requested = details.requested
+        if (requested.group == 'com.android.support') {
+            if (!requested.name.startsWith("multidex")) { //且其名字不是以multidex开头的
+                details.useVersion '26.0.0'
+            }
+        }
+    }
+}
+

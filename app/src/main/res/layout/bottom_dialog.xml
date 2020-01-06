@@ -1,0 +1,197 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="match_parent"
+    android:background="@color/home_item_selector"
+    android:orientation="vertical">
+
+  <LinearLayout
+      android:gravity="center"
+      android:orientation="vertical"
+      android:layout_width="fill_parent"
+      android:background="@drawable/border"
+      android:layout_height="wrap_content" >
+
+  <TextView
+      android:gravity="center"
+      android:id="@+id/tv_all"
+      android:text="全部"
+      android:textSize="18sp"
+      android:textColor="@color/icon_blue"
+      android:layout_width="fill_parent"
+      android:layout_height="40dp"/>
+
+  </LinearLayout>
+
+
+<LinearLayout
+    android:gravity="center"
+    android:orientation="vertical"
+    android:layout_width="fill_parent"
+    android:background="@drawable/border"
+    android:layout_height="wrap_content" >
+
+    <TextView
+        android:gravity="center"
+        android:id="@+id/tv_department"
+        android:text="店铺"
+        android:textSize="18sp"
+        android:textColor="@color/icon_blue"
+        android:layout_width="fill_parent"
+        android:layout_height="40dp"/>
+
+</LinearLayout>
+
+    <LinearLayout
+        android:gravity="center"
+        android:orientation="vertical"
+        android:layout_width="fill_parent"
+        android:background="@drawable/border"
+        android:layout_height="wrap_content" >
+
+        <TextView
+            android:gravity="center"
+            android:id="@+id/tv_department2"
+            android:text="柜组"
+            android:textSize="18sp"
+            android:textColor="@color/icon_blue"
+            android:layout_width="fill_parent"
+            android:layout_height="40dp"/>
+
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:gravity="center"
+        android:orientation="vertical"
+        android:layout_width="fill_parent"
+        android:background="@drawable/border"
+        android:layout_height="wrap_content" >
+
+        <TextView
+            android:gravity="center"
+            android:id="@+id/tv_goodstype"
+            android:text="货品类别"
+            android:textSize="18sp"
+            android:textColor="@color/icon_blue"
+            android:layout_width="fill_parent"
+            android:layout_height="40dp"/>
+
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:gravity="center"
+        android:orientation="vertical"
+        android:layout_width="fill_parent"
+        android:background="@drawable/border"
+        android:layout_height="wrap_content" >
+
+        <TextView
+            android:gravity="center"
+            android:id="@+id/tv_subtype"
+            android:text="货品子类别"
+            android:textSize="18sp"
+            android:textColor="@color/icon_blue"
+            android:layout_width="fill_parent"
+            android:layout_height="40dp"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:gravity="center"
+        android:orientation="vertical"
+        android:layout_width="fill_parent"
+        android:background="@drawable/border"
+        android:layout_height="wrap_content" >
+
+        <TextView
+            android:gravity="center"
+            android:id="@+id/tv_name"
+            android:text="货品名称"
+            android:textSize="18sp"
+            android:textColor="@color/icon_blue"
+            android:layout_width="fill_parent"
+            android:layout_height="40dp"/>
+
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:gravity="center"
+        android:orientation="vertical"
+        android:layout_width="fill_parent"
+        android:background="@drawable/border"
+        android:layout_height="wrap_content" >
+
+        <TextView
+            android:gravity="center"
+            android:id="@+id/tv_brand"
+            android:text="品牌"
+            android:textSize="18sp"
+            android:textColor="@color/icon_blue"
+            android:layout_width="fill_parent"
+            android:layout_height="40dp"/>
+
+    </LinearLayout>
+
+
+
+    <LinearLayout
+        android:gravity="center"
+        android:orientation="vertical"
+        android:layout_width="fill_parent"
+        android:background="@drawable/border"
+        android:layout_height="wrap_content" >
+
+        <TextView
+            android:gravity="center"
+            android:id="@+id/tv_employee"
+            android:text="货品售货员"
+            android:textSize="18sp"
+            android:textColor="@color/icon_blue"
+            android:layout_width="fill_parent"
+            android:layout_height="40dp"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:gravity="center"
+        android:orientation="vertical"
+        android:layout_width="fill_parent"
+        android:background="@drawable/border"
+        android:layout_height="wrap_content" >
+
+        <TextView
+            android:gravity="center"
+            android:id="@+id/tv_madeby"
+            android:text="制单"
+            android:textSize="18sp"
+            android:textColor="@color/icon_blue"
+            android:layout_width="fill_parent"
+            android:layout_height="40dp"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:gravity="center"
+        android:orientation="vertical"
+        android:layout_width="fill_parent"
+        android:background="@drawable/border"
+        android:layout_height="wrap_content" >
+
+        <TextView
+            android:gravity="center"
+            android:id="@+id/tv_model"
+            android:text="型号规格"
+            android:textSize="18sp"
+            android:textColor="@color/icon_blue"
+            android:layout_width="fill_parent"
+            android:layout_height="40dp"/>
+
+    </LinearLayout>
+
+
+
+</LinearLayout>

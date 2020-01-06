@@ -156,7 +156,7 @@
 
         <TextView
             android:id="@+id/tvother"
-            android:text="其它"
+            android:text="数量"
             android:layout_weight="1"
             android:gravity="center_horizontal"
             android:layout_width="wrap_content"

@@ -44,7 +44,10 @@ public class PosReportAdapter extends BaseAdapter {
        public TextView tvdiscount;
     }
 
-
+  //刷新
+    public  void refresh(){
+       notifyDataSetChanged();
+    }
 
     @Override
     public int getCount() {
