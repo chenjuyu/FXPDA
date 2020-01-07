@@ -1,0 +1,134 @@
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="match_parent"
+    android:padding="10dp"
+    android:orientation="vertical"
+    android:background="@drawable/border"
+    >
+  <!-- 货品名称 -->
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/tv_codeTitle"
+            android:layout_width="wrap_content"
+            android:textStyle="bold"
+            android:layout_height="wrap_content"/>
+        <TextView
+            android:id="@+id/tv_code"
+            android:layout_width="wrap_content"
+            android:textStyle="bold"
+            android:layout_height="wrap_content"/>
+        <!-- LinearLayout 实现两端对齐-->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/orange"
+            android:text="￥"
+            />
+        <TextView
+            android:paddingRight="10dp"
+            android:id="@+id/tv_Amt"
+            android:layout_width="wrap_content"
+            android:textColor="@color/orange"
+            android:layout_height="wrap_content"/>
+
+    </LinearLayout>
+
+    <!--数量毛利显示 -->
+   <LinearLayout
+       android:paddingTop="10dp"
+       android:layout_width="fill_parent"
+       android:layout_height="wrap_content"
+       android:orientation="horizontal">
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/darkgray"
+        android:text="数量:  "
+        />
+
+
+   <TextView
+           android:layout_width="wrap_content"
+           android:layout_height="wrap_content"
+           android:textColor="@color/accentred"
+
+           android:id="@+id/tv_qty"
+           />
+       <!-- LinearLayout 实现两端对齐-->
+       <TextView
+           android:layout_width="wrap_content"
+           android:layout_height="wrap_content"
+           android:layout_weight="1" />
+       <TextView
+           android:layout_width="wrap_content"
+           android:layout_height="wrap_content"
+           android:textColor="@color/darkgray"
+           android:text="毛利:  "
+           />
+   <TextView
+           android:paddingRight="10dp"
+           android:layout_width="wrap_content"
+           android:layout_height="wrap_content"
+           android:textColor="@color/darkgray"
+           android:id="@+id/tv_ML"
+           />
+
+   </LinearLayout>
+
+
+    <!--成本与毛利率显示  android:paddingTop="10dp"-->
+    <LinearLayout
+        android:layout_marginTop="10dp"
+        android:paddingTop="10dp"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/border_top_dotted"
+        android:orientation="horizontal">
+        <TextView
+            android:id="@+id/costTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/darkgray"
+            android:text="采购成本:  "
+            />
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/orange"
+
+            android:id="@+id/costAmt"
+            />
+        <!-- LinearLayout 实现两端对齐-->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/darkgray"
+            android:text="毛利率(%):  "
+            />
+        <TextView
+            android:paddingRight="10dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/darkgray"
+            android:id="@+id/tv_MLLV"
+            />
+
+    </LinearLayout>
+
+</LinearLayout>

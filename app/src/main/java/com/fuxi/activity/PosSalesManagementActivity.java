@@ -30,13 +30,13 @@ public class PosSalesManagementActivity extends BaseWapperActivity implements On
      */
     private void getData() {
         if (LoginParameterUtil.showGiftMenuFlag) {
-            img_activity = new String[] {"com.fuxi.activity.SalesTicketActivity", "com.fuxi.activity.GiftActivity", "com.fuxi.activity.PosSalesInventoryQueryActivity", "com.fuxi.activity.PossalesQueryActivity", "com.fuxi.activity.DailyKnotsActivity"};
-            img_text = new String[] {"销售小票", "赠品单", "零售库存查询", "销售单查询", "日结"};
-            imgs = new Integer[] {R.string.sales_ticket, R.string.gift, R.string.inventory_query, R.string.noQuery, R.string.daily_knots};
+            img_activity = new String[] {"com.fuxi.activity.SalesTicketActivity", "com.fuxi.activity.GiftActivity", "com.fuxi.activity.PosSalesInventoryQueryActivity", "com.fuxi.activity.PossalesQueryActivity", "com.fuxi.activity.DailyKnotsActivity","com.fuxi.activity.PosReportActivity"};
+            img_text = new String[] {"销售小票", "赠品单", "零售库存查询", "销售单查询", "日结","零售报表"};
+            imgs = new Integer[] {R.string.sales_ticket, R.string.gift, R.string.inventory_query, R.string.noQuery, R.string.daily_knots,R.string.query};
         } else {
-            img_activity = new String[] {"com.fuxi.activity.SalesTicketActivity", "com.fuxi.activity.PosSalesInventoryQueryActivity", "com.fuxi.activity.PossalesQueryActivity", "com.fuxi.activity.DailyKnotsActivity"};
-            img_text = new String[] {"销售小票", "零售库存查询", "销售单查询", "日结"};
-            imgs = new Integer[] {R.string.sales_ticket, R.string.inventory_query, R.string.noQuery, R.string.daily_knots};
+            img_activity = new String[] {"com.fuxi.activity.SalesTicketActivity", "com.fuxi.activity.PosSalesInventoryQueryActivity", "com.fuxi.activity.PossalesQueryActivity", "com.fuxi.activity.DailyKnotsActivity","com.fuxi.activity.PosReportActivity"};
+            img_text = new String[] {"销售小票", "零售库存查询", "销售单查询", "日结","零售报表"};
+            imgs = new Integer[] {R.string.sales_ticket, R.string.inventory_query, R.string.noQuery, R.string.daily_knots,R.string.query};
         }
     }
 

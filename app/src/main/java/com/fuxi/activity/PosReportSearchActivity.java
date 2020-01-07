@@ -1,6 +1,7 @@
 package com.fuxi.activity;
 
 import android.app.Dialog;
+import android.content.Intent;
 import android.view.KeyEvent;
 import android.view.MotionEvent;
 import android.view.View;
@@ -38,9 +39,14 @@ public class PosReportSearchActivity extends BaseWapperActivity {
     private TextView tv_submit;
 
     private Dialog dateDialog;
-
+    private Intent intent;
     private int datestr;
-
+    SimpleDateFormat df =new SimpleDateFormat("yyyy-MM-dd");
+    private  String departmentid;
+    private  String vipId;
+    private  String goodsTypeId;
+    private  String employeeId;
+    private  String barcodeStr;
     private  TouchListener tl=new TouchListener();
 
     @Override
@@ -53,17 +59,20 @@ public class PosReportSearchActivity extends BaseWapperActivity {
     protected void setListener() {
         begindate.setOnClickListener(this);
         enddate.setOnClickListener(this);
-        et_barcode.setOnClickListener(this);
+       // et_barcode.setOnClickListener(this);
         et_department.setOnClickListener(this);
         et_employee.setOnClickListener(this);
         et_goodstype.setOnClickListener(this);
         et_vip.setOnClickListener(this);
 
+        et_barcode.setFocusable(true);
+        et_barcode.setEnabled(true);
     }
 
     @Override
     protected void processLogic() {
-
+        begindate.setText(df.format(new Date()));
+        enddate.setText(df.format(new Date()));
     }
 
     @Override
@@ -81,7 +90,7 @@ public class PosReportSearchActivity extends BaseWapperActivity {
        tv_ret.setOnTouchListener(tl);
        tv_submit.setOnTouchListener(tl);
     }
-    SimpleDateFormat df =new SimpleDateFormat("yyyy-MM-dd");
+
     @Override
     public void onClick(View v) {
       switch (v.getId()){
@@ -90,19 +99,29 @@ public class PosReportSearchActivity extends BaseWapperActivity {
               showDateDialog(DateUtil.getDateForString( df.format(new Date())));
               break;
           case R.id.end_date:
-              showDateDialog(DateUtil.getDateForString( df.format(new Date())),enddate);
+              datestr=2;
+              showDateDialog(DateUtil.getDateForString( df.format(new Date())));
               break;
-          case R.id.et_barcode:
-              break;
-          case R.id.et_department:
 
+          case R.id.et_department:
+              intent =new Intent(PosReportSearchActivity.this,SelectActivity.class);
+              intent.putExtra("selectType","selectDepartment");
+              startActivityForResult(intent,R.id.et_department);
               break;
           case R.id.et_employee:
+              intent =new Intent(PosReportSearchActivity.this,SelectActivity.class);
+              intent.putExtra("selectType","selectEmployee");
+              startActivityForResult(intent,R.id.et_employee);
               break;
           case R.id.et_goodstype:
+              intent =new Intent(PosReportSearchActivity.this,SelectActivity.class);
+              intent.putExtra("selectType","selectCategory");
+              startActivityForResult(intent,R.id.et_goodstype);
               break;
           case R.id.et_vip:
-
+              intent =new Intent(PosReportSearchActivity.this,SelectActivity.class);
+              intent.putExtra("selectType","selectVip");
+              startActivityForResult(intent,R.id.et_vip);
               break;
           default:
               break;
@@ -115,6 +134,35 @@ public class PosReportSearchActivity extends BaseWapperActivity {
     }
 
 
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        switch (requestCode){
+            case R.id.et_department:
+                if(resultCode==1){
+                    et_department.setText(data.getStringExtra("Name"));
+                    departmentid = data.getStringExtra("DepartmentID");
+                }
+                break;
+            case R.id.et_vip:
+                if(resultCode==1){
+                    et_vip.setText("("+data.getStringExtra("Code")+")"+data.getStringExtra("Name"));
+                    vipId=data.getStringExtra("VIPID");
+                }
+                break;
+            case R.id.et_goodstype:
+                 goodsTypeId=data.getStringExtra("GoodsTypeID");
+                 et_goodstype.setText(data.getStringExtra("Name"));
+                break;
+            case R.id.et_employee:
+                 employeeId=data.getStringExtra("EmployeeID");
+                 et_employee.setText(data.getStringExtra("Name"));
+                break;
+            default:
+                break;
+        }
+
+
+    }
 
     /**
      * 显示日期
@@ -127,6 +175,8 @@ public class PosReportSearchActivity extends BaseWapperActivity {
             public void onDateSelected(int[] dates) {
                 if(datestr ==1) {
                     begindate.setText(String.format("%d-%s-%s", dates[0], dates[1] > 9 ? dates[1] : ("0" + dates[1]), dates[2] > 9 ? dates[2] : ("0" + dates[2])));
+                }else if(datestr==2){
+                    enddate.setText(String.format("%d-%s-%s", dates[0], dates[1] > 9 ? dates[1] : ("0" + dates[1]), dates[2] > 9 ? dates[2] : ("0" + dates[2])));
                 }
 
             }
@@ -152,7 +202,11 @@ public class PosReportSearchActivity extends BaseWapperActivity {
         et_vip.setText("");
         et_goodstype.setText("");
         et_employee.setText("");
-
+        departmentid="";
+        vipId="";
+        goodsTypeId="";
+        employeeId="";
+        barcodeStr="";
     }
 
     public  class  TouchListener implements View.OnTouchListener{
@@ -167,7 +221,17 @@ public class PosReportSearchActivity extends BaseWapperActivity {
                    break;
                 case R.id.tv_submit:
                     if(event.getAction() ==MotionEvent.ACTION_DOWN){
-                        getData();
+                        barcodeStr =String.valueOf(et_barcode.getText());
+                        Intent intent =new Intent();
+                        intent.putExtra("begindate",String.valueOf(begindate.getText()));
+                        intent.putExtra("enddate",String.valueOf(enddate.getText()));
+                        intent.putExtra("departmentid",departmentid);
+                        intent.putExtra("vipid",vipId);
+                        intent.putExtra("goodstypeid",goodsTypeId);
+                        intent.putExtra("employeeid",employeeId);
+                        intent.putExtra("barcode",barcodeStr);
+                       setResult(1,intent);
+                       finish();
                     }
                     break;
                 default:
@@ -177,12 +241,6 @@ public class PosReportSearchActivity extends BaseWapperActivity {
         }
     }
 
-    public void getData(){
-
-
-
-
-    }
 
 
 

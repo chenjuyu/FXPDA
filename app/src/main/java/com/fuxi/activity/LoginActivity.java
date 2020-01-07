@@ -1118,7 +1118,7 @@ public class LoginActivity extends BaseWapperActivity {
                 login();
                 break;  //SystemSettingsActivity.class
             case R.id.tv_sys_settings:
-                intent = new Intent(LoginActivity.this,PosReportActivity.class);
+                intent = new Intent(LoginActivity.this,SystemSettingsActivity.class);
                 intent.putExtra("Login", true);
                 startActivity(intent);
                 finish();

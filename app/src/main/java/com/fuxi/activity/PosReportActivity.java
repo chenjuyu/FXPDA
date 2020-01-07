@@ -20,6 +20,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.fuxi.adspter.PosReportAdapter;
+import com.fuxi.adspter.PosReportGroupAdapter;
 import com.fuxi.main.R;
 import com.fuxi.switchbutton.widget.SwitchButton;
 import com.fuxi.switchbutton.widget.SwitchButton.OnChangeListener;
@@ -44,11 +45,14 @@ public class PosReportActivity extends BaseWapperActivity implements OnRefreshLi
     private LinearLayout llD;
     private RefreshListView lvData;
     private PosReportAdapter adapter;
+    private PosReportGroupAdapter groupAdapter;
     static Toast mToast;
     private int STATE_ASC =1; //货号升序
     private int Amt_ASC =1; //销售额升序
     private int ML_ASC=1;//毛利润
     private int Qty_ASC=1;//数量
+    private String orderField="Code"; //排序字段
+    private String orderTitle="货品编码";
 
     private  TextView totalQty;// 合计数量
     private  TextView totalAmt;//  合计金额
@@ -75,12 +79,19 @@ public class PosReportActivity extends BaseWapperActivity implements OnRefreshLi
 
     private TouchListener tl =new TouchListener();
 
-
-
+    private  String beginDate;
+    private  String endDate;
+    private  String groupField;
+    private  String departmentid;
+    private  String vipid;
+    private  String goodstypeid;
+    private  String employeeid;
 
     private int screenWidth;//dp为单位
     private int screenHeight;
+    private int currPage = 1;
     private List<Map<String,Object>> dataList =new ArrayList<Map<String,Object>>();
+    private List<Map<String,Object>> totalList;
 
     @Override
     protected void loadViewLayout() {
@@ -97,7 +108,9 @@ public class PosReportActivity extends BaseWapperActivity implements OnRefreshLi
     @Override
     protected void setListener() {
 
-        if(dataList.size() >0) dataList.clear();
+
+        totalList =new ArrayList<>();
+
         for (int i=0;i<30;i++){ //图片暂时写死
           Map<String,Object> map =new HashMap<>();
           map.put("Code","货品名称(test"+i+")");
@@ -107,16 +120,21 @@ public class PosReportActivity extends BaseWapperActivity implements OnRefreshLi
           map.put("Amount",300.55);
           map.put("UnitPrice","150.00");
           map.put("Discount","9");
-          dataList.add(map);
+            totalList.add(map);
         }
+
+        dataList =page(totalList,10,currPage);
+
         tvMLTitle.setOnTouchListener(tl);
         tvAmtTitle.setOnTouchListener(tl);
         tvCodeTitle.setOnTouchListener(tl);
         tvother.setOnTouchListener(tl);
 
         adapter =new PosReportAdapter(this,dataList);
+
         lvData.setAdapter(adapter);
         lvData.setOnRefreshListener(this);
+
         mSwitchButton.setOnChangeListener(new OnChangeListener() {
 
             @Override
@@ -198,12 +216,34 @@ public class PosReportActivity extends BaseWapperActivity implements OnRefreshLi
 
     @Override
     public void onDownPullRefresh() {
-
+         currPage =1;
+         dataList =new ArrayList<>(page(totalList,10,currPage));
+        if(!orderTitle.equals("货品编码")){
+            groupAdapter.refresh();
+        }else {
+            adapter.refresh();
+        }
+        lvData.hideHeaderView();
     }
 
     @Override
     public void onLoadingMore() {
+        currPage ++;
+        List<Map<String,Object>> tmp =page(totalList,10,currPage);//new ArrayList<>();
+        if(tmp.size()>0) {
+            dataList.addAll(tmp);//new ArrayList<>(tmp)
+            if(!orderTitle.equals("货品编码")){
+                groupAdapter.refresh();
+            }else {
+                adapter.refresh();
+            }
 
+        }else if(tmp.size()==0){
+            Toast.makeText(PosReportActivity.this, "已经到达最后一页", Toast.LENGTH_SHORT).show();
+        }
+        System.out.println("dataList值："+String.valueOf(dataList));
+
+        lvData.hideFooterView();
     }
 
 
@@ -212,6 +252,41 @@ public class PosReportActivity extends BaseWapperActivity implements OnRefreshLi
         switch (requestCode){
             case R.id.head_search:
                  if(resultCode==1){
+                  beginDate =data.getStringExtra("begindate");
+                  endDate =data.getStringExtra("enddate");
+                    vipid =data.getStringExtra("vipid");
+                  if(vipid !=null && !"".equals(vipid)){
+                   StringBuffer sb= new StringBuffer(vipid);
+                      sb.insert(0,"0");
+                      vipid =sb.toString();
+                  }
+                    goodstypeid=data.getStringExtra("goodstypeid");
+                    employeeid =data.getStringExtra("employeeid");
+                  departmentid =data.getStringExtra("departmentid");
+                  String barcode =data.getStringExtra("barcode");
+                     if(goodstypeid !=null && !"".equals(goodstypeid)){
+                         StringBuffer sb= new StringBuffer(goodstypeid);
+                         sb.insert(0,"0");
+                         goodstypeid =sb.toString();
+                     }
+
+                     if(employeeid !=null && !"".equals(employeeid)){
+                         StringBuffer sb= new StringBuffer(employeeid);
+                         sb.insert(0,"0");
+                         employeeid =sb.toString();
+                     }
+                     if(departmentid !=null && !"".equals(departmentid)){
+                         StringBuffer sb= new StringBuffer(departmentid);
+                         sb.insert(0,"0");
+                         departmentid =sb.toString();
+                     }
+                     Log.v(TAG,"barcode:"+barcode);
+                     Log.v(TAG,"beginDate的值："+beginDate);
+                     Log.v(TAG,"endDate的值："+endDate);
+                     Log.v(TAG,"vipid的值："+vipid);
+                     Log.v(TAG,"goodstypeid的值："+goodstypeid);
+                     Log.v(TAG,"employeeid的值："+employeeid);
+                     Log.v(TAG,"departmentid的值："+departmentid);
 
                  }
             break;
@@ -273,60 +348,30 @@ public class PosReportActivity extends BaseWapperActivity implements OnRefreshLi
                  if(STATE_ASC==1){
                      STATE_ASC =2;// 升序
                      //按提交时间降序--工具类写法
-                     Collections.sort(dataList, new Comparator<Map<String, Object>>() {
 
-                         @Override
-                         public int compare(Map<String, Object> o1, Map<String, Object> o2) {
-
-                             return String.valueOf(o1.get("Code")).compareTo(String.valueOf(o2.get("Code")));
-                         }
-                     });
-                     adapter.refresh();
-                     tvCodeTitle.setText("↓货品编码");
+                     sortList();
+                     tvCodeTitle.setText("↓"+orderTitle);
 
 
                  }else{
                      STATE_ASC=1;
                      //按提交时间降序--工具类写法
                      //按提交时间降序--工具类写法
-                     Collections.sort(dataList, new Comparator<Map<String, Object>>() {
-
-                         @Override
-                         public int compare(Map<String, Object> o1, Map<String, Object> o2) {
-
-                             return String.valueOf(o2.get("Code")).compareTo(String.valueOf(o1.get("Code")));
-                         }
-                     });
-                     adapter.refresh();
-                     tvCodeTitle.setText("↑货品编码");
+                     //orderField ="Code";
+                     sortList();
+                     tvCodeTitle.setText("↑"+orderTitle);
                  }
                  break;
                case  R.id.tvAmtTitle:
                    if(Amt_ASC==1){ // 升序
                        Amt_ASC =2;
 
-                       Collections.sort(dataList, new Comparator<Map<String, Object>>() {
-
-                           @Override
-                           public int compare(Map<String, Object> o1, Map<String, Object> o2) {
-
-                               return String.valueOf(o1.get("Amount")).compareTo(String.valueOf(o2.get("Amount")));
-                           }
-                       });
-                       adapter.refresh();
-
+                       sortList();
                        tvAmtTitle.setText("↓销售金额");
                    }else{
                        Amt_ASC=1;
-                       Collections.sort(dataList, new Comparator<Map<String, Object>>() {
-
-                           @Override
-                           public int compare(Map<String, Object> o1, Map<String, Object> o2) {
-
-                               return String.valueOf(o2.get("Amount")).compareTo(String.valueOf(o1.get("Amount")));
-                           }
-                       });
-                       adapter.refresh();
+                       orderField ="Amount";
+                       sortList();
 
                        tvAmtTitle.setText("↑销售金额");
                    }
@@ -355,47 +400,108 @@ public class PosReportActivity extends BaseWapperActivity implements OnRefreshLi
               case R.id.tvother:
                    if(Qty_ASC==1){
                        Qty_ASC=2;
-
+                       orderField ="Quantity";
+                       sortList();
                        tvother.setText("↓数量");
                    }else {
                        Qty_ASC=1;
-
+                       orderField ="Quantity";
+                       sortList();
                        tvother.setText("↑数量");
                    }
                  break;
               //底部框点击
               case R.id.tv_all:
-
+                  setTitle("零售报表");
+                  orderField ="Code";
+                  orderTitle="货品编码";
+                  tvCodeTitle.setText(orderTitle);
+                  adapter =new PosReportAdapter(PosReportActivity.this,dataList);
+                  lvData.setAdapter(adapter);
                 Log.i(TAG,tv_all.getText().toString());
                   mCameraDialog.dismiss();
                  break;
               case R.id.tv_department :
+                  setTitle("店铺汇总");
+                  orderField ="Department";
+                  orderTitle="店铺";
+                  tvCodeTitle.setText(orderTitle);
+                  groupAdapter =new PosReportGroupAdapter(PosReportActivity.this,dataList,"店铺");
+                  lvData.setAdapter(groupAdapter);
                    Log.i(TAG,tv_department.getText().toString());
                   mCameraDialog.dismiss();
                  break;
               case R.id.tv_department2:
+                  setTitle("柜组汇总");
+                  orderField ="TiWei";
+                  orderTitle="柜组";
+                  tvCodeTitle.setText(orderTitle);
+                  groupAdapter =new PosReportGroupAdapter(PosReportActivity.this,dataList,"柜组");
+                  lvData.setAdapter(groupAdapter);
                    Log.i(TAG,tv_department2.getText().toString());
                   mCameraDialog.dismiss();
                  break;
               case R.id.tv_goodstype:
+                  setTitle("货品类别汇总");
+                  orderField ="GoodsType";
+                  orderTitle="货品类别";
+                  tvCodeTitle.setText(orderTitle);
+                  groupAdapter =new PosReportGroupAdapter(PosReportActivity.this,dataList,"货品类别");
+                  lvData.setAdapter(groupAdapter);
                   mCameraDialog.dismiss();
                   break;
               case R.id.tv_subtype:
+                  setTitle("货品子类别汇总");
+                  orderField ="SubType";
+                  orderTitle="货品子类别";
+                  tvCodeTitle.setText(orderTitle);
+                  groupAdapter =new PosReportGroupAdapter(PosReportActivity.this,dataList,"货品子类别");
+                  lvData.setAdapter(groupAdapter);
                   mCameraDialog.dismiss();
                   break;
               case R.id.tv_name:
+                  setTitle("货品名称汇总");
+                  orderField ="Name";
+                  orderTitle="货品名称";
+                  tvCodeTitle.setText(orderTitle);
+                  groupAdapter =new PosReportGroupAdapter(PosReportActivity.this,dataList,"货品名称");
+                  lvData.setAdapter(groupAdapter);
                   mCameraDialog.dismiss();
                   break;
               case R.id.tv_brand:
+                  setTitle("品牌汇总");
+                  orderField ="Brand";
+                  orderTitle="品牌";
+                  tvCodeTitle.setText(orderTitle);
+                  groupAdapter =new PosReportGroupAdapter(PosReportActivity.this,dataList,"品牌");
+                  lvData.setAdapter(groupAdapter);
                   mCameraDialog.dismiss();
                   break;
               case R.id.tv_employee:
+                  setTitle("售货员汇总");
+                  orderField ="GoodsEmployee";
+                  orderTitle="货品售货员";
+                  tvCodeTitle.setText(orderTitle);
+                  groupAdapter =new PosReportGroupAdapter(PosReportActivity.this,dataList,"货品售货员");
+                  lvData.setAdapter(groupAdapter);
                   mCameraDialog.dismiss();
                   break;
               case R.id.tv_madeby:
+                  setTitle("制单汇总");
+                  orderField ="MadeBy";
+                  orderTitle="制单";
+                  tvCodeTitle.setText(orderTitle);
+                  groupAdapter =new PosReportGroupAdapter(PosReportActivity.this,dataList,"制单");
+                  lvData.setAdapter(groupAdapter);
                   mCameraDialog.dismiss();
                   break;
                case R.id.tv_model:
+                   setTitle("型号规格汇总");
+                   orderField ="Model";
+                   orderTitle="型号规格";
+                   tvCodeTitle.setText(orderTitle);
+                   groupAdapter =new PosReportGroupAdapter(PosReportActivity.this,dataList,"型号规格");
+                   lvData.setAdapter(groupAdapter);
                    mCameraDialog.dismiss();
                   break;
              default:
@@ -456,8 +562,42 @@ public class PosReportActivity extends BaseWapperActivity implements OnRefreshLi
 
     }
 
+   //排序
+    private  void sortList(){
+
+        Collections.sort(dataList, new Comparator<Map<String, Object>>() {
+
+            @Override
+            public int compare(Map<String, Object> o1, Map<String, Object> o2) {
+
+                if(STATE_ASC==2 || Amt_ASC==2 || ML_ASC==2 || Qty_ASC==2){
+                    return String.valueOf(o2.get(orderField)).compareTo(String.valueOf(o1.get(orderField)));
+                }else if(STATE_ASC==1 || Amt_ASC==1 || ML_ASC==1 || Qty_ASC==1){
+                    return String.valueOf(o1.get(orderField)).compareTo(String.valueOf(o2.get(orderField)));
+                }
+               return  0;//加一个默认返回
+            }
+        });
+        adapter.refresh();
+    }
 
 
-
+    /**
+     * 循环截取某页列表进行分页
+     * @param dataList 分页数据
+     * @param pageSize  页面大小
+     * @param currentPage   当前页面
+     */
+    public static List<Map<String,Object>> page(List<Map<String,Object>> dataList, int pageSize,int currentPage) {
+        List<Map<String,Object>> currentPageList = new ArrayList<>();
+        if (dataList != null && dataList.size() > 0) {
+            int currIdx = (currentPage > 1 ? (currentPage - 1) * pageSize : 0);
+            for (int i = 0; i < pageSize && i < dataList.size() - currIdx; i++) {
+                Map<String,Object> data = dataList.get(currIdx + i);
+                currentPageList.add(data);
+            }
+        }
+        return currentPageList;
+    }
 
 }

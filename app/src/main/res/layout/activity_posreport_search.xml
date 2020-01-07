@@ -82,7 +82,6 @@
      android:textColorHint="@color/home_item_selector"
      android:background="@drawable/et_underline_unselected"
      android:layout_weight="3"
-     android:focusable="false"
      />
 
 </LinearLayout>
@@ -110,7 +109,6 @@
          android:layout_width="wrap_content"
          android:layout_height="40dp"
          android:hint="店铺"
-         android:enabled="false"
          android:layout_weight="3"
          android:background="@color/white"
          android:textColorHint="@color/home_item_selector"
@@ -144,7 +142,7 @@
             android:layout_width="wrap_content"
             android:layout_height="40dp"
             android:hint="会员"
-            android:enabled="false"
+
             android:layout_weight="3"
             android:background="@color/white"
             android:textColorHint="@color/home_item_selector"
@@ -177,7 +175,6 @@
             android:layout_width="wrap_content"
             android:layout_height="40dp"
             android:hint="货品类别"
-            android:enabled="false"
             android:layout_weight="3"
             android:background="@color/white"
             android:textColorHint="@color/home_item_selector"
@@ -209,7 +206,7 @@
             android:layout_width="wrap_content"
             android:layout_height="40dp"
             android:hint="货品售货员"
-            android:enabled="false"
+
             android:layout_weight="3"
             android:background="@color/white"
             android:textColorHint="@color/home_item_selector"
