@@ -24,19 +24,32 @@ import com.fuxi.adspter.PosReportGroupAdapter;
 import com.fuxi.main.R;
 import com.fuxi.switchbutton.widget.SwitchButton;
 import com.fuxi.switchbutton.widget.SwitchButton.OnChangeListener;
+import com.fuxi.util.Logger;
+import com.fuxi.util.LoginParameterUtil;
+import com.fuxi.vo.RequestVo;
 import com.fuxi.widget.OnRefreshListener;
 import com.fuxi.widget.RefreshListView;
 
+import org.json.JSONArray;
+import org.json.JSONObject;
+
+import java.math.BigDecimal;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Collections;
 import java.util.Comparator;
+import java.util.Date;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
 public class PosReportActivity extends BaseWapperActivity implements OnRefreshListener {
 
     private final  String TAG="PosReportActivity";
+
+    private final  String url="/salesTicket.do?Rpt301F";
 
     private  SwitchButton mSwitchButton;
     private LinearLayout llQ;
@@ -53,11 +66,11 @@ public class PosReportActivity extends BaseWapperActivity implements OnRefreshLi
     private int Qty_ASC=1;//数量
     private String orderField="Code"; //排序字段
     private String orderTitle="货品编码";
-
-    private  TextView totalQty;// 合计数量
-    private  TextView totalAmt;//  合计金额
-    private  TextView totalML;
-    private  TextView totalMLV;
+    private String barcode="";
+    private  TextView tvtotalQty;// 合计数量
+    private  TextView tvtotalAmt;//  合计金额
+    private  TextView tvtotalML;
+    private  TextView tvtotalMLV;
 
 
     private TextView tvCodeTitle;
@@ -79,8 +92,11 @@ public class PosReportActivity extends BaseWapperActivity implements OnRefreshLi
 
     private TouchListener tl =new TouchListener();
 
-    private  String beginDate;
-    private  String endDate;
+    SimpleDateFormat df =new SimpleDateFormat("yyyy-MM-dd");
+    Calendar c = Calendar.getInstance();
+
+    private  String beginDate =df.format(new java.util.Date());
+    private  String endDate=df.format(new java.util.Date());
     private  String groupField;
     private  String departmentid;
     private  String vipid;
@@ -91,7 +107,7 @@ public class PosReportActivity extends BaseWapperActivity implements OnRefreshLi
     private int screenHeight;
     private int currPage = 1;
     private List<Map<String,Object>> dataList =new ArrayList<Map<String,Object>>();
-    private List<Map<String,Object>> totalList;
+    private List<Map<String,Object>> totalList=new ArrayList<Map<String,Object>>();;
 
     @Override
     protected void loadViewLayout() {
@@ -108,7 +124,7 @@ public class PosReportActivity extends BaseWapperActivity implements OnRefreshLi
     @Override
     protected void setListener() {
 
-
+      /*
         totalList =new ArrayList<>();
 
         for (int i=0;i<30;i++){ //图片暂时写死
@@ -124,22 +140,50 @@ public class PosReportActivity extends BaseWapperActivity implements OnRefreshLi
         }
 
         dataList =page(totalList,10,currPage);
-
+     */
         tvMLTitle.setOnTouchListener(tl);
         tvAmtTitle.setOnTouchListener(tl);
         tvCodeTitle.setOnTouchListener(tl);
         tvother.setOnTouchListener(tl);
 
-        adapter =new PosReportAdapter(this,dataList);
+     //   adapter =new PosReportAdapter(this,dataList);
 
-        lvData.setAdapter(adapter);
+    //    lvData.setAdapter(adapter);
         lvData.setOnRefreshListener(this);
 
         mSwitchButton.setOnChangeListener(new OnChangeListener() {
 
             @Override
             public void onChange(int position) {
-                toast(position);
+              //  toast(position);
+              switch (position){
+                  case 0:
+                  beginDate =df.format(new Date());
+                  endDate =df.format(new Date());
+                  getData();
+                  break;
+                  case 1:
+                      c.setTime(new Date());
+                      c.add(Calendar.DAY_OF_MONTH,-1);
+                      beginDate =df.format(c.getTime());
+                      endDate =df.format(c.getTime());
+                      getData();
+                  break;
+                  case 2:
+                      c.setTime(new Date());
+                      c.add(Calendar.DAY_OF_MONTH,7);
+                      beginDate =df.format(new Date());
+                      endDate =df.format(c.getTime());
+                      getData();
+                  break;
+                  case 3:
+                      c.setTime(new Date());
+                      c.add(Calendar.DAY_OF_MONTH,30);
+                      beginDate =df.format(new Date());
+                      endDate =df.format(c.getTime());
+                      getData();
+                  break;
+              }
             }
         });
     }
@@ -147,7 +191,7 @@ public class PosReportActivity extends BaseWapperActivity implements OnRefreshLi
     @Override
     protected void processLogic() {
         setSwitchButton();
-        getAndroiodScreenProperty();
+     /*   getAndroiodScreenProperty();
         LinearLayout.LayoutParams layoutParams= new LinearLayout.LayoutParams((screenWidth)/4, ViewGroup.LayoutParams.WRAP_CONTENT,1);
         layoutParams.gravity = Gravity.CENTER;
         llQ.setLayoutParams(layoutParams);
@@ -162,8 +206,8 @@ public class PosReportActivity extends BaseWapperActivity implements OnRefreshLi
         LinearLayout.LayoutParams layoutParamsD= new LinearLayout.LayoutParams((screenWidth)/4, ViewGroup.LayoutParams.WRAP_CONTENT,1);
         layoutParamsD.gravity=Gravity.CENTER;
         llD.setLayoutParams(layoutParamsD);
-
-
+     */
+        getData();//获取数据
 
     }
 
@@ -175,10 +219,10 @@ public class PosReportActivity extends BaseWapperActivity implements OnRefreshLi
         llC =(LinearLayout)findViewById(R.id.llC);
         llD =(LinearLayout)findViewById(R.id.llD);
 
-        totalQty =(TextView) findViewById(R.id.totalQty);
-        totalAmt =(TextView) findViewById(R.id.totalAmt);
-        totalML =(TextView) findViewById(R.id.totalML);
-        totalMLV =(TextView) findViewById(R.id.totalMLV);
+        tvtotalQty =(TextView) findViewById(R.id.totalQty);
+        tvtotalAmt =(TextView) findViewById(R.id.totalAmt);
+        tvtotalML =(TextView) findViewById(R.id.totalML);
+        tvtotalMLV =(TextView) findViewById(R.id.totalMLV);
 
         tvCodeTitle =(TextView) findViewById(R.id.tvCodeTitle);
         tvAmtTitle =(TextView) findViewById(R.id.tvAmtTitle);
@@ -205,7 +249,7 @@ public class PosReportActivity extends BaseWapperActivity implements OnRefreshLi
     protected void onHeadSearchButton(View v) {
         //Toast.makeText(PosReportActivity.this,"搜索提示",Toast.LENGTH_SHORT).show();
         Intent intent=new Intent(PosReportActivity.this,PosReportSearchActivity.class);
-
+        intent.putExtra("begindate",beginDate);
         startActivityForResult(intent,R.id.head_search);
     }
 
@@ -257,27 +301,35 @@ public class PosReportActivity extends BaseWapperActivity implements OnRefreshLi
                     vipid =data.getStringExtra("vipid");
                   if(vipid !=null && !"".equals(vipid)){
                    StringBuffer sb= new StringBuffer(vipid);
-                      sb.insert(0,"0");
+                      sb.insert(0,"0'");
+                      //  sb.insert(1,"'''");
+                      sb.insert(sb.length(),"'");
                       vipid =sb.toString();
                   }
                     goodstypeid=data.getStringExtra("goodstypeid");
                     employeeid =data.getStringExtra("employeeid");
                   departmentid =data.getStringExtra("departmentid");
-                  String barcode =data.getStringExtra("barcode");
+                   barcode =data.getStringExtra("barcode");
                      if(goodstypeid !=null && !"".equals(goodstypeid)){
                          StringBuffer sb= new StringBuffer(goodstypeid);
-                         sb.insert(0,"0");
+                         sb.insert(0,"0'");
+                         //  sb.insert(1,"'''");
+                         sb.insert(sb.length(),"'");
                          goodstypeid =sb.toString();
                      }
 
                      if(employeeid !=null && !"".equals(employeeid)){
                          StringBuffer sb= new StringBuffer(employeeid);
-                         sb.insert(0,"0");
+                         sb.insert(0,"0'");
+                         //  sb.insert(1,"'''");
+                         sb.insert(sb.length(),"'");
                          employeeid =sb.toString();
                      }
                      if(departmentid !=null && !"".equals(departmentid)){
                          StringBuffer sb= new StringBuffer(departmentid);
-                         sb.insert(0,"0");
+                         sb.insert(0,"0'");
+                       //  sb.insert(1,"'''");
+                         sb.insert(sb.length(),"'");
                          departmentid =sb.toString();
                      }
                      Log.v(TAG,"barcode:"+barcode);
@@ -287,7 +339,8 @@ public class PosReportActivity extends BaseWapperActivity implements OnRefreshLi
                      Log.v(TAG,"goodstypeid的值："+goodstypeid);
                      Log.v(TAG,"employeeid的值："+employeeid);
                      Log.v(TAG,"departmentid的值："+departmentid);
-
+                     mSwitchButton.clearCheck();
+                     getData();
                  }
             break;
 
@@ -416,8 +469,9 @@ public class PosReportActivity extends BaseWapperActivity implements OnRefreshLi
                   orderField ="Code";
                   orderTitle="货品编码";
                   tvCodeTitle.setText(orderTitle);
-                  adapter =new PosReportAdapter(PosReportActivity.this,dataList);
-                  lvData.setAdapter(adapter);
+                  getData();
+               //   adapter =new PosReportAdapter(PosReportActivity.this,dataList);
+               //   lvData.setAdapter(adapter);
                 Log.i(TAG,tv_all.getText().toString());
                   mCameraDialog.dismiss();
                  break;
@@ -426,8 +480,9 @@ public class PosReportActivity extends BaseWapperActivity implements OnRefreshLi
                   orderField ="Department";
                   orderTitle="店铺";
                   tvCodeTitle.setText(orderTitle);
-                  groupAdapter =new PosReportGroupAdapter(PosReportActivity.this,dataList,"店铺");
-                  lvData.setAdapter(groupAdapter);
+                  getData();
+               //   groupAdapter =new PosReportGroupAdapter(PosReportActivity.this,dataList,"店铺");
+               //   lvData.setAdapter(groupAdapter);
                    Log.i(TAG,tv_department.getText().toString());
                   mCameraDialog.dismiss();
                  break;
@@ -436,8 +491,9 @@ public class PosReportActivity extends BaseWapperActivity implements OnRefreshLi
                   orderField ="TiWei";
                   orderTitle="柜组";
                   tvCodeTitle.setText(orderTitle);
-                  groupAdapter =new PosReportGroupAdapter(PosReportActivity.this,dataList,"柜组");
-                  lvData.setAdapter(groupAdapter);
+                  getData();
+              //    groupAdapter =new PosReportGroupAdapter(PosReportActivity.this,dataList,"柜组");
+               //   lvData.setAdapter(groupAdapter);
                    Log.i(TAG,tv_department2.getText().toString());
                   mCameraDialog.dismiss();
                  break;
@@ -446,8 +502,9 @@ public class PosReportActivity extends BaseWapperActivity implements OnRefreshLi
                   orderField ="GoodsType";
                   orderTitle="货品类别";
                   tvCodeTitle.setText(orderTitle);
-                  groupAdapter =new PosReportGroupAdapter(PosReportActivity.this,dataList,"货品类别");
-                  lvData.setAdapter(groupAdapter);
+                  getData();
+               //   groupAdapter =new PosReportGroupAdapter(PosReportActivity.this,dataList,"货品类别");
+              //    lvData.setAdapter(groupAdapter);
                   mCameraDialog.dismiss();
                   break;
               case R.id.tv_subtype:
@@ -455,8 +512,9 @@ public class PosReportActivity extends BaseWapperActivity implements OnRefreshLi
                   orderField ="SubType";
                   orderTitle="货品子类别";
                   tvCodeTitle.setText(orderTitle);
-                  groupAdapter =new PosReportGroupAdapter(PosReportActivity.this,dataList,"货品子类别");
-                  lvData.setAdapter(groupAdapter);
+                  getData();
+                //  groupAdapter =new PosReportGroupAdapter(PosReportActivity.this,dataList,"货品子类别");
+               //   lvData.setAdapter(groupAdapter);
                   mCameraDialog.dismiss();
                   break;
               case R.id.tv_name:
@@ -464,8 +522,9 @@ public class PosReportActivity extends BaseWapperActivity implements OnRefreshLi
                   orderField ="Name";
                   orderTitle="货品名称";
                   tvCodeTitle.setText(orderTitle);
-                  groupAdapter =new PosReportGroupAdapter(PosReportActivity.this,dataList,"货品名称");
-                  lvData.setAdapter(groupAdapter);
+                  getData();
+                //  groupAdapter =new PosReportGroupAdapter(PosReportActivity.this,dataList,"货品名称");
+                //  lvData.setAdapter(groupAdapter);
                   mCameraDialog.dismiss();
                   break;
               case R.id.tv_brand:
@@ -473,8 +532,9 @@ public class PosReportActivity extends BaseWapperActivity implements OnRefreshLi
                   orderField ="Brand";
                   orderTitle="品牌";
                   tvCodeTitle.setText(orderTitle);
-                  groupAdapter =new PosReportGroupAdapter(PosReportActivity.this,dataList,"品牌");
-                  lvData.setAdapter(groupAdapter);
+                  getData();
+              //    groupAdapter =new PosReportGroupAdapter(PosReportActivity.this,dataList,"品牌");
+              //    lvData.setAdapter(groupAdapter);
                   mCameraDialog.dismiss();
                   break;
               case R.id.tv_employee:
@@ -482,6 +542,7 @@ public class PosReportActivity extends BaseWapperActivity implements OnRefreshLi
                   orderField ="GoodsEmployee";
                   orderTitle="货品售货员";
                   tvCodeTitle.setText(orderTitle);
+                  getData();
                   groupAdapter =new PosReportGroupAdapter(PosReportActivity.this,dataList,"货品售货员");
                   lvData.setAdapter(groupAdapter);
                   mCameraDialog.dismiss();
@@ -491,8 +552,9 @@ public class PosReportActivity extends BaseWapperActivity implements OnRefreshLi
                   orderField ="MadeBy";
                   orderTitle="制单";
                   tvCodeTitle.setText(orderTitle);
-                  groupAdapter =new PosReportGroupAdapter(PosReportActivity.this,dataList,"制单");
-                  lvData.setAdapter(groupAdapter);
+                  getData();
+                //  groupAdapter =new PosReportGroupAdapter(PosReportActivity.this,dataList,"制单");
+                //  lvData.setAdapter(groupAdapter);
                   mCameraDialog.dismiss();
                   break;
                case R.id.tv_model:
@@ -500,8 +562,9 @@ public class PosReportActivity extends BaseWapperActivity implements OnRefreshLi
                    orderField ="Model";
                    orderTitle="型号规格";
                    tvCodeTitle.setText(orderTitle);
-                   groupAdapter =new PosReportGroupAdapter(PosReportActivity.this,dataList,"型号规格");
-                   lvData.setAdapter(groupAdapter);
+                   getData();
+               //    groupAdapter =new PosReportGroupAdapter(PosReportActivity.this,dataList,"型号规格");
+                //   lvData.setAdapter(groupAdapter);
                    mCameraDialog.dismiss();
                   break;
              default:
@@ -599,5 +662,126 @@ public class PosReportActivity extends BaseWapperActivity implements OnRefreshLi
         }
         return currentPageList;
     }
+
+ public void getData(){
+   try {
+       RequestVo vo = new RequestVo();
+       vo.requestUrl = url;
+       vo.context = this;
+
+
+       HashMap map = new HashMap();
+       map.put("begindate", beginDate);
+       map.put("enddate", endDate);
+       map.put("DeptTypeID",departmentid);
+       map.put("GoodsCode", barcode);
+       map.put("GoodsName", "");
+       map.put("GoodsTypeID", goodstypeid);
+       map.put("EmployeeID", employeeid);
+       map.put("VipID", vipid);
+       map.put("SumStr", orderTitle.equals("货品编码") ? "全部" : orderTitle);
+       vo.requestDataMap = map;
+       super.getDataFromServer(vo, new DataCallback<JSONObject>() {
+           @Override
+           public void processData(JSONObject retObj, boolean paramBoolean) {
+               try {
+                   if (retObj == null) {
+                       return;
+                   }
+                   if (retObj.getBoolean("success")) {
+                       //多次查询时
+                       if(totalList.size()>0) totalList.clear();
+                       JSONArray array = retObj.getJSONArray("obj");
+                       Log.v(TAG,"数据："+array.toString());
+                       for (int i = 0; i < array.length(); i++) {
+                           Map temp = new HashMap();
+                           JSONObject json = array.getJSONObject(i);
+                           Iterator ite = json.keys();
+                           while (ite.hasNext()) {
+                               String key = ite.next().toString();
+                               String value = json.getString(key);
+                               temp.put(key, value);
+                           }
+                           totalList.add(temp);
+                       }
+                       total();//合计
+                       dataList =page(totalList,15,currPage);
+                       if(!orderTitle.equals("货品编码")){
+                           groupAdapter=new PosReportGroupAdapter(PosReportActivity.this,dataList,orderTitle);
+                           lvData.setAdapter(groupAdapter);
+                       }else{
+                           adapter=new PosReportAdapter(PosReportActivity.this,dataList);
+                           lvData.setAdapter(adapter);
+                       }
+                       if(totalList.size()==0){
+                           Toast.makeText(PosReportActivity.this, "暂无数据", Toast.LENGTH_SHORT).show();
+                       }
+
+
+                   } else {
+                       Toast.makeText(PosReportActivity.this, "数据返回失败", Toast.LENGTH_LONG).show();
+                   }
+
+               } catch (Exception e) {
+                   Toast.makeText(PosReportActivity.this, "查询数据异常", Toast.LENGTH_LONG).show();
+                   Logger.e(TAG, e.getMessage());
+               }
+           }
+       });
+
+   }catch (Exception e){
+       Toast.makeText(PosReportActivity.this, "系统错误", Toast.LENGTH_LONG).show();
+       Logger.e(TAG, e.getMessage());
+   }
+ }
+
+ //合计
+ public void total(){
+
+  //处理小数位
+
+  int totalQty=0;
+  BigDecimal totalAmt =new BigDecimal("0.00");
+  BigDecimal totalCostAmt =new BigDecimal("0.00");
+  BigDecimal totalML =new BigDecimal("0.00");
+  BigDecimal totalMLLV =new BigDecimal("0.00");
+  try {
+      for (int i = 0; i < totalList.size(); i++) {
+          Map<String, Object> map = totalList.get(i);
+          if (map.containsKey("Amount") && map.get("Amount") != null && !"null".equals(map.get("Amount"))) {
+              map.put("Amount", new BigDecimal(String.valueOf(map.get("Amount"))).setScale(2, BigDecimal.ROUND_DOWN));
+              totalAmt = totalAmt.add(new BigDecimal(String.valueOf(map.get("Amount"))).setScale(2, BigDecimal.ROUND_DOWN));
+          }
+          if (map.containsKey("ML") && map.get("ML") != null && !"null".equals(map.get("ML"))) {
+              map.put("ML", new BigDecimal(String.valueOf(map.get("ML"))).setScale(2, BigDecimal.ROUND_DOWN));
+              totalML = totalML.add(new BigDecimal(String.valueOf(map.get("ML"))).setScale(2, BigDecimal.ROUND_DOWN));
+          }
+          if (map.containsKey("CostAmt") && map.get("CostAmt") != null && !"null".equals(map.get("CostAmt"))) {
+              map.put("CostAmt", new BigDecimal(String.valueOf(map.get("CostAmt"))).setScale(2, BigDecimal.ROUND_DOWN));
+              totalCostAmt = totalCostAmt.add(new BigDecimal(String.valueOf(map.get("CostAmt"))).setScale(2, BigDecimal.ROUND_DOWN));
+          }
+          if(map.get("Quantity") !=null && !"null".equals(map.get("Quantity"))) {
+              totalQty = totalQty + Integer.parseInt(String.valueOf(map.get("Quantity")));
+          }
+
+      }
+
+      if(totalAmt.compareTo(BigDecimal.ZERO) !=0 && totalAmt !=null) {
+          totalMLLV = totalML.divide(totalAmt,2,BigDecimal.ROUND_DOWN).multiply(new BigDecimal("100"));
+      }
+      tvtotalQty.setText(String.valueOf(totalQty));
+      tvtotalAmt.setText("￥"+String.valueOf(totalAmt));
+      tvtotalML.setText("￥"+String.valueOf(totalML));
+      tvtotalMLV.setText(String.valueOf(totalMLLV));
+
+  }catch (Exception e){
+      Toast.makeText(PosReportActivity.this, e.getMessage(), Toast.LENGTH_LONG).show();
+      Logger.e(TAG, e.getMessage());
+  }
+
+
+
+ }
+
 
 }

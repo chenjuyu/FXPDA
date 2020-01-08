@@ -2,6 +2,9 @@ package com.fuxi.activity;
 
 import android.app.Dialog;
 import android.content.Intent;
+import android.os.Build;
+import android.os.Bundle;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.MotionEvent;
 import android.view.View;
@@ -26,6 +29,8 @@ import fule.com.mywheelview.weight.wheel.OnAddressChangeListener;
 import com.fuxi.util.JsonUtil;
 import com.fuxi.util.Utils;
 public class PosReportSearchActivity extends BaseWapperActivity {
+
+    String TAG ="PosReportSearchActivity";
 
     private EditText begindate;
     private EditText enddate;
@@ -72,6 +77,11 @@ public class PosReportSearchActivity extends BaseWapperActivity {
     @Override
     protected void processLogic() {
         begindate.setText(df.format(new Date()));
+        Bundle  bundle =this.getIntent().getExtras();
+        if(bundle !=null){
+            Log.v(TAG,"bundle获取到:"+bundle.getString("begindate"));
+            begindate.setText(bundle.getString("begindate"));
+        }
         enddate.setText(df.format(new Date()));
     }
 
@@ -240,6 +250,8 @@ public class PosReportSearchActivity extends BaseWapperActivity {
             return false;
         }
     }
+
+
 
 
 

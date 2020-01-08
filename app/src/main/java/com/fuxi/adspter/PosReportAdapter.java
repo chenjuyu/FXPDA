@@ -86,20 +86,30 @@ public class PosReportAdapter extends BaseAdapter {
        }
         RequestOptions options = new RequestOptions();
         options.override(100, 100); //设置加载的图片大小
-        Glide.with(context)
-                .load("https://cdn2.jianshu.io/assets/default_avatar/2-9636b13945b9ccf345bc98d0d81074eb.jpg")//图片的地址
-                //.placeholder(R.drawable.bar_bg)//图片加载出来前，显示的图片
-                //.error(R.mipmap.unfind)//图片加载失败后，显示的图片
-                .apply(options)
-                .apply(bitmapTransform(new RoundedCornersTransformation(10, 0, RoundedCornersTransformation.CornerType.ALL)))
-                .into(odd.ivpic);
+        if(dataList.get(position).get("img").equals("")) {
+            Glide.with(context)
+                    .load("https://cdn2.jianshu.io/assets/default_avatar/2-9636b13945b9ccf345bc98d0d81074eb.jpg")//图片的地址
+                    //.placeholder(R.drawable.bar_bg)//图片加载出来前，显示的图片
+                    //.error(R.mipmap.unfind)//图片加载失败后，显示的图片
+                    .apply(options)
+                    .apply(bitmapTransform(new RoundedCornersTransformation(10, 0, RoundedCornersTransformation.CornerType.ALL)))
+                    .into(odd.ivpic);
+        }else {
+            Glide.with(context)
+                    .load(String.valueOf(dataList.get(position).get("img")))//图片的地址
+                    //.placeholder(R.drawable.bar_bg)//图片加载出来前，显示的图片
+                    //.error(R.mipmap.unfind)//图片加载失败后，显示的图片
+                    .apply(options)
+                    .apply(bitmapTransform(new RoundedCornersTransformation(10, 0, RoundedCornersTransformation.CornerType.ALL)))
+                    .into(odd.ivpic);
+        }
          odd.tvcode.setText(String.valueOf(dataList.get(position).get("Code")));
          odd.tvcolor.setText(String.valueOf(dataList.get(position).get("Color")));
          odd.tvsize.setText(String.valueOf(dataList.get(position).get("Size")));
          odd.tvqty.setText(String.valueOf(dataList.get(position).get("Quantity")));
          odd.tvunitprice.setText(String.valueOf(dataList.get(position).get("UnitPrice")));
          odd.tvAmt.setText(String.valueOf(dataList.get(position).get("Amount")));
-         odd.tvdiscount.setText(String.valueOf(dataList.get(position).get("Discount")));
+         odd.tvdiscount.setText(String.valueOf(dataList.get(position).get("DiscountRate")));
         return convertView;
     }
 }

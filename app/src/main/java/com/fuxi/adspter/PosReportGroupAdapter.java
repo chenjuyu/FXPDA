@@ -83,17 +83,39 @@ public class PosReportGroupAdapter extends BaseAdapter {
          odd=(ZuJian) convertView.getTag();
        }
 
-         odd.tvcode.setText(String.valueOf(dataList.get(position).get("Code")));
+         String Name="";
+         if(groupstr.equals("店铺")){
+             Name="Department";
+         }else if(groupstr.equals("柜组")){
+             Name="TiWei";
+         }else if(groupstr.equals("货品类别")){
+             Name="GoodsType";
+         }else if(groupstr.equals("货品子类别")){
+             Name="SubType";
+         }else if(groupstr.equals("货品名称")){
+             Name="Name";
+         }else if(groupstr.equals("型号规格")){
+             Name="Model";
+         }else if(groupstr.equals("品牌")){
+             Name="Brand";
+         }else if(groupstr.equals("货品售货员")){
+             Name="GoodsEmployee";
+         }else if(groupstr.equals("制单")){
+             Name="MadeBy";
+         }
+
+
+         odd.tvcode.setText(String.valueOf(dataList.get(position).get(Name)));
 
          odd.tvcodeTitle.setText(groupstr+": ");
 
 
-        odd.costTitle.setText("采购成本");
+        odd.costTitle.setText("采购成本: ");
          odd.tvqty.setText(String.valueOf(dataList.get(position).get("Quantity")));
          odd.tvML.setText(String.valueOf(dataList.get(position).get("ML")));
          odd.tvAmt.setText(String.valueOf(dataList.get(position).get("Amount")));
          odd.tvMLLV.setText(String.valueOf(dataList.get(position).get("MLLV")));
-         odd.costAmt.setText(String.valueOf(dataList.get(position).get("CostAmt")));
+         odd.costAmt.setText("￥"+String.valueOf(dataList.get(position).get("CostAmt")));
         return convertView;
     }
 }

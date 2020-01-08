@@ -38,6 +38,7 @@
             android:paddingRight="10dp"
             android:id="@+id/tv_Amt"
             android:layout_width="wrap_content"
+            android:textStyle="bold"
             android:textColor="@color/orange"
             android:layout_height="wrap_content"/>
 
@@ -79,7 +80,7 @@
            android:paddingRight="10dp"
            android:layout_width="wrap_content"
            android:layout_height="wrap_content"
-           android:textColor="@color/darkgray"
+           android:textColor="@color/orange"
            android:id="@+id/tv_ML"
            />
 
@@ -106,7 +107,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textColor="@color/orange"
+            android:textColor="@color/darkgray"
 
             android:id="@+id/costAmt"
             />
