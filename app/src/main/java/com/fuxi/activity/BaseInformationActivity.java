@@ -28,9 +28,9 @@ public class BaseInformationActivity extends BaseWapperActivity implements OnIte
      * 初始化数据
      */
     private void getData() {
-        img_activity = new String[] {"com.fuxi.activity.GoodsInformationActivity", "com.fuxi.activity.AddCustomerActivity", "com.fuxi.activity.PictureActivity"};
-        img_text = new String[] {"货品资料", "新增客户", "货品图片"};
-        imgs = new Integer[] {R.string.goods_info, R.string.add_customer, R.string.picture};
+        img_activity = new String[] {"com.fuxi.activity.GoodsInformationActivity", "com.fuxi.activity.AddCustomerActivity", "com.fuxi.activity.PictureActivity","com.fuxi.activity.VipActivity"};
+        img_text = new String[] {"货品资料", "新增客户", "货品图片","VIP查询"};
+        imgs = new Integer[] {R.string.goods_info, R.string.add_customer, R.string.picture,R.string.add_customer};
     }
 
     @Override

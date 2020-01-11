@@ -359,6 +359,11 @@ public abstract class BaseWapperActivity extends Activity implements OnClickList
     protected void onHeadSearchButton(View v) {
 
     }
+    //新增设置标题栏背景色2020-01-11
+    protected void sethead_layout(){
+        head_layout.setBackground(getResources().getDrawable(R.color.icon_blue));
+        StatusBarUtil.setColorNoTranslucent(this, R.color.icon_blue);
+    }
 
     @Override
     protected void onDestroy() {

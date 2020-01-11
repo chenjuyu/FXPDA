@@ -1,2 +1,2 @@
-include ':app',':multilinechooselib', ':qrcode',':mydatapicker', ':mywheelview'
+include ':app',':multilinechooselib', ':qrcode',':mydatapicker', ':mywheelview', ':autoimageslider'
 //rootProject.name='FXPDA'

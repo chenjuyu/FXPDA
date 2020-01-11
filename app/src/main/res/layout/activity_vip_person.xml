@@ -1,0 +1,327 @@
+<RelativeLayout android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    >
+
+    <LinearLayout
+        android:id="@+id/ll_first"
+        android:paddingTop="5dp"
+        android:paddingBottom="5dp"
+        android:orientation="vertical"
+        android:background="@color/icon_blue"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <com.fuxi.util.CircularImageView
+            android:id="@+id/iv_photo"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_gravity="center"
+            android:src="@drawable/logo" />
+
+        <TextView
+            android:id="@+id/tv_name"
+            android:layout_marginTop="3dp"
+            android:layout_gravity="center|center_horizontal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/white"
+            android:text="杨亚芳"
+            />
+
+        <TextView
+            android:id="@+id/tv_viptype"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center|center_horizontal"
+            android:layout_marginTop="3dp"
+            android:text="白金会员"
+            android:textColor="@color/white" />
+
+        <!--积分储值 -->
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+    <LinearLayout
+        android:layout_weight="1"
+        android:orientation="vertical"
+        android:layout_width="0dp"
+        android:gravity="center"
+        android:layout_height="wrap_content">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/tv_point"
+            android:textColor="@color/white"
+            android:textSize="25sp"
+            android:text="28000"
+            />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/white"
+            android:text="积分"
+            />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_weight="1"
+        android:orientation="vertical"
+        android:layout_width="0dp"
+        android:gravity="center"
+        android:layout_height="wrap_content">
+        <TextView
+            android:textSize="25sp"
+            android:text="1000"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/tv_cz"
+            android:textColor="@color/white"
+            />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="储值"
+            android:textColor="@color/white"
+            />
+    </LinearLayout>
+    </LinearLayout>
+</LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/ll_second"
+       android:layout_below="@+id/ll_first"
+       android:orientation="horizontal"
+       android:layout_width="match_parent"
+       android:background="@drawable/text_bottom_line"
+       android:layout_height="wrap_content">
+       <!-- 累计消费金额 -->
+      <LinearLayout
+          android:padding="10dp"
+          android:gravity="center"
+          android:layout_weight="1"
+          android:orientation="vertical"
+          android:layout_width="0dp"
+          android:layout_height="wrap_content">
+        <TextView
+            android:id="@+id/tv_amount"
+            android:text="28000"
+            android:textSize="25sp"
+            android:textColor="@color/icon_blue"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+          <TextView
+               android:layout_marginTop="10dp"
+              android:text="累计消费金额"
+              android:textColor="@color/darkgray"
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content"/>
+      </LinearLayout>
+      <!-- 累计消费次数-->
+       <LinearLayout
+           android:paddingTop="10dp"
+           android:layout_weight="1"
+           android:orientation="vertical"
+           android:layout_width="0dp"
+           android:layout_height="wrap_content">
+
+           <LinearLayout
+               android:orientation="horizontal"
+               android:layout_width="wrap_content"
+               android:layout_height="wrap_content">
+               <TextView
+                   android:text="累计消费次数"
+                   android:textColor="@color/darkgray"
+                   android:layout_width="wrap_content"
+                   android:layout_height="wrap_content"/>
+               <TextView
+                   android:layout_marginLeft="10dp"
+                   android:id="@+id/tv_count"
+                   android:text="3"
+                   android:textColor="@color/black"
+                   android:layout_width="wrap_content"
+                   android:layout_height="wrap_content"/>
+           </LinearLayout>
+
+           <LinearLayout
+               android:layout_marginTop="5dp"
+               android:orientation="horizontal"
+               android:layout_width="wrap_content"
+               android:layout_height="wrap_content">
+               <TextView
+                   android:text="最近消费时间"
+                   android:textColor="@color/darkgray"
+                   android:layout_width="wrap_content"
+                   android:layout_height="wrap_content"/>
+               <TextView
+                   android:layout_marginLeft="10dp"
+                   android:id="@+id/tv_date"
+                   android:text="2020-01-10"
+                   android:textColor="@color/black"
+                   android:layout_width="wrap_content"
+                   android:layout_height="wrap_content"/>
+
+           </LinearLayout>
+
+           <LinearLayout
+               android:layout_marginTop="5dp"
+               android:orientation="horizontal"
+               android:layout_width="wrap_content"
+               android:layout_height="wrap_content">
+               <TextView
+                   android:text="最近消费门店"
+                   android:textColor="@color/darkgray"
+                   android:layout_width="wrap_content"
+                   android:layout_height="wrap_content"/>
+               <TextView
+                   android:layout_marginLeft="10dp"
+                   android:id="@+id/tv_department"
+                   android:text="佛山店"
+                   android:textColor="@color/black"
+                   android:layout_width="wrap_content"
+                   android:layout_height="wrap_content"/>
+
+           </LinearLayout>
+
+       </LinearLayout>
+
+   </LinearLayout>
+
+   <!--客单价 件单价 连带率 -->
+  <LinearLayout
+      android:padding="5dp"
+      android:id="@+id/ll_three"
+      android:layout_below="@+id/ll_second"
+      android:orientation="horizontal"
+      android:layout_width="match_parent"
+      android:background="@color/white"
+      android:layout_height="wrap_content">
+
+      <LinearLayout
+          android:layout_weight="1"
+          android:orientation="vertical"
+          android:layout_width="0dp"
+          android:gravity="center"
+          android:layout_height="wrap_content">
+          <TextView
+              android:text="9333"
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
+              android:textSize="25sp"
+              android:id="@+id/tv_price"
+              android:textColor="@color/icon_blue"
+              />
+          <TextView
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
+              android:text="客单价"
+              android:textColor="@color/darkgray"
+              />
+      </LinearLayout>
+
+      <!--件单价 -->
+      <LinearLayout
+          android:layout_weight="1"
+          android:orientation="vertical"
+          android:layout_width="0dp"
+          android:gravity="center"
+          android:layout_height="wrap_content">
+          <TextView
+              android:text="2800"
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
+              android:textSize="25sp"
+              android:id="@+id/tv_jprice"
+              android:textColor="@color/icon_blue"
+              />
+          <TextView
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
+              android:text="件单价"
+              android:textColor="@color/darkgray"
+              />
+      </LinearLayout>
+
+      <!-- 连带率-->
+      <LinearLayout
+          android:layout_weight="1"
+          android:orientation="vertical"
+          android:layout_width="0dp"
+          android:gravity="center"
+          android:layout_height="wrap_content">
+          <TextView
+              android:text="3.33"
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
+              android:textSize="25sp"
+              android:id="@+id/tv_ldlv"
+              android:textColor="@color/icon_blue"
+              />
+          <TextView
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
+              android:text="连带率"
+              android:textColor="@color/darkgray"
+              />
+      </LinearLayout>
+  </LinearLayout>
+
+ <!--积分明细  储值记录  交易记录-->
+    <!-- <TabHost
+       android:layout_below="@id/ll_three"
+       android:id="@android:id/tabhost"
+       android:layout_width="fill_parent"
+       android:layout_height="wrap_content">
+       <LinearLayout
+           android:orientation="vertical"
+           android:layout_width="fill_parent"
+           android:layout_height="fill_parent">
+           <TabWidget
+               android:id="@android:id/tabs"
+               android:layout_width="fill_parent"
+               android:layout_height="wrap_content"/>
+           <FrameLayout
+               android:id="@android:id/tabcontent"
+               android:layout_width="fill_parent"
+               android:layout_height="fill_parent">
+           </FrameLayout>
+       </LinearLayout>
+   </TabHost>
+-->
+<LinearLayout
+    android:gravity="center"
+   android:layout_below="@id/ll_three"
+   android:orientation="vertical"
+   android:layout_width="fill_parent"
+   android:layout_height="wrap_content">
+
+    <android.support.design.widget.TabLayout
+        android:id="@+id/tabLayout"
+        android:layout_width="match_parent"
+        android:layout_height="36dp"
+        app:tabIndicatorColor="@color/orange"
+        app:tabSelectedTextColor="@color/icon_blue"
+        app:tabTextColor="#252525"></android.support.design.widget.TabLayout>
+    
+ <ListView
+     android:id="@+id/lv_datas"
+     android:divider="#F0F0F0"
+     android:dividerHeight="1dp"
+     android:layout_width="match_parent"
+     android:layout_height="wrap_content">
+
+ </ListView>
+    
+    
+  <!--app:tabGravity="center" <android.support.v4.view.ViewPager
+       android:id="@+id/viewPager"
+       android:layout_width="match_parent"
+       android:layout_height="0dp"
+       android:layout_weight="1">
+   </android.support.v4.view.ViewPager> -->
+    
+</LinearLayout>
+    </RelativeLayout>

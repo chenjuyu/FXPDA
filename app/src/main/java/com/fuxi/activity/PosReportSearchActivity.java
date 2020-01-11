@@ -52,6 +52,8 @@ public class PosReportSearchActivity extends BaseWapperActivity {
     private  String goodsTypeId;
     private  String employeeId;
     private  String barcodeStr;
+    private  String date1  =df.format(new Date());
+    private  String date2 =df.format(new Date());
     private  TouchListener tl=new TouchListener();
 
     @Override
@@ -185,8 +187,10 @@ public class PosReportSearchActivity extends BaseWapperActivity {
             public void onDateSelected(int[] dates) {
                 if(datestr ==1) {
                     begindate.setText(String.format("%d-%s-%s", dates[0], dates[1] > 9 ? dates[1] : ("0" + dates[1]), dates[2] > 9 ? dates[2] : ("0" + dates[2])));
+                    date1 =String.format("%d-%s-%s", dates[0], dates[1] > 9 ? dates[1] : ("0" + dates[1]), dates[2] > 9 ? dates[2] : ("0" + dates[2]));
                 }else if(datestr==2){
                     enddate.setText(String.format("%d-%s-%s", dates[0], dates[1] > 9 ? dates[1] : ("0" + dates[1]), dates[2] > 9 ? dates[2] : ("0" + dates[2])));
+                    date2 =String.format("%d-%s-%s", dates[0], dates[1] > 9 ? dates[1] : ("0" + dates[1]), dates[2] > 9 ? dates[2] : ("0" + dates[2]));
                 }
 
             }
@@ -217,6 +221,8 @@ public class PosReportSearchActivity extends BaseWapperActivity {
         goodsTypeId="";
         employeeId="";
         barcodeStr="";
+        date1="";
+        date2="";
     }
 
     public  class  TouchListener implements View.OnTouchListener{
@@ -233,13 +239,22 @@ public class PosReportSearchActivity extends BaseWapperActivity {
                     if(event.getAction() ==MotionEvent.ACTION_DOWN){
                         barcodeStr =String.valueOf(et_barcode.getText());
                         Intent intent =new Intent();
-                        intent.putExtra("begindate",String.valueOf(begindate.getText()));
-                        intent.putExtra("enddate",String.valueOf(enddate.getText()));
+                        intent.putExtra("begindate",date1);
+                        intent.putExtra("enddate",date2);
+
                         intent.putExtra("departmentid",departmentid);
                         intent.putExtra("vipid",vipId);
                         intent.putExtra("goodstypeid",goodsTypeId);
                         intent.putExtra("employeeid",employeeId);
                         intent.putExtra("barcode",barcodeStr);
+
+                        Log.v(TAG,"开始时间:"+date1);
+                        Log.v(TAG,"结束时间:"+date2);
+                        Log.v(TAG,"departmentid:"+departmentid);
+                        Log.v(TAG,"vipid:"+vipId);
+                        Log.v(TAG,"goodstypeid:"+goodsTypeId);
+                        Log.v(TAG,"employeeid:"+employeeId);
+                        Log.v(TAG,"barcode:"+barcodeStr);
                        setResult(1,intent);
                        finish();
                     }

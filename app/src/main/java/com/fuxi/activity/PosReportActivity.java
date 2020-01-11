@@ -15,7 +15,11 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.AdapterView;
+import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -45,7 +49,7 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
-public class PosReportActivity extends BaseWapperActivity implements OnRefreshListener {
+public class PosReportActivity extends BaseWapperActivity implements OnRefreshListener, AdapterView.OnItemClickListener {
 
     private final  String TAG="PosReportActivity";
 
@@ -91,6 +95,7 @@ public class PosReportActivity extends BaseWapperActivity implements OnRefreshLi
     private Dialog mCameraDialog;
 
     private TouchListener tl =new TouchListener();
+    private ChangeListener cl=new ChangeListener();
 
     SimpleDateFormat df =new SimpleDateFormat("yyyy-MM-dd");
     Calendar c = Calendar.getInstance();
@@ -150,42 +155,52 @@ public class PosReportActivity extends BaseWapperActivity implements OnRefreshLi
 
     //    lvData.setAdapter(adapter);
         lvData.setOnRefreshListener(this);
+        lvData.setOnItemClickListener(this);
 
-        mSwitchButton.setOnChangeListener(new OnChangeListener() {
+        mSwitchButton.setOnChangeListener(cl);
 
-            @Override
-            public void onChange(int position) {
-              //  toast(position);
-              switch (position){
-                  case 0:
-                  beginDate =df.format(new Date());
-                  endDate =df.format(new Date());
-                  getData();
-                  break;
-                  case 1:
-                      c.setTime(new Date());
-                      c.add(Calendar.DAY_OF_MONTH,-1);
-                      beginDate =df.format(c.getTime());
-                      endDate =df.format(c.getTime());
-                      getData();
-                  break;
-                  case 2:
-                      c.setTime(new Date());
-                      c.add(Calendar.DAY_OF_MONTH,7);
-                      beginDate =df.format(new Date());
-                      endDate =df.format(c.getTime());
-                      getData();
-                  break;
-                  case 3:
-                      c.setTime(new Date());
-                      c.add(Calendar.DAY_OF_MONTH,30);
-                      beginDate =df.format(new Date());
-                      endDate =df.format(c.getTime());
-                      getData();
-                  break;
-              }
-            }
-        });
+
+
+    }
+
+    @Override
+    public void onItemClick(AdapterView<?> parent, View view, final int position, long id) {
+        final RefreshListView listView = (RefreshListView) parent;
+
+        if(orderTitle.equals("货品编码")) {
+
+       /*     int childCount = listView.getChildCount();
+            for (int i = 0; i < childCount; i++) {
+                if (i != position) {
+                    View childAt = listView.getChildAt(i);
+                    PosReportAdapter.ZuJian tag = (PosReportAdapter.ZuJian) childAt.getTag();
+                    ImageView ivpic = tag.ivpic;
+                    ivpic.setEnabled(false);
+                    ivpic.setFocusable(false);
+                }
+            }  */
+         //   View childAt = listView.getChildAt(position); //getItemAtPosition(arg2);
+         PosReportAdapter.ZuJian odd=(PosReportAdapter.ZuJian ) view.getTag();//view.getTag();
+            odd.ivpic.setFocusable(true);
+            odd.ivpic.setFocusableInTouchMode(true);
+            odd.ivpic.requestFocus();
+         odd.ivpic.setOnTouchListener(new View.OnTouchListener() {
+             @Override
+             public boolean onTouch(View v, MotionEvent event) {
+                 Map<String,Object> map =(Map<String,Object>)listView.getItemAtPosition(position);//dataList.get(position);
+                 Log.v(TAG,"选中的值 ："+String.valueOf(map.get("img")));
+                 if(map.get("img").equals("") || map.get("img").equals(null)){
+                     Toast.makeText(PosReportActivity.this,"暂无图片",Toast.LENGTH_SHORT).show();
+                 }else{
+                     Intent in=new Intent(PosReportActivity.this,ImageDetailActivity.class);
+                     in.putExtra("img",String.valueOf(map.get("img")));
+                     startActivityForResult(in,R.id.ivpic);
+                 }
+
+                 return false;
+             }
+         });
+        }
     }
 
     @Override
@@ -299,6 +314,7 @@ public class PosReportActivity extends BaseWapperActivity implements OnRefreshLi
                   beginDate =data.getStringExtra("begindate");
                   endDate =data.getStringExtra("enddate");
                     vipid =data.getStringExtra("vipid");
+
                   if(vipid !=null && !"".equals(vipid)){
                    StringBuffer sb= new StringBuffer(vipid);
                       sb.insert(0,"0'");
@@ -339,8 +355,12 @@ public class PosReportActivity extends BaseWapperActivity implements OnRefreshLi
                      Log.v(TAG,"goodstypeid的值："+goodstypeid);
                      Log.v(TAG,"employeeid的值："+employeeid);
                      Log.v(TAG,"departmentid的值："+departmentid);
-                     mSwitchButton.clearCheck();
+                     mSwitchButton.setOnChangeListener(null);
+                     mSwitchButton.clearCheck(); //因为这里会触发点击事件
                      getData();
+                     mSwitchButton.setOnChangeListener(cl);
+                   //  mSwitchButton.clearCheck();
+
                  }
             break;
 
@@ -577,6 +597,48 @@ public class PosReportActivity extends BaseWapperActivity implements OnRefreshLi
         }
     }
 
+
+
+
+  public class ChangeListener implements OnChangeListener {
+
+        @Override
+        public void onChange(int position) {
+            //  toast(position);
+            switch (position){
+                case 0:
+                    beginDate =df.format(new Date());
+                    endDate =df.format(new Date());
+                    getData();
+                    break;
+                case 1:
+                    c.setTime(new Date());
+                    c.add(Calendar.DAY_OF_MONTH,-1);
+                    beginDate =df.format(c.getTime());
+                    endDate =df.format(c.getTime());
+                    getData();
+                    break;
+                case 2:
+                    c.setTime(new Date());
+                    c.add(Calendar.DAY_OF_MONTH,-7);
+                    beginDate =df.format(c.getTime());
+                    endDate =df.format(new Date());
+                    getData();
+                    break;
+                case 3:
+                    c.setTime(new Date());
+                    c.add(Calendar.DAY_OF_MONTH,-30);
+                    beginDate =df.format(c.getTime());
+                    endDate =df.format(new Date());
+                    getData();
+                    break;
+            }
+        }
+    }
+
+
+
+
     private void setDialog(){
          mCameraDialog = new Dialog(this, R.style.BottomDialog);
         LinearLayout root = (LinearLayout) LayoutInflater.from(this).inflate(
@@ -681,6 +743,17 @@ public class PosReportActivity extends BaseWapperActivity implements OnRefreshLi
        map.put("VipID", vipid);
        map.put("SumStr", orderTitle.equals("货品编码") ? "全部" : orderTitle);
        vo.requestDataMap = map;
+
+
+       Log.v(TAG,"getData()方法中barcode:"+barcode);
+       Log.v(TAG,"getData()方法中beginDate的值："+beginDate);
+       Log.v(TAG,"getData()方法中endDate的值："+endDate);
+       Log.v(TAG,"getData()方法中vipid的值："+vipid);
+       Log.v(TAG,"getData()方法中goodstypeid的值："+goodstypeid);
+       Log.v(TAG,"getData()方法中employeeid的值："+employeeid);
+       Log.v(TAG,"getData()方法中departmentid的值："+departmentid);
+
+
        super.getDataFromServer(vo, new DataCallback<JSONObject>() {
            @Override
            public void processData(JSONObject retObj, boolean paramBoolean) {

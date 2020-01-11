@@ -20,6 +20,7 @@ import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
+import android.support.v4.content.FileProvider;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.MotionEvent;
@@ -41,6 +42,7 @@ import com.fuxi.util.FormatImagesUtil;
 import com.fuxi.util.Logger;
 import com.fuxi.util.LoginParameterUtil;
 import com.fuxi.util.NetUtil;
+import com.fuxi.util.PermisionUtils;
 import com.fuxi.util.Tools;
 import com.fuxi.vo.BarCode;
 import com.fuxi.vo.Images;
@@ -88,6 +90,8 @@ public class PictureActivity extends BaseWapperActivity {
                     Toast.makeText(PictureActivity.this, "请先选择货品编号", Toast.LENGTH_SHORT).show();
                     return;
                 }
+                //安卓23.0版本以上，不仅仅要设置上面的权限，还要在对SD卡有读写操作的地方授权
+                PermisionUtils.verifyStoragePermissions(this);
                 // Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
                 // intent.putExtra("goodsCode", goodsCode);
                 // startActivityForResult(intent, R.id.addPic);
@@ -95,6 +99,13 @@ public class PictureActivity extends BaseWapperActivity {
                 File f = Tools.getImage(getApplicationContext(), goodsCode);
                 picPath = f.getAbsolutePath();
                 Uri uri = Uri.fromFile(f);
+
+             /*   Uri uri = FileProvider.getUriForFile(
+                        this,
+                        getPackageName() + ".fileprovider",
+                        f); */
+              //  takePhotoIntent.putExtra(MediaStore.EXTRA_OUTPUT, photoUri);
+
                 // 为拍摄的图片指定一个存储的路径
                 intent2.putExtra(MediaStore.EXTRA_OUTPUT, uri);
                 startActivityForResult(intent2, R.id.addPic);
