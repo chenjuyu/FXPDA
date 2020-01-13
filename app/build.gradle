@@ -10,10 +10,10 @@ android {
 
     defaultConfig {
         applicationId "com.fuxi"
-        minSdkVersion 16
+        minSdkVersion 19 //16
         targetSdkVersion 26//28 26
         versionCode 0
-        versionName "2.0.3"
+        versionName "2.0.4"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
 
     }

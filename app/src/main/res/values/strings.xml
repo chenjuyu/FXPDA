@@ -27,6 +27,15 @@
     <string name="qty_null">货品数量不能为空</string>
     <string name="illegal_quantity">货品数量不合法</string>
     <string name="qtysum_null">当前货品为空,请添加货品</string>
+
+   <!-- pop菜单  -->
+    <string name="menu_item1">菜单项1</string>
+    <string name="menu_item2">菜单项2</string>
+    <string name="menu_item3">菜单项3</string>
+    <string name="menu_item4">菜单项4</string>
+    <string name="menu_item5">菜单项5</string>
+
+
     <!-- 矢量图标 -->
     <string name="toggle">&#58968;</string>
     <string name="memo">&#59003;</string>

@@ -672,7 +672,7 @@ public class PosReportActivity extends BaseWapperActivity implements OnRefreshLi
 
         mCameraDialog.setContentView(root);
         Window dialogWindow = mCameraDialog.getWindow();
-        dialogWindow.setGravity(Gravity.BOTTOM);
+        dialogWindow.setGravity(Gravity.BOTTOM);// Gravity.BOTTOM
 //        dialogWindow.setWindowAnimations(R.style.dialogstyle); // 添加动画
         WindowManager.LayoutParams lp = dialogWindow.getAttributes(); // 获取对话框当前的参数值
         lp.x = 0; // 新位置X坐标

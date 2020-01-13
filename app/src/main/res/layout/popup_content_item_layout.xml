@@ -1,0 +1,45 @@
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/ll_popmenu"
+    android:layout_width="@dimen/popupwindow_content_width"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/menu_item1"
+        style="@style/menu_item_text_style"
+        android:text="@string/menu_item1" />
+
+    <View
+        style="@style/menu_item_divider_style"/>
+   <!--
+    <TextView
+        android:id="@+id/menu_item2"
+        style="@style/menu_item_text_style"
+        android:text="@string/menu_item2" />
+
+    <View
+        style="@style/menu_item_divider_style"/>
+
+    <TextView
+        android:id="@+id/menu_item3"
+        style="@style/menu_item_text_style"
+        android:text="@string/menu_item3" />
+
+    <View
+        style="@style/menu_item_divider_style"/>
+
+    <TextView
+        android:id="@+id/menu_item4"
+        style="@style/menu_item_text_style"
+        android:text="@string/menu_item4" />
+
+    <View
+        style="@style/menu_item_divider_style"/>
+
+    <TextView
+        android:id="@+id/menu_item5"
+        style="@style/menu_item_text_style"
+        android:text="@string/menu_item5" />
+        -->
+</LinearLayout>

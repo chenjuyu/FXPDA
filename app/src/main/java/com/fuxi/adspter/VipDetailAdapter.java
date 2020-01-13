@@ -5,6 +5,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.fuxi.main.R;
@@ -32,8 +33,9 @@ public class VipDetailAdapter extends BaseAdapter {
         public TextView tvdepartment;
         public TextView tvdate;
         public TextView tvpoint;
-        public TextView tvcz;
+     //   public TextView tvcz;
         public TextView tvmemo;
+        public LinearLayout ll_department;
     }
 
     public void refresh(List<Map<String, Object>> list) {
@@ -72,8 +74,9 @@ public class VipDetailAdapter extends BaseAdapter {
             zujian.tvdepartment = (TextView) convertView.findViewById(R.id.tv_department);
             zujian.tvdate = (TextView) convertView.findViewById(R.id.tv_date);
             zujian.tvpoint = (TextView) convertView.findViewById(R.id.tv_point);
-            zujian.tvcz = (TextView) convertView.findViewById(R.id.tv_cz);
+           // zujian.tvcz = (TextView) convertView.findViewById(R.id.tv_cz);
             zujian.tvmemo=(TextView) convertView.findViewById(R.id.tv_memo);
+            zujian.ll_department=(LinearLayout)convertView.findViewById(R.id.ll_department);
             convertView.setTag(zujian);
         } else {
             zujian = (Zujian) convertView.getTag();
@@ -88,22 +91,47 @@ public class VipDetailAdapter extends BaseAdapter {
             UsableDepositAmount =String.valueOf(data.get(position).get("UsableDepositAmount"));
         } */
 
-        if(disType==2) zujian.tvdepartment.setVisibility(View.VISIBLE);
+      if(data.size()>0){
 
-        zujian.tvno.setText(String.valueOf(data.get(position).get("No")));
+          if(disType ==2 || disType==3)
+          {
+              zujian.ll_department.setVisibility(View.VISIBLE);
+              if("null".equals(String.valueOf(data.get(position).get("POSSalesNo")))){
+                  zujian.tvno.setText("");
+              }else{
+                  zujian.tvno.setText(String.valueOf(data.get(position).get("POSSalesNo")));
+              }
 
-        if(disType==2)
-        zujian.tvdepartment.setText(String.valueOf(data.get(position).get("Department")));
+          }else {
+              zujian.ll_department.setVisibility(View.GONE);
+              zujian.tvno.setText(String.valueOf(data.get(position).get("No")));
 
-        zujian.tvdate.setText(String.valueOf(data.get(position).get("Date")));
+          }
+          if(disType==2 || disType==3) {
+              if("null".equals(String.valueOf(data.get(position).get("POSSalesNo")))){
+                  zujian.tvdepartment.setText("");
+              }else{
+                  zujian.tvdepartment.setText(String.valueOf(data.get(position).get("Department")));
+              }
 
-        if(disType==1)
-        zujian.tvpoint.setText(String.valueOf(data.get(position).get("ThisSalesPoint")));
+          }
+          zujian.tvdate.setText(String.valueOf(data.get(position).get("Date")));
 
-        if(disType==2)
-        zujian.tvcz.setText(String.valueOf(data.get(position).get("DepositAmount")));
+          if(disType==1)
+              zujian.tvpoint.setText(String.valueOf(data.get(position).get("ThisSalesPoint")));
 
-        zujian.tvmemo.setText(String.valueOf(data.get(position).get("Memo")));
+          if(disType==2) {
+            //  zujian.tvcz.setText(String.valueOf(data.get(position).get("DepositAmount")));
+              zujian.tvpoint.setText(String.valueOf(data.get(position).get("DepositAmount")));
+          }
+          if(disType==3) {
+              //  zujian.tvcz.setText(String.valueOf(data.get(position).get("DepositAmount")));
+              zujian.tvpoint.setText(String.valueOf(data.get(position).get("DeductSalesPoint")));
+          }
+          zujian.tvmemo.setText(String.valueOf(data.get(position).get("Memo")));
+
+      }
+
         return convertView;
     }
 }

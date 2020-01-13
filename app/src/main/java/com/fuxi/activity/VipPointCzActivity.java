@@ -1,5 +1,8 @@
 package com.fuxi.activity;
 
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.Matrix;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
@@ -14,6 +17,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.support.design.widget.TabLayout;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.TabHost;
@@ -21,13 +25,21 @@ import android.widget.TabWidget;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
 import com.fuxi.adspter.VipDetailAdapter;
 import com.fuxi.main.R;
+import com.fuxi.util.CircularImageView;
 import com.fuxi.util.Logger;
 import com.fuxi.vo.RequestVo;
 
+import org.json.JSONArray;
 import org.json.JSONObject;
 
+import java.io.BufferedInputStream;
+import java.io.InputStream;
+import java.net.HttpURLConnection;
+import java.net.URL;
+import java.net.URLConnection;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
@@ -58,13 +70,13 @@ public class VipPointCzActivity extends BaseWapperActivity {
 
 
     private ListView listView;
-    private TabHost tabHost;
-    private  String flag,vipId;//1表示积分，2表示储值
+   // private TabHost tabHost;
+    private  String flag,vipId;//1.消费,3表示积分，2表示储值
 
     private VipDetailAdapter adapter;
     private  List<Map<String,Object>> dataList=new ArrayList<Map<String,Object>>();
-
-
+    private  List<Map<String,Object>> dataList2=new ArrayList<Map<String,Object>>();
+    private  List<Map<String,Object>> dataList3=new ArrayList<Map<String,Object>>();
     @Override
     protected void loadViewLayout() {
      setContentView(R.layout.activity_vip_person);
@@ -82,11 +94,11 @@ public class VipPointCzActivity extends BaseWapperActivity {
         super.sethead_layout();//改变颜色
         Bundle bundle = this.getIntent().getExtras();
         if(bundle !=null){
-            flag = bundle.getString("flag");
+           // flag = bundle.getString("flag");
             vipId =bundle.getString("vipId");
         }
 
-     // getData();
+      getData();
     }
 
     @Override
@@ -117,7 +129,7 @@ public class VipPointCzActivity extends BaseWapperActivity {
 
         listView =(ListView) findViewById(R.id.lv_datas);
 
-        for(int i=0;i<30;i++){
+      /*  for(int i=0;i<30;i++){
             Map<String,Object> map =new HashMap<>();
             map.put("No","SM0000001");
             map.put("Department","广州店");
@@ -126,7 +138,7 @@ public class VipPointCzActivity extends BaseWapperActivity {
             map.put("DepositAmount","200.00");
             map.put("Memo","测试备注测试备注");
             dataList.add(map);
-        }
+        } */
 
 
 
@@ -141,7 +153,7 @@ public class VipPointCzActivity extends BaseWapperActivity {
        // }
           tabList.add("交易记录");
           tabList.add("储值记录");
-         // tabList.add("积分明细");
+          tabList.add("积分明细");
         for (int i = 0; i < tabList.size(); i++) {
             tabLayout.addTab(tabLayout.newTab().setText(tabList.get(i)));
         }//TabLayout.MODE_SCROLLABLE
@@ -151,6 +163,27 @@ public class VipPointCzActivity extends BaseWapperActivity {
             @Override
             public void onTabSelected(TabLayout.Tab tab) {
                 //Toast.makeText(VipPointCzActivity.this,String.valueOf(tab.getPosition()),Toast.LENGTH_SHORT).show();
+                if(tab.getPosition()==0){
+                  adapter =new VipDetailAdapter(VipPointCzActivity.this,dataList,1);
+                  listView.setAdapter(adapter);
+                }else if(tab.getPosition()==1){
+
+                    if(dataList2.size()==0){
+                        Toast.makeText(VipPointCzActivity.this,"暂无储值记录",Toast.LENGTH_SHORT).show();
+                        listView.setAdapter(null);
+                    }else {
+                        adapter =new VipDetailAdapter(VipPointCzActivity.this,dataList2,2);
+                        listView.setAdapter(adapter);
+                    }
+                }else if(tab.getPosition()==2){
+                    if(dataList3.size()==0){
+                        Toast.makeText(VipPointCzActivity.this,"暂无积分记录",Toast.LENGTH_SHORT).show();
+                        listView.setAdapter(null);
+                    }else {
+                        adapter =new VipDetailAdapter(VipPointCzActivity.this,dataList3,3);
+                        listView.setAdapter(adapter);
+                    }
+                }
             }
 
             @Override
@@ -221,11 +254,88 @@ public class VipPointCzActivity extends BaseWapperActivity {
                         return;
                     }
                     if (retObj.getBoolean("success")) {
+                        JSONObject attributes =retObj.getJSONObject("attributes");
+                        if(attributes !=null){
+                        JSONObject vipinf= attributes.getJSONObject("vipinf");
+                          tvname.setText(vipinf.getString("Name"));
+                          tvviptype.setText(vipinf.getString("VipType"));
+                          tvpoint.setText(vipinf.getString("UsablePoint"));
+                          tvcz.setText(vipinf.getString("UsableDepositAmount"));
+                          tvamount.setText(attributes.getString("Amt"));
+                          tvcount.setText(attributes.getString("CountNo"));
+                          tvdate.setText(attributes.getString("Date"));
+                          tvdepartment.setText(attributes.getString("salesDepartment"));
+                          tvprice.setText(attributes.getString("price"));
+                          tvjprice.setText(attributes.getString("jprice"));
+                          tvldlv.setText(attributes.getString("ldlv"));
+                          if(vipinf.get("PhotoUrl") !=null && !"null".equals(String.valueOf(vipinf.get("PhotoUrl"))) && !"".equals(vipinf.get("PhotoUrl"))){
+                              //或者是通过glide框架
+                              Glide.with(VipPointCzActivity.this).load(String.valueOf(vipinf.get("PhotoUrl")))
+                                      .into(PhotoUrl);
+                          }
 
+                          JSONArray array  =attributes.getJSONArray("posRecord");
+
+                          if(array.length() >0){
+                              for (int i = 0; i < array.length(); i++) {
+                                  Map temp = new HashMap();
+                                  JSONObject json = array.getJSONObject(i);
+                                  Iterator ite = json.keys();
+                                  while (ite.hasNext()) {
+                                      String key = ite.next().toString();
+                                      String value = json.getString(key);
+                                      temp.put(key, value);
+                                  }
+                                  dataList.add(temp);
+                              }
+
+                          }
+                            JSONArray array2  =attributes.getJSONArray("czRecord");
+                        if(array2.length()>0){
+                            for (int i = 0; i < array2.length(); i++) {
+                                Map temp2 = new HashMap();
+                                JSONObject json = array2.getJSONObject(i);
+                                Iterator ite = json.keys();
+                                while (ite.hasNext()) {
+                                    String key = ite.next().toString();
+                                    String value = json.getString(key);
+                                    temp2.put(key, value);
+                                }
+                                dataList2.add(temp2);
+                            }
+
+                        }
+
+                            JSONArray array3  =attributes.getJSONArray("jfRecord");
+                            if(array3.length()>0){
+                                for (int i = 0; i < array3.length(); i++) {
+                                    Map temp3 = new HashMap();
+                                    JSONObject json = array3.getJSONObject(i);
+                                    Iterator ite = json.keys();
+                                    while (ite.hasNext()) {
+                                        String key = ite.next().toString();
+                                        String value = json.getString(key);
+                                        temp3.put(key, value);
+                                    }
+                                    dataList3.add(temp3);
+                                }
+
+                            }
+
+
+                            if(dataList.size()>0) {
+                                adapter.refresh(dataList);
+                            }else{
+                                Toast.makeText(VipPointCzActivity.this,"暂无小票记录",Toast.LENGTH_SHORT).show();
+                            }
+
+
+
+                        }
 
 
                     }else {
-                        Toast.makeText(VipPointCzActivity.this, "数据返回失败", Toast.LENGTH_LONG).show();
+                        Toast.makeText(VipPointCzActivity.this, "数据返回异常", Toast.LENGTH_LONG).show();
                     }
                 }catch (Exception e){
                     Toast.makeText(VipPointCzActivity.this, "系统错误", Toast.LENGTH_LONG).show();
@@ -237,6 +347,7 @@ public class VipPointCzActivity extends BaseWapperActivity {
 
 
     }
+
 
 
 }

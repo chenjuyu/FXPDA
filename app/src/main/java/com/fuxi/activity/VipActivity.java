@@ -1,19 +1,25 @@
 package com.fuxi.activity;
 
 import android.content.Intent;
+import android.graphics.drawable.ColorDrawable;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
 import android.view.KeyEvent;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.EditText;
+import android.widget.ListView;
+import android.widget.PopupWindow;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.fuxi.adspter.PosReportAdapter;
 import com.fuxi.adspter.PosReportGroupAdapter;
 import com.fuxi.adspter.VipAdapter;
+import com.fuxi.adspter.VipTypeMenuAdapter;
 import com.fuxi.main.R;
 import com.fuxi.util.Logger;
 import com.fuxi.vo.RequestVo;
@@ -39,14 +45,19 @@ public class VipActivity extends BaseWapperActivity implements OnRefreshListener
     private RefreshListView lvData;
     private int currPage = 1;
     private VipAdapter adapter;
+    private VipTypeMenuAdapter vipTypeMenuAdapter;
     private boolean refresh;
     private  TxtWatcher tw=new TxtWatcher();
+    private PopupWindow mPopupWindow;
+
+    ListView viptype;
 
     private List<Map<String,Object>> dataList=new ArrayList<>();
+    private List<Map<String,Object>> vipTypeList=new ArrayList<>();
     @Override
     protected void loadViewLayout() {
      setContentView(R.layout.activity_vip);
-     setTitle("VIP查询");
+
     }
 
     @Override
@@ -105,8 +116,120 @@ public class VipActivity extends BaseWapperActivity implements OnRefreshListener
         in.putExtra("vipId",String.valueOf(map.get("VIPID")));
         startActivityForResult(in,R.id.tv_code);
     }
+   //点击标题
+    @Override
+    protected void onHeadTileButton(View v) {
+        showPopupWindow(v);
+    }
 
-   class TxtWatcher implements  TextWatcher{
+    private void showPopupWindow(View v) {
+        View contentView = getPopupWindowContentView();
+        mPopupWindow = new PopupWindow(contentView,
+                ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT, true);
+        // 如果不设置PopupWindow的背景，有些版本就会出现一个问题：无论是点击外部区域还是Back键都无法dismiss弹框
+        mPopupWindow.setBackgroundDrawable(new ColorDrawable());
+        // 设置好参数之后再show
+        // popupWindow.showAsDropDown(mButton2);  // 默认在mButton2的左下角显示
+        contentView.measure(View.MeasureSpec.UNSPECIFIED, View.MeasureSpec.UNSPECIFIED);
+        int xOffset = v.getWidth() / 2 - contentView.getMeasuredWidth() / 2;
+        mPopupWindow.showAsDropDown(v, xOffset, 0);    // 在mButton2的中间显示
+    }
+
+    private View getPopupWindowContentView() {
+        // 一个自定义的布局，作为显示的内容
+        int layoutId = R.layout.popup_content_layout;   // 布局ID
+        View contentView = LayoutInflater.from(this).inflate(layoutId, null);
+        View.OnClickListener menuItemOnClickListener = new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(v.getContext(), "Click " + ((TextView) v).getText(), Toast.LENGTH_SHORT).show();
+                if (mPopupWindow != null) {
+                    mPopupWindow.dismiss();
+                }
+            }
+        };
+        viptype= (ListView)contentView.findViewById(R.id.lv_viptype);
+
+        vipTypeMenuAdapter =new VipTypeMenuAdapter(this,vipTypeList);
+
+        getVipType();
+
+
+      /*  contentView.findViewById(R.id.menu_item1).setOnClickListener(menuItemOnClickListener);
+        contentView.findViewById(R.id.menu_item2).setOnClickListener(menuItemOnClickListener);
+        contentView.findViewById(R.id.menu_item3).setOnClickListener(menuItemOnClickListener);
+        contentView.findViewById(R.id.menu_item4).setOnClickListener(menuItemOnClickListener);
+        contentView.findViewById(R.id.menu_item5).setOnClickListener(menuItemOnClickListener);
+
+       */
+        return contentView;
+    }
+
+
+   public void getVipType(){
+
+       RequestVo vo = new RequestVo();
+       vo.requestUrl = "/select.do?getVipType";
+       vo.context = this;
+
+
+       HashMap map = new HashMap();
+       map.put("currPage",String.valueOf(1));
+       map.put("param","");
+       vo.requestDataMap =map;
+       super.getDataFromServer(vo, new DataCallback<JSONObject>() {
+           @Override
+           public void processData(JSONObject retObj, boolean paramBoolean) {
+               try{
+                   if (retObj == null) {
+                       return;
+                   }
+                   if (retObj.getBoolean("success")) {
+                       //多次查询时
+                       if (vipTypeList.size()>0) {
+                           vipTypeList.clear();
+                       }
+
+                       JSONArray array = retObj.getJSONArray("obj");
+                      // Log.v(TAG,"数据："+array.toString());
+                       for (int i = 0; i < array.length(); i++) {
+                           Map temp = new HashMap();
+                           JSONObject json = array.getJSONObject(i);
+                           Iterator ite = json.keys();
+                           while (ite.hasNext()) {
+                               String key = ite.next().toString();
+                               String value = json.getString(key);
+                               temp.put(key, value);
+                           }
+                           vipTypeList.add(temp);
+                       }
+
+                       if (array.length() == 0) {
+                           Toast.makeText(VipActivity.this, "已经到达最后一页", Toast.LENGTH_SHORT).show();
+                       }
+
+                       vipTypeMenuAdapter.refresh(vipTypeList);
+
+                   } else {
+                       Toast.makeText(VipActivity.this, "数据返回失败", Toast.LENGTH_LONG).show();
+                   }
+
+               }catch (Exception e){
+                   Toast.makeText(VipActivity.this, "系统错误", Toast.LENGTH_LONG).show();
+                   Logger.e(TAG, e.getMessage());
+               }
+
+
+
+
+           }
+       });
+
+   }
+
+
+
+    class TxtWatcher implements  TextWatcher{
 
        @Override
        public void beforeTextChanged(CharSequence s, int start, int count, int after) {
@@ -170,6 +293,8 @@ public class VipActivity extends BaseWapperActivity implements OnRefreshListener
                             }
                             dataList.add(temp);
                         }
+                        JSONObject typecount=retObj.getJSONObject("attributes");
+                        setTitle("全部分类("+typecount.getString("typecount")+") ▼");
 
                         if (array.length() == 0) {
                             Toast.makeText(VipActivity.this, "已经到达最后一页", Toast.LENGTH_SHORT).show();

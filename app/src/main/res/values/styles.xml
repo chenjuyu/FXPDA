@@ -528,4 +528,20 @@
         <item name="android:windowExitAnimation">@anim/dialog_iout</item>
     </style>
 
+     <!-- pop样式 -->
+    <style name="menu_item_text_style">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">@dimen/popupwindow_menu_item_height</item>
+        <item name="android:gravity">left|center</item>
+        <item name="android:textColor">@color/black</item>
+        <item name="android:background">@drawable/menu_item_selector</item>
+    </style>
+
+    <style name="menu_item_divider_style">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">@dimen/popupwindow_menu_item_divider_height</item>
+        <item name="android:background">@color/menu_item_divider_color</item>
+    </style>
+
+
 </resources>

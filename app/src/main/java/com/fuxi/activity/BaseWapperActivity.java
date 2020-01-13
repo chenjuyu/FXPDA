@@ -21,6 +21,7 @@ import android.os.Handler;
 import android.os.Looper;
 import android.os.Message;
 import android.os.Vibrator;
+import android.text.method.KeyListener;
 import android.view.KeyEvent;
 import android.view.MotionEvent;
 import android.view.View;
@@ -115,6 +116,10 @@ public abstract class BaseWapperActivity extends Activity implements OnClickList
         headLeftBtn.setOnTouchListener(buttomClick);
         headRightBtn.setOnTouchListener(buttomClick);
         headsearch.setOnTouchListener(buttomClick);
+
+        if(this instanceof VipActivity) {//特殊处理
+            head_title.setOnTouchListener(buttomClick);
+        }
         // 设置位于最上层
         // headRightBtn.bringToFront();
 
@@ -295,6 +300,9 @@ public abstract class BaseWapperActivity extends Activity implements OnClickList
                 case R.id.head_search:
                     onHeadSearchButton(v);
                     break;
+                case R.id.head_title:
+                    onHeadTileButton(v);
+                    break;
                 default:
                     break;
             }
@@ -359,6 +367,11 @@ public abstract class BaseWapperActivity extends Activity implements OnClickList
     protected void onHeadSearchButton(View v) {
 
     }
+
+    protected void onHeadTileButton(View v) {
+
+    }
+
     //新增设置标题栏背景色2020-01-11
     protected void sethead_layout(){
         head_layout.setBackground(getResources().getDrawable(R.color.icon_blue));

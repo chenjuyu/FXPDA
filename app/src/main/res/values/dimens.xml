@@ -8,4 +8,11 @@
     <dimen name="body_margin">10dp</dimen>
     <dimen name="twenty">20dp</dimen>
 
+
+
+    <!-- POP 组件-->
+    <dimen name="popupwindow_content_width">120dp</dimen>
+    <dimen name="popupwindow_menu_item_height">45dp</dimen>
+    <dimen name="popupwindow_menu_item_divider_height">1px</dimen>
+
 </resources>
