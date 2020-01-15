@@ -40,7 +40,11 @@ public class VipActivity extends BaseWapperActivity implements OnRefreshListener
 
     private static final  String TAG="VipActivity";
     private  String url="/select.do?getVip";
-    String keyword="";
+    private  String keyword="";
+    private  String typecountStr;
+    private  String VipTypeID;
+
+
     private EditText param;
     private RefreshListView lvData;
     private int currPage = 1;
@@ -132,7 +136,7 @@ public class VipActivity extends BaseWapperActivity implements OnRefreshListener
         // popupWindow.showAsDropDown(mButton2);  // 默认在mButton2的左下角显示
         contentView.measure(View.MeasureSpec.UNSPECIFIED, View.MeasureSpec.UNSPECIFIED);
         int xOffset = v.getWidth() / 2 - contentView.getMeasuredWidth() / 2;
-        mPopupWindow.showAsDropDown(v, xOffset, 0);    // 在mButton2的中间显示
+        mPopupWindow.showAsDropDown(v, xOffset, 10);    //0 在mButton2的中间显示
     }
 
     private View getPopupWindowContentView() {
@@ -150,10 +154,34 @@ public class VipActivity extends BaseWapperActivity implements OnRefreshListener
         };
         viptype= (ListView)contentView.findViewById(R.id.lv_viptype);
 
-        vipTypeMenuAdapter =new VipTypeMenuAdapter(this,vipTypeList);
-
+        vipTypeMenuAdapter =new VipTypeMenuAdapter(VipActivity.this,vipTypeList);
+        viptype.setAdapter(vipTypeMenuAdapter);
         getVipType();
-
+        viptype.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                ListView  ls =(ListView) parent;
+                 Map<String,Object> m=(Map<String,Object>)ls.getItemAtPosition(position);
+               //  Toast.makeText(VipActivity.this,"得到位数："+String.valueOf(position),Toast.LENGTH_SHORT).show();
+                 if(String.valueOf(m.get("Name")).equals("全部分类")){
+                     setTitle("全部分类("+typecountStr+") ▼");
+                     VipTypeID="";
+                     currPage=1;
+                     keyword="";
+                     VipActivity.this.refresh=true;
+                 }else {
+                     setTitle(String.valueOf(m.get("Name"))+" ▼");
+                     VipTypeID =String.valueOf(m.get("VipTypeID"));
+                     currPage=1;
+                     keyword="";
+                     VipActivity.this.refresh=true;
+                 }
+                if (mPopupWindow != null) {
+                    mPopupWindow.dismiss();
+                }
+                getData();
+            }
+        });
 
       /*  contentView.findViewById(R.id.menu_item1).setOnClickListener(menuItemOnClickListener);
         contentView.findViewById(R.id.menu_item2).setOnClickListener(menuItemOnClickListener);
@@ -172,10 +200,9 @@ public class VipActivity extends BaseWapperActivity implements OnRefreshListener
        vo.requestUrl = "/select.do?getVipType";
        vo.context = this;
 
-
        HashMap map = new HashMap();
-       map.put("currPage",String.valueOf(1));
-       map.put("param","");
+      // map.put("currPage",String.valueOf(1));
+      // map.put("param","");
        vo.requestDataMap =map;
        super.getDataFromServer(vo, new DataCallback<JSONObject>() {
            @Override
@@ -206,6 +233,11 @@ public class VipActivity extends BaseWapperActivity implements OnRefreshListener
 
                        if (array.length() == 0) {
                            Toast.makeText(VipActivity.this, "已经到达最后一页", Toast.LENGTH_SHORT).show();
+                       }else {
+                           Map<String,Object> allmap =new HashMap<>();
+                           allmap.put("VipTypeID","0");
+                           allmap.put("Name","全部分类");
+                           vipTypeList.add(0,allmap);
                        }
 
                        vipTypeMenuAdapter.refresh(vipTypeList);
@@ -258,16 +290,17 @@ public class VipActivity extends BaseWapperActivity implements OnRefreshListener
         vo.requestUrl = url;
         vo.context = this;
 
-       if(String.valueOf(param.getText()).equals("") && param.getText()!=null)
+       if(!String.valueOf(keyword).equals("") && keyword!=null)
        {
            keyword =String.valueOf(param.getText());
        }
 
         HashMap map = new HashMap();
         map.put("currPage",String.valueOf(currPage));
+        map.put("VipTypeID",VipTypeID);
         map.put("param",keyword);
         vo.requestDataMap =map;
-        super.getDataFromServer(vo, new DataCallback<JSONObject>() {
+        super.getDataFromServerNoProcess(vo, new DataCallback<JSONObject>() {
             @Override
             public void processData(JSONObject retObj, boolean paramBoolean) {
                 try{
@@ -293,8 +326,11 @@ public class VipActivity extends BaseWapperActivity implements OnRefreshListener
                             }
                             dataList.add(temp);
                         }
+
+
                         JSONObject typecount=retObj.getJSONObject("attributes");
-                        setTitle("全部分类("+typecount.getString("typecount")+") ▼");
+                        typecountStr =typecount.getString("typecount");
+                        setTitle("全部分类("+typecountStr+") ▼");
 
                         if (array.length() == 0) {
                             Toast.makeText(VipActivity.this, "已经到达最后一页", Toast.LENGTH_SHORT).show();

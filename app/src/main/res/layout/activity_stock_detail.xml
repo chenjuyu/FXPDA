@@ -1,0 +1,69 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_height="match_parent"
+    android:layout_width="match_parent">
+<LinearLayout
+    android:id="@+id/ll_one"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+    <android.support.design.widget.TabLayout
+        android:id="@+id/tabLayout"
+        android:layout_width="match_parent"
+        android:layout_height="36dp"
+        app:tabIndicatorColor="@color/orange"
+        app:tabSelectedTextColor="@color/icon_blue"
+        app:tabTextColor="#252525">
+    </android.support.design.widget.TabLayout>
+</LinearLayout>
+
+<!-- 报表标题 -->
+    <LinearLayout
+        android:padding="10dp"
+        android:id="@+id/ll_two"
+        android:layout_below="@id/ll_one"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <TextView
+
+            android:gravity="center"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="仓库" />
+
+        <TextView
+
+            android:gravity="center"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="颜色" />
+
+        <TextView
+
+            android:gravity="center"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="4"
+            android:text="尺码" />
+
+    </LinearLayout>
+
+  <!-- 显示详细明细 -->
+  <ListView
+      android:layout_below="@id/ll_two"
+      android:id="@+id/lv_datas"
+      android:divider="#F0F0F0"
+      android:dividerHeight="1dp"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content">
+
+  </ListView>
+
+
+
+
+</RelativeLayout>

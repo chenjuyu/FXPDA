@@ -353,6 +353,18 @@
             android:name="com.fuxi.activity.VipPointCzActivity"
             android:windowSoftInputMode="adjustPan|stateAlwaysHidden" />
 
+        <activity
+            android:name="com.fuxi.activity.StockQueryActivity"
+            android:windowSoftInputMode="adjustPan|stateAlwaysHidden" />
+
+        <activity
+            android:name="com.fuxi.activity.StockQueryDetailActivity"
+            android:windowSoftInputMode="adjustPan|stateAlwaysHidden" />
+
+        <activity
+            android:name="com.fuxi.activity.StockQuerySeachActivity"
+            android:windowSoftInputMode="adjustPan|stateAlwaysHidden" />
+
     </application>
 
 

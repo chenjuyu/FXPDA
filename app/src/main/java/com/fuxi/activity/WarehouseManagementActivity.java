@@ -30,9 +30,9 @@ public class WarehouseManagementActivity extends BaseWapperActivity implements O
     private void getData() {
         img_activity =
                 new String[] {"com.fuxi.activity.StockMoveActivity", "com.fuxi.activity.InventoryQueryActivity", "com.fuxi.activity.InventorySheetActivity", "com.fuxi.activity.InventorySheetOutLineActivity", "com.fuxi.activity.WarehouseStockInActivity",
-                        "com.fuxi.activity.WarehouseStockOutActivity", "com.fuxi.activity.InvoicingActivity"};
-        img_text = new String[] {"转仓单", "库存查询", "盘点单", "离线盘点", "进仓单", "出仓单", "进销存查询"};
-        imgs = new Integer[] {R.string.stock_move, R.string.inventory_query, R.string.inventory_sheet, R.string.out_line_inventory_sheet, R.string.stock_in, R.string.stock_out, R.string.invoicing};
+                        "com.fuxi.activity.WarehouseStockOutActivity", "com.fuxi.activity.InvoicingActivity","com.fuxi.activity.StockQueryActivity"};
+        img_text = new String[] {"转仓单", "库存查询", "盘点单", "离线盘点", "进仓单", "出仓单", "进销存查询","商品库存"};
+        imgs = new Integer[] {R.string.stock_move, R.string.inventory_query, R.string.inventory_sheet, R.string.out_line_inventory_sheet, R.string.stock_in, R.string.stock_out, R.string.invoicing,R.string.query};
     }
 
     @Override

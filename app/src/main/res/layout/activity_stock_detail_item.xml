@@ -1,0 +1,99 @@
+<LinearLayout android:orientation="horizontal"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:paddingTop="10dp"
+    android:paddingBottom="10dp"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+<LinearLayout android:layout_weight="1"
+    android:gravity="center"
+    android:orientation="vertical"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content">
+ <TextView
+     android:text="四楼仓库"
+     android:id="@+id/tv_department"
+     android:layout_width="wrap_content"
+     android:layout_height="wrap_content"/>
+    <TextView
+        android:layout_marginTop="5dp"
+        android:textColor="@color/orange"
+        android:text="(12)"
+        android:id="@+id/tv_deptqty"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+</LinearLayout>
+   <!-- 颜色 -->
+    <LinearLayout
+        android:layout_weight="1"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+        <TextView
+            android:text="黑色"
+            android:id="@+id/tv_color"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+        <TextView
+            android:layout_marginTop="5dp"
+            android:textColor="@color/orange"
+            android:text="(12)"
+            android:id="@+id/tv_colorqty"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+    </LinearLayout>
+
+  <!-- 尺码 -->
+  <LinearLayout
+      android:layout_weight="4"
+      android:orientation="vertical"
+      android:id="@+id/ll_size"
+      android:gravity="center"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content">
+  <LinearLayout
+      android:orientation="horizontal"
+      android:id="@+id/ll_sizetitle"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content">
+      <!--
+      <TextView
+          android:layout_marginLeft="5dp"
+          android:text="M"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"/>
+      <TextView
+          android:layout_marginLeft="5dp"
+          android:text="L"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"/>
+          -->
+  </LinearLayout>
+ <!--尺码数量 -->
+      <LinearLayout
+          android:layout_marginTop="5dp"
+          android:orientation="horizontal"
+          android:id="@+id/ll_sizeqty"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content">
+          <!--
+          <TextView
+              android:layout_marginLeft="5dp"
+              android:text="1"
+              android:textColor="@color/darkgray"
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content"/>
+          <TextView
+              android:layout_marginLeft="5dp"
+              android:text="3"
+              android:textColor="@color/darkgray"
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content"/>
+              -->
+      </LinearLayout>
+
+
+  </LinearLayout>
+
+
+</LinearLayout>

@@ -1,0 +1,257 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/ghostwhite"
+    android:orientation="vertical"
+    >
+    <LinearLayout
+        android:paddingBottom="5dp"
+        android:paddingTop="5dp"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
+        android:orientation="horizontal"
+        android:id="@+id/ll_one"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+    <com.fuxi.widget.FontTextView
+        android:textSize="30sp"
+        android:id="@+id/tv_scan"
+        android:text="@string/scan"
+        android:textColor="#1B9FD8"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+    <EditText
+        android:layout_marginLeft="10dp"
+        android:id="@+id/ed_keyword"
+        android:background="@color/menu_item_divider_color"
+        android:layout_width="0dp"
+        android:hint="货号、名称"
+        android:layout_height="fill_parent"
+        android:layout_weight="1"
+        android:textSize="17sp"
+        />
+    <com.fuxi.widget.FontTextView
+            android:layout_marginLeft="10dp"
+            android:id="@+id/tv_search"
+            android:text="@string/screen"
+            android:textColor="#1B9FD8"
+            android:textSize="30sp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+    </LinearLayout>
+
+
+    <View
+        android:id="@+id/v_border"
+        android:layout_below="@id/ll_one"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#C9C9C9" />
+
+
+    <!-- 总数合计-->
+  <LinearLayout
+      android:background="@drawable/border"
+      android:padding="5dp"
+      android:id="@+id/ll_two"
+      android:layout_below="@id/v_border"
+      android:orientation="horizontal"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content">
+
+    <LinearLayout
+        android:gravity="center"
+       android:layout_weight="1"
+       android:orientation="vertical"
+       android:layout_width="wrap_content"
+       android:layout_height="wrap_content">
+        <!--数量与库存 -->
+    <LinearLayout
+        android:gravity="center"
+        android:orientation="horizontal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+      <TextView
+          android:textSize="12sp"
+          android:id="@+id/tv_goodscount"
+          android:text="21"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content" />
+       <TextView
+           android:textSize="12sp"
+            android:text=" | "
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        <TextView
+            android:textSize="12sp"
+            android:id="@+id/tv_stocktotalqty"
+            android:text="39"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+    </LinearLayout>
+   <!--总数title -->
+        <LinearLayout
+            android:layout_marginTop="5dp"
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+            <TextView
+                android:textSize="12sp"
+                android:textColor="@color/darkgray"
+                android:text="商品"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+            <TextView
+                android:textSize="12sp"
+                android:text=" | "
+                android:textColor="@color/darkgray"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+            <TextView
+                android:textSize="12sp"
+                android:textColor="@color/darkgray"
+                android:text="库存"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <!--     库存成本   -->
+        <LinearLayout
+            android:gravity="center"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+            <!--库存金额 -->
+            <LinearLayout
+                android:gravity="center"
+                android:orientation="horizontal"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:textSize="12sp"
+                    android:id="@+id/tv_stockcost"
+                    android:text="￥1965.00"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+            </LinearLayout>
+            <!--总数title -->
+            <LinearLayout
+                android:textSize="12sp"
+                android:layout_marginTop="5dp"
+                android:gravity="center"
+                android:orientation="horizontal"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:textSize="12sp"
+                    android:textColor="@color/darkgray"
+                    android:text="库存成本"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+            </LinearLayout>
+        </LinearLayout>
+
+
+      <!--     库存预警   -->
+      <LinearLayout
+          android:gravity="center"
+          android:layout_weight="1"
+          android:orientation="vertical"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content">
+          <!--库存金额 -->
+          <LinearLayout
+              android:gravity="center"
+              android:orientation="horizontal"
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content">
+              <TextView
+                  android:textSize="12sp"
+                  android:textColor="@color/accentred"
+                  android:id="@+id/tv_stockwarn"
+                  android:text="94"
+                  android:layout_width="wrap_content"
+                  android:layout_height="wrap_content" />
+          </LinearLayout>
+          <!--总数title -->
+          <LinearLayout
+              android:layout_marginTop="5dp"
+              android:gravity="center"
+              android:orientation="horizontal"
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content">
+              <TextView
+                  android:textSize="12sp"
+                  android:textColor="@color/darkgray"
+                  android:text="库存预警"
+                  android:layout_width="wrap_content"
+                  android:layout_height="wrap_content" />
+          </LinearLayout>
+      </LinearLayout>
+
+  </LinearLayout>
+    <View
+        android:id="@+id/v_border2"
+        android:layout_below="@id/ll_two"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#C9C9C9" />
+    <!--列表标题 -->
+    <LinearLayout
+        android:background="@drawable/border"
+        android:padding="5dp"
+        android:layout_below="@id/v_border2"
+        android:id="@+id/ll_three"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+    <TextView
+        android:gravity="center"
+        android:layout_weight="1"
+        android:id="@+id/tv_default"
+        android:text="默认"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"/>
+    <TextView
+            android:gravity="center"
+            android:layout_weight="1"
+            android:id="@+id/tv_name"
+            android:text="名称"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"/>
+    <TextView
+            android:gravity="center"
+            android:layout_weight="1"
+            android:id="@+id/tv_code"
+            android:text="名称"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"/>
+    <TextView
+            android:gravity="center"
+            android:layout_weight="1"
+            android:id="@+id/tv_stockqty"
+            android:text="库存量"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"/>
+    </LinearLayout>
+
+    <!--列表显示-->
+  <com.fuxi.widget.RefreshListView
+      android:layout_below="@id/ll_three"
+      android:id="@+id/lv_datas"
+      android:layout_height="wrap_content"
+      android:layout_width="match_parent"
+      android:divider="#F0F0F0"
+      android:dividerHeight="1dp">
+
+  </com.fuxi.widget.RefreshListView>
+
+
+
+
+</RelativeLayout>

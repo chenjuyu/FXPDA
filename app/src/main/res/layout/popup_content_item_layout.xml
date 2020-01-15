@@ -9,37 +9,37 @@
         android:id="@+id/menu_item1"
         style="@style/menu_item_text_style"
         android:text="@string/menu_item1" />
+    <!--
+       <View
+           style="@style/menu_item_divider_style"/>
 
-    <View
-        style="@style/menu_item_divider_style"/>
-   <!--
-    <TextView
-        android:id="@+id/menu_item2"
-        style="@style/menu_item_text_style"
-        android:text="@string/menu_item2" />
+       <TextView
+           android:id="@+id/menu_item2"
+           style="@style/menu_item_text_style"
+           android:text="@string/menu_item2" />
 
-    <View
-        style="@style/menu_item_divider_style"/>
+       <View
+           style="@style/menu_item_divider_style"/>
 
-    <TextView
-        android:id="@+id/menu_item3"
-        style="@style/menu_item_text_style"
-        android:text="@string/menu_item3" />
+       <TextView
+           android:id="@+id/menu_item3"
+           style="@style/menu_item_text_style"
+           android:text="@string/menu_item3" />
 
-    <View
-        style="@style/menu_item_divider_style"/>
+       <View
+           style="@style/menu_item_divider_style"/>
 
-    <TextView
-        android:id="@+id/menu_item4"
-        style="@style/menu_item_text_style"
-        android:text="@string/menu_item4" />
+       <TextView
+           android:id="@+id/menu_item4"
+           style="@style/menu_item_text_style"
+           android:text="@string/menu_item4" />
 
-    <View
-        style="@style/menu_item_divider_style"/>
+       <View
+           style="@style/menu_item_divider_style"/>
 
-    <TextView
-        android:id="@+id/menu_item5"
-        style="@style/menu_item_text_style"
-        android:text="@string/menu_item5" />
-        -->
+       <TextView
+           android:id="@+id/menu_item5"
+           style="@style/menu_item_text_style"
+           android:text="@string/menu_item5" />
+           -->
 </LinearLayout>
