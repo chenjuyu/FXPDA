@@ -32,7 +32,7 @@ public class StockQuerySeachActivity extends BaseWapperActivity {
     private EditText etgoodstype;
     private EditText etbrand;
 
-    private String enddate;
+
     private String barcode;
     private String department;
     private String season;
@@ -47,7 +47,7 @@ public class StockQuerySeachActivity extends BaseWapperActivity {
     private  Intent intent;
     private Dialog dateDialog;
     private SimpleDateFormat df=new SimpleDateFormat("yyyy-MM-dd");
-
+    private String enddate =df.format(new Date());
     private TouchListener tl=new TouchListener();
 
     @Override
@@ -60,7 +60,7 @@ public class StockQuerySeachActivity extends BaseWapperActivity {
     protected void setListener() {
          tvret.setOnTouchListener(tl);
          tvsubmit.setOnTouchListener(tl);
-
+        etbarcode.setOnClickListener(this);
          etdepartment.setOnClickListener(this);
          etseason.setOnClickListener(this);
         etgoodstype.setOnClickListener(this);
@@ -112,6 +112,12 @@ public class StockQuerySeachActivity extends BaseWapperActivity {
            case R.id.end_date:
                showDateDialog(DateUtil.getDateForString( df.format(new Date())));
            break;
+
+           case R.id.et_barcode:
+               intent =new Intent(StockQuerySeachActivity.this,SelectActivity.class);
+               intent.putExtra("selectType","selectProduct");
+               startActivityForResult(intent,R.id.et_barcode);
+           break;
            case R.id.et_department:
                intent =new Intent(StockQuerySeachActivity.this,SelectActivity.class);
                intent.putExtra("selectType","selectDepartment");
@@ -146,6 +152,12 @@ public class StockQuerySeachActivity extends BaseWapperActivity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         switch (requestCode){
+            case R.id.et_barcode:
+                if(resultCode==1){
+                    etbarcode.setText(data.getStringExtra("Name"));
+                    barcode = data.getStringExtra("GoodsID");
+                }
+            break;
             case R.id.et_department:
                 if(resultCode==1){
                     etdepartment.setText(data.getStringExtra("Name"));

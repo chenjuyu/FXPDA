@@ -107,7 +107,7 @@ public class StockQueryDetailAdapter extends BaseAdapter {
        try {
            odd.tvdepartment.setText(String.valueOf(data.get(position).get("Department")));
            odd.tvcolor.setText(String.valueOf(data.get(position).get("Color")));
-           odd.tvdeptqty.setText(String.valueOf(data.get(position).get("Quantity")));
+           odd.tvdeptqty.setText(""); //String.valueOf(data.get(position).get("Quantity"))
            odd.tvcolorqty.setText(String.valueOf(data.get(position).get("ColorQty")));
 
        }catch (Exception e){

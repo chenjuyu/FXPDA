@@ -27,7 +27,7 @@
         android:layout_alignBottom="@+id/head_left"
         android:layout_centerHorizontal="true"
         android:gravity="center_vertical"
-        android:textSize="22dp" />
+        android:textSize="20dp" />
 
     <!-- 再加一个搜索图标，默认不可见-->
     <com.fuxi.widget.FontTextView

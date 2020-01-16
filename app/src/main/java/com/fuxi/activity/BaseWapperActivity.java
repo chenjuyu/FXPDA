@@ -117,7 +117,7 @@ public abstract class BaseWapperActivity extends Activity implements OnClickList
         headRightBtn.setOnTouchListener(buttomClick);
         headsearch.setOnTouchListener(buttomClick);
 
-        if(this instanceof VipActivity) {//特殊处理
+        if(this instanceof VipActivity || this instanceof StockQueryActivity) {//特殊处理
             head_title.setOnTouchListener(buttomClick);
         }
         // 设置位于最上层

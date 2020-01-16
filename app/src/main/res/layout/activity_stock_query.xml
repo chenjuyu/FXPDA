@@ -25,10 +25,11 @@
         android:id="@+id/ed_keyword"
         android:background="@color/menu_item_divider_color"
         android:layout_width="0dp"
-        android:hint="货号、名称"
+        android:hint="货号"
+
         android:layout_height="fill_parent"
         android:layout_weight="1"
-        android:textSize="17sp"
+        android:textSize="12sp"
         />
     <com.fuxi.widget.FontTextView
             android:layout_marginLeft="10dp"
@@ -82,12 +83,13 @@
             android:text=" | "
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
+
         <TextView
-            android:textSize="12sp"
             android:id="@+id/tv_stocktotalqty"
-            android:text="39"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+            android:layout_height="match_parent"
+            android:text="39"
+            android:textSize="12sp" />
     </LinearLayout>
    <!--总数title -->
         <LinearLayout
@@ -239,10 +241,17 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"/>
     </LinearLayout>
+    <View
+        android:id="@+id/v_border3"
+        android:layout_below="@id/ll_three"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#C9C9C9" />
 
     <!--列表显示-->
   <com.fuxi.widget.RefreshListView
-      android:layout_below="@id/ll_three"
+      android:layout_below="@id/v_border3"
+      android:listSelector="@android:color/transparent"
       android:id="@+id/lv_datas"
       android:layout_height="wrap_content"
       android:layout_width="match_parent"

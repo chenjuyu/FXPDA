@@ -88,7 +88,7 @@ public class StockQueryAdapter extends BaseAdapter {
 
         //绑定数据
         RequestOptions options = new RequestOptions();
-        options.override(60, 70); //设置加载的图片大小
+        options.override(70, 80); //设置加载的图片大小
 
         if(!data.get(position).get("img").equals("")){
             Glide.with(context)

@@ -35,5 +35,8 @@
     <color name="menu_item_divider_color">#d6d2d3</color>
     <color name="menu_item_text_color">#FFFF4081</color>
 
+    <color name="pbackgroup">#e0000000</color>
+
+
 
 </resources>

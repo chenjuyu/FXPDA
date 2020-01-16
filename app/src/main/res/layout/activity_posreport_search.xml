@@ -74,14 +74,17 @@
     android:layout_weight="2"
     android:layout_width="0dp"
     android:layout_height="wrap_content"/>
+    <!--  android:background="@drawable/et_underline_unselected"-->
  <EditText
      android:id="@+id/et_barcode"
      android:layout_width="wrap_content"
      android:layout_height="wrap_content"
-     android:hint="货号/条码"
+     android:hint="货号"
+     android:background="@color/white"
+     android:drawableRight="@drawable/input_bg"
      android:textColorHint="@color/home_item_selector"
-     android:background="@drawable/et_underline_unselected"
      android:layout_weight="3"
+     android:focusable="false"
      />
 
 </LinearLayout>

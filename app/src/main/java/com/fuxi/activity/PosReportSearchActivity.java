@@ -52,6 +52,7 @@ public class PosReportSearchActivity extends BaseWapperActivity {
     private  String goodsTypeId;
     private  String employeeId;
     private  String barcodeStr;
+    private  String goodsid;
     private  String date1  =df.format(new Date());
     private  String date2 =df.format(new Date());
     private  TouchListener tl=new TouchListener();
@@ -66,7 +67,7 @@ public class PosReportSearchActivity extends BaseWapperActivity {
     protected void setListener() {
         begindate.setOnClickListener(this);
         enddate.setOnClickListener(this);
-       // et_barcode.setOnClickListener(this);
+        et_barcode.setOnClickListener(this);
         et_department.setOnClickListener(this);
         et_employee.setOnClickListener(this);
         et_goodstype.setOnClickListener(this);
@@ -114,7 +115,11 @@ public class PosReportSearchActivity extends BaseWapperActivity {
               datestr=2;
               showDateDialog(DateUtil.getDateForString( df.format(new Date())));
               break;
-
+          case R.id.et_barcode:
+              intent =new Intent(PosReportSearchActivity.this,SelectActivity.class);
+              intent.putExtra("selectType","selectProduct");
+              startActivityForResult(intent,R.id.et_barcode);
+              break;
           case R.id.et_department:
               intent =new Intent(PosReportSearchActivity.this,SelectActivity.class);
               intent.putExtra("selectType","selectDepartment");
@@ -149,6 +154,12 @@ public class PosReportSearchActivity extends BaseWapperActivity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         switch (requestCode){
+            case R.id.et_barcode:
+                if(resultCode==1){
+                    et_barcode.setText(data.getStringExtra("Name"));
+                    barcodeStr = data.getStringExtra("Code");
+                }
+                break;
             case R.id.et_department:
                 if(resultCode==1){
                     et_department.setText(data.getStringExtra("Name"));
@@ -237,7 +248,6 @@ public class PosReportSearchActivity extends BaseWapperActivity {
                    break;
                 case R.id.tv_submit:
                     if(event.getAction() ==MotionEvent.ACTION_DOWN){
-                        barcodeStr =String.valueOf(et_barcode.getText());
                         Intent intent =new Intent();
                         intent.putExtra("begindate",date1);
                         intent.putExtra("enddate",date2);

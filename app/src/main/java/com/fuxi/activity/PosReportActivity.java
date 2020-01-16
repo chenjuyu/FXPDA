@@ -326,6 +326,13 @@ public class PosReportActivity extends BaseWapperActivity implements OnRefreshLi
                     employeeid =data.getStringExtra("employeeid");
                   departmentid =data.getStringExtra("departmentid");
                    barcode =data.getStringExtra("barcode");
+                     if(barcode !=null && !"".equals(barcode)){
+                         StringBuffer sb= new StringBuffer(barcode);
+                         sb.insert(0,"0'");
+                         //  sb.insert(1,"'''");
+                         sb.insert(sb.length(),"'");
+                         barcode =sb.toString();
+                     }
                      if(goodstypeid !=null && !"".equals(goodstypeid)){
                          StringBuffer sb= new StringBuffer(goodstypeid);
                          sb.insert(0,"0'");
